@@ -92,7 +92,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "fight_covid19.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    "fight_covid19.maps.apps.MapsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
