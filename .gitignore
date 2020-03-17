@@ -338,3 +338,4 @@ fight_covid19/media/
 .pytest_cache/
 
 .idea/
+db.sqlite3
