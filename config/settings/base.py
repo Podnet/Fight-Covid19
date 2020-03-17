@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import os
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
@@ -42,8 +43,15 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+# Meant to be used in production
+# DATABASES = {"default": env.db("DATABASE_URL", default="sqlite:///fight_covid19")}
+
+# Only for local/dev use
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///fight_covid19")
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(ROOT_DIR, "db.sqlite3"),
+    }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
@@ -72,6 +80,12 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.facebook",
+    # "allauth.socialaccount.providers.github",
+    # "allauth.socialaccount.providers.linkedin",
+    # "allauth.socialaccount.providers.microsoft",
+    # "allauth.socialaccount.providers.telegram",
     "rest_framework",
     "rest_framework.authtoken",
 ]
