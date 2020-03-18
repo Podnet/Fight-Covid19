@@ -295,3 +295,5 @@ REST_FRAMEWORK = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+COVID19_STATS_API = "https://corona.lmao.ninja/countries"

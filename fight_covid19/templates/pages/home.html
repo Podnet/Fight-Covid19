@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block content %}
+Cases: {{ cases }}<br>
+  Today's Case: {{ todaysCases }}<br>
+  Deaths so far: {{ deaths }}<br>
+  Today's Death: {{ todayDeaths }}<br>
+  Recovered so far: {{ recovered }}<br>
+  Critical : {{ critical }}
+  <br>
+  2. Guidelines by WHO etc.
+  <br>
+  3. Helpline nos. in India
+{% endblock %}
