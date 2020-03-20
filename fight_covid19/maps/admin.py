@@ -1,3 +1,4 @@
 from django.contrib import admin
+from fight_covid19.maps.models import WellnessEntry
 
-# Register your models here.
+admin.site.register(WellnessEntry)

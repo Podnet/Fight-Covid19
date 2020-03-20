@@ -9,12 +9,53 @@
 {% block content %}
   <h1>Wellness Entry Form</h1>
   <p>Keep track of how healthy you are. Please allow us to know your location, we need it to keep everyone safe!</p>
+  <p>
+    Please allow us to know your location.
+    <br>
+    <button id="find-me">Know my location</button>
+  </p>
   <br>
-<form method="POST" action="{% url 'maps:wellness_entry' %}">
-  {% csrf_token %}
+  <p id="status"></p>
+  <br>
+  <form method="POST" action="{% url 'maps:wellness_entry' %}">
+    {% csrf_token %}
 
-  {{ form|crispy }}
-  <button class="primaryAction btn btn-primary" type="submit">{% trans "Submit" %}</button>
-</form>
+    {{ form|crispy }}
+    <button class="primaryAction btn btn-primary" type="submit">{% trans "Submit" %}</button>
+  </form>
 
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    function geoFindMe() {
+
+      const latitude_field = document.querySelector('#id_latitude');
+      const longitude_field = document.querySelector('#id_longitude');
+      const status = document.querySelector('#status');
+
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        latitude_field.value = latitude;
+        longitude_field.value = longitude;
+        status.textContent = 'Done.';
+      }
+
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    }
+
+    document.querySelector('#find-me').addEventListener('click', geoFindMe);
+  </script>
 {% endblock %}

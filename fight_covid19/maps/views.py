@@ -40,6 +40,11 @@ class WellnessEntryCreate(LoginRequiredMixin, FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         print("Block processed.")
+        if form.is_valid():
+            entry = form.save(commit=False)
+            entry.user = self.request.user
+            entry.save()
+
         return super().form_valid(form)
 
 
