@@ -10,7 +10,7 @@
   <h1>Wellness Entry Form</h1>
   <p>Keep track of how healthy you are. Please allow us to know your location, we need it to keep everyone safe!</p>
   <br>
-<form class="login" method="POST" action="{% url 'account_login' %}">
+<form method="POST" action="{% url 'maps:wellness_entry' %}">
   {% csrf_token %}
 
   {{ form|crispy }}

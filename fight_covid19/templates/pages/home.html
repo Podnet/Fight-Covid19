@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-Cases: {{ cases }}<br>
+  Cases: {{ cases }}<br>
   Today's Case: {{ todaysCases }}<br>
   Deaths so far: {{ deaths }}<br>
   Today's Death: {{ todayDeaths }}<br>
@@ -13,8 +13,12 @@ Cases: {{ cases }}<br>
   3. Helpline nos. in India
 
   <br><br>
-  <p>
-  Tell us how well you are <a href="{% url 'maps:wellness_entry' %}">here.</a>
-  </p>
+  {% if user.is_authenticated %}
+    <p>
+      Tell us how well you are <a href="{% url 'maps:wellness_entry' %}">here.</a>
+    </p>
+  {% else %}
+    <p>Please <a href="{% url 'account_login' %}">login</a> and let us know your health. So that we can keep everyone around you safe.</p>
+  {% endif %}
 
 {% endblock %}

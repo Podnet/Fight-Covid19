@@ -1,16 +1,16 @@
-from django.views.generic.edit import FormView
-from django.views.generic import View
-from fight_covid19.maps.models import WellnessEntry
-from django.shortcuts import render
-from django.conf import settings
 import requests
-from fight_covid19.maps import forms
+from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import View
+from django.views.generic.edit import FormView
+
+from fight_covid19.maps import forms
 
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
-        print("hello")
         c = {
             "cases": "N/A",
             "todayCases": "N/A",
@@ -24,7 +24,6 @@ class HomePage(View):
             data = r.json()
             india_stats = list(filter(lambda x: x["country"] == "India", data))
             c = india_stats[0]
-            print("Donbe")
 
         return render(request, "pages/home.html", context=c)
 
@@ -32,10 +31,16 @@ class HomePage(View):
 HomePageView = HomePage.as_view()
 
 
-class WellnessEntryCreate(FormView):
+class WellnessEntryCreate(LoginRequiredMixin, FormView):
     form_class = forms.WellnessEntryForm
     template_name = "maps/wellness_form.html"
     success_url = reverse_lazy("maps:home")
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        print("Block processed.")
+        return super().form_valid(form)
 
 
 WellnessEntryCreateView = WellnessEntryCreate.as_view()
