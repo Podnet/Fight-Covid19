@@ -8,4 +8,5 @@ urlpatterns = [
     path(
         "wellness_entry_form/", map_views.WellnessEntryCreateView, name="wellness_entry"
     ),
+    path("wellness_entries", map_views.WellnessEntryListView, name="wellness_entries"),
 ]

@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import View
 from django.views.generic.edit import FormView
+from django.views.generic import ListView
+from fight_covid19.maps.models import WellnessEntry
 
 from fight_covid19.maps import forms
 
@@ -37,9 +39,6 @@ class WellnessEntryCreate(LoginRequiredMixin, FormView):
     success_url = reverse_lazy("maps:home")
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        print("Block processed.")
         if form.is_valid():
             entry = form.save(commit=False)
             entry.user = self.request.user
@@ -49,3 +48,17 @@ class WellnessEntryCreate(LoginRequiredMixin, FormView):
 
 
 WellnessEntryCreateView = WellnessEntryCreate.as_view()
+
+
+class WellnessEntryList(LoginRequiredMixin, ListView):
+    model = WellnessEntry
+    template_name = "maps/wellness_entry_list.html"
+    context_object_name = "entries"
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user).order_by(
+            "-creation_timestamp"
+        )
+
+
+WellnessEntryListView = WellnessEntryList.as_view()

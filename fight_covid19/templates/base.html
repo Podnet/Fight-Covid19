@@ -56,6 +56,9 @@
             {% comment %} Things to show when the user is logged in.{% endcomment %}
             {% if request.user.is_authenticated %}
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'maps:wellness_entries'  %}">{% trans "My Wellness" %}</a>
+              </li>
+              <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}
                 <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Account" %}</a>
               </li>

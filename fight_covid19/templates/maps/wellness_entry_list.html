@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "List of Wellness Entries" %}{% endblock %}
+
+
+{% block content %}
+  <h1>Wellness Entries</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fever</th>
+      <th scope="col">Cough</th>
+      <th scope="col">Difficulty in Breathing</th>
+      <th scope="col">Self Quarantine</th>
+      <th scope="col">Location</th>
+      <th scope="col">Date & Time</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for x in entries %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ x.fever }}</td>
+        <td>{{ x.cough }}</td>
+        <td>{{ x.difficult_breathing }}</td>
+        <td>{{ x.self_quarantine }}</td>
+        <td>Lat: {{ x.latitude }}<br> Long: {{ x.longitude }}</td>
+        <td>{{ x.creation_timestamp }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+

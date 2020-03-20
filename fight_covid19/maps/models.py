@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 
 class WellnessEntry(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     fever = models.BooleanField(default=False)
     cough = models.BooleanField(default=False)
     difficult_breathing = models.BooleanField(default=False)
