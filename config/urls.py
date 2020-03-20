@@ -9,6 +9,7 @@ from fight_covid19.maps import views as map_views
 
 urlpatterns = [
     path("", map_views.HomePageView, name="home"),
+    path("maps/", include(("fight_covid19.maps.urls", "maps"), namespace="maps")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

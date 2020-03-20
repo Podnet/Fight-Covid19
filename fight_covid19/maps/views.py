@@ -33,6 +33,7 @@ HomePageView = HomePage.as_view()
 class WellnessEntryCreate(CreateView):
     model = WellnessEntry
     fields = "__all__"
+    template_name = "maps/wellness_form.html"
 
 
 WellnessEntryCreateView = WellnessEntryCreate.as_view()

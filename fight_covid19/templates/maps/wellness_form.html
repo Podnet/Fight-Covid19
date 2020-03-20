@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
-{% block content%}
-  Here goes the form
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Wellness Entry" %}{% endblock %}
+
+
+{% block content %}
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+
+  {{ form|crispy }}
+
+  <button class="primaryAction btn btn-primary" type="submit">{% trans "Submit" %}</button>
+</form>
+
 {% endblock %}
