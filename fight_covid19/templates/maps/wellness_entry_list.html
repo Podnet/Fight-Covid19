@@ -6,9 +6,11 @@
 {% block head_title %}{% trans "List of Wellness Entries" %}{% endblock %}
 
 
+
 {% block content %}
   <h1>Wellness Entries</h1>
-
+<br>
+  <a href="{% url 'maps:wellness_entry' %}">Create new entry</a>
   <table class="table">
     <thead class="thead-dark">
     <tr>

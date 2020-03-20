@@ -36,7 +36,7 @@ HomePageView = HomePage.as_view()
 class WellnessEntryCreate(LoginRequiredMixin, FormView):
     form_class = forms.WellnessEntryForm
     template_name = "maps/wellness_form.html"
-    success_url = reverse_lazy("maps:home")
+    success_url = reverse_lazy("maps:wellness_entries")
 
     def form_valid(self, form):
         if form.is_valid():
