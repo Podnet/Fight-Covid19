@@ -1,9 +1,11 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import FormView
 from django.views.generic import View
 from fight_covid19.maps.models import WellnessEntry
 from django.shortcuts import render
 from django.conf import settings
 import requests
+from fight_covid19.maps import forms
+from django.urls import reverse_lazy
 
 
 class HomePage(View):
@@ -30,10 +32,10 @@ class HomePage(View):
 HomePageView = HomePage.as_view()
 
 
-class WellnessEntryCreate(CreateView):
-    model = WellnessEntry
-    fields = "__all__"
+class WellnessEntryCreate(FormView):
+    form_class = forms.WellnessEntryForm
     template_name = "maps/wellness_form.html"
+    success_url = reverse_lazy("maps:home")
 
 
 WellnessEntryCreateView = WellnessEntryCreate.as_view()

@@ -7,6 +7,7 @@ class WellnessEntry(models.Model):
     fever = models.BooleanField(default=False)
     cough = models.BooleanField(default=False)
     difficult_breathing = models.BooleanField(default=False)
+    self_quarantine = models.BooleanField(default=False)
     latitude = models.DecimalField(max_digits=15, decimal_places=12)
     longitude = models.DecimalField(max_digits=15, decimal_places=12)
     creation_timestamp = models.DateTimeField(auto_now_add=True)

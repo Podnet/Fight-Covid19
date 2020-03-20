@@ -5,4 +5,10 @@ from django import forms
 class WellnessEntryForm(forms.ModelForm):
     class Meta:
         model = models.WellnessEntry
-        fields = "__all__"
+        fields = ["fever", "cough", "difficult_breathing", "self_quarantine"]
+        labels = {
+            "fever": "Do you have fever?",
+            "cough": "Do you have Cough?",
+            "difficult_breathing": "Do you have any difficulty in breathing?",
+            "self_quarantine": "Have you self-quarantined yourself?",
+        }
