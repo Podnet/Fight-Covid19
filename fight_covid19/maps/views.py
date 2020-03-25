@@ -33,10 +33,10 @@ class HomePage(View):
 HomePageView = HomePage.as_view()
 
 
-class WellnessEntryCreate(LoginRequiredMixin, FormView):
+class HealthForm(LoginRequiredMixin, FormView):
     form_class = forms.WellnessEntryForm
-    template_name = "maps/wellness_form.html"
-    success_url = reverse_lazy("maps:wellness_entries")
+    template_name = "maps/health_form.html"
+    success_url = reverse_lazy("maps:my_health")
 
     def form_valid(self, form):
         if form.is_valid():
@@ -47,7 +47,7 @@ class WellnessEntryCreate(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-WellnessEntryCreateView = WellnessEntryCreate.as_view()
+HealthFormView = HealthForm.as_view()
 
 
 class MyHealth(LoginRequiredMixin, ListView):

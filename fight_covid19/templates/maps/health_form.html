@@ -3,21 +3,22 @@
 {% load static i18n %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Wellness Entry" %}{% endblock %}
+{% block head_title %}{% trans "Health Status Form" %}{% endblock %}
 
 
 {% block content %}
-  <h1>Wellness Entry Form</h1>
-  <p>Keep track of how healthy you are. Please allow us to know your location, we need it to keep everyone safe!</p>
-  <p>
-    Please allow us to know your location.
-    <br>
-    <button id="find-me">Know my location</button>
-  </p>
-  <br>
-  <p id="status"></p>
-  <br>
-  <form method="POST" action="{% url 'maps:wellness_entry' %}">
+
+  <div class="jumbotron">
+    <h1 class="display-4">Health Status Form</h1>
+    <p class="lead">Please fill the form below. This information would help a
+      lot of people.</p>
+    <hr class="my-4">
+    <p>Please allow us to know your location. This might help us forecast future outbreaks.</p>
+    <p id="status"></p>
+    <button id="find-me" class="btn btn-primary">Know my location</button>
+  </div>
+
+  <form method="POST" action="{% url 'maps:health_form' %}">
     {% csrf_token %}
 
     {{ form|crispy }}
@@ -40,7 +41,7 @@
 
         latitude_field.value = latitude;
         longitude_field.value = longitude;
-        status.textContent = 'Done.';
+        status.textContent = 'Done. Thank You!';
       }
 
       function error() {

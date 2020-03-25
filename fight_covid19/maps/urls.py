@@ -5,8 +5,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="maps/maps.html"), name="home"),
-    path(
-        "wellness_entry_form/", map_views.WellnessEntryCreateView, name="wellness_entry"
-    ),
+    path("health_form/", map_views.HealthFormView, name="health_form"),
     path("my_health", map_views.MyHealthView, name="my_health"),
 ]
