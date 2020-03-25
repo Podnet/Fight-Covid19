@@ -50,9 +50,9 @@ class WellnessEntryCreate(LoginRequiredMixin, FormView):
 WellnessEntryCreateView = WellnessEntryCreate.as_view()
 
 
-class WellnessEntryList(LoginRequiredMixin, ListView):
+class MyHealth(LoginRequiredMixin, ListView):
     model = WellnessEntry
-    template_name = "maps/wellness_entry_list.html"
+    template_name = "maps/my_health.html"
     context_object_name = "entries"
 
     def get_queryset(self):
@@ -61,4 +61,4 @@ class WellnessEntryList(LoginRequiredMixin, ListView):
         )
 
 
-WellnessEntryListView = WellnessEntryList.as_view()
+MyHealthView = MyHealth.as_view()
