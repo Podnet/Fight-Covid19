@@ -1,24 +1,82 @@
 {% extends "base.html" %}
 
 {% block content %}
-  Cases: {{ cases }}<br>
-  Today's Case: {{ todaysCases }}<br>
-  Deaths so far: {{ deaths }}<br>
-  Today's Death: {{ todayDeaths }}<br>
-  Recovered so far: {{ recovered }}<br>
-  Critical : {{ critical }}
-  <br>
+
+  <div class="jumbotron">
+    <h1 class="display-4">Health of India</h1>
+    <p class="lead">Contribute your bit by letting us know about your health condition. This small information can help
+      a lot people and save a lot of resources when fighting against coronavirus. You would be asked a small set of
+      questions to know about your health status.</p>
+    <hr class="my-4">
+    <p>
+      You might be wondering, what's the use of such an application? Here are 6 reason why you should do it:
+    </p>
+    <ol>
+      <li>Find the number of people who have coronavirus like symptoms.</li>
+      <li>Where are these sick people located?</li>
+      <li>Channelize government sanitization effors in places where covid-19/sick patients were found.</li>
+      <li>Which location are these sick people clustered?</li>
+      <li>Health of citizens on a nationwide level</li>
+      <li>Help data scientists forecast the next breakout by generating all this information.</li>
+    </ol>
+    <a class="btn btn-primary btn-lg" href="{% url 'maps:wellness_entry' %}" role="button">Report Health</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'maps:home' %}" role="button">See Map</a>
+  </div>
+
+  <!-- Covid-19 Status -->
+  <div class="row">
+  <div class="col-sm">
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+      <div class="card-header">Cases</div>
+      <div class="card-body">
+        <h1 class="card-title">{{ cases }}</h1>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">Today's Cases</div>
+      <div class="card-body">
+        <h1 class="card-title">{{ todayCases }}</h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm">
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+      <div class="card-header">Deaths</div>
+      <div class="card-body">
+        <h1 class="card-title">{{ deaths }}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm">
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+      <div class="card-header">Recovered</div>
+      <div class="card-body">
+        <h1 class="card-title">{{ recovered }}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card-header">Critical</div>
+      <div class="card-body">
+        <h1 class="card-title">{{ critical }}</h1>
+      </div>
+    </div>
+  </div>
+
+  {% comment %}
   2. Guidelines by WHO etc.
   <br>
   3. Helpline nos. in India
-
   <br><br>
-  {% if user.is_authenticated %}
-    <p>
-      Tell us how well you are <a href="{% url 'maps:wellness_entry' %}">here.</a>
-    </p>
-  {% else %}
-    <p>Please <a href="{% url 'account_login' %}">login</a> and let us know your health. So that we can keep everyone around you safe.</p>
-  {% endif %}
+{% endcomment %}
 
 {% endblock %}
