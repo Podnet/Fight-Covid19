@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
-from fight_covid19.maps.models import WellnessEntry
+from fight_covid19.maps.models import HealthEntry
 
 from fight_covid19.maps import forms
 
@@ -34,7 +34,7 @@ HomePageView = HomePage.as_view()
 
 
 class HealthForm(LoginRequiredMixin, FormView):
-    form_class = forms.WellnessEntryForm
+    form_class = forms.HealthEntryForm
     template_name = "maps/health_form.html"
     success_url = reverse_lazy("maps:my_health")
 
@@ -51,7 +51,7 @@ HealthFormView = HealthForm.as_view()
 
 
 class MyHealth(LoginRequiredMixin, ListView):
-    model = WellnessEntry
+    model = HealthEntry
     template_name = "maps/my_health.html"
     context_object_name = "entries"
 
@@ -62,3 +62,11 @@ class MyHealth(LoginRequiredMixin, ListView):
 
 
 MyHealthView = MyHealth.as_view()
+
+
+class MapMarkers(View):
+    def get(self, request, *args, **kwargs):
+        pass
+
+
+MapMarkersView = MapMarkers.as_view()

@@ -2,9 +2,9 @@ from fight_covid19.maps import models
 from django import forms
 
 
-class WellnessEntryForm(forms.ModelForm):
+class HealthEntryForm(forms.ModelForm):
     class Meta:
-        model = models.WellnessEntry
+        model = models.HealthEntry
         fields = [
             "fever",
             "cough",
