@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
+from django.http import JsonResponse
 
 from fight_covid19.maps import forms
 from fight_covid19.maps.models import HealthEntry
@@ -71,8 +72,9 @@ class MapMarkers(View):
             HealthEntry.objects.all()
             .order_by("user", "-creation_timestamp")
             .distinct("user")
+            .values("user_id", "latitude", "longitude")
         )
-        return HttpResponse(points)
+        return JsonResponse(list(points), safe=False)
 
 
 MapMarkersView = MapMarkers.as_view()
