@@ -1,14 +1,15 @@
 import requests
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
-from django.views.generic import ListView
-from fight_covid19.maps.models import HealthEntry
 
 from fight_covid19.maps import forms
+from fight_covid19.maps.models import HealthEntry
 
 
 class HomePage(View):
@@ -66,7 +67,12 @@ MyHealthView = MyHealth.as_view()
 
 class MapMarkers(View):
     def get(self, request, *args, **kwargs):
-        pass
+        points = (
+            HealthEntry.objects.all()
+            .order_by("user", "-creation_timestamp")
+            .distinct("user")
+        )
+        return HttpResponse(points)
 
 
 MapMarkersView = MapMarkers.as_view()
