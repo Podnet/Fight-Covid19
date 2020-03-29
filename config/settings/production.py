@@ -75,21 +75,21 @@ COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
 # MEDIA
 # ------------------------------------------------------------------------------
-from storages.backends.gcloud import GoogleCloudStorage  # noqa E402
-
-
-class StaticRootGoogleCloudStorage(GoogleCloudStorage):
-    location = "static"
-    default_acl = "publicRead"
-
-
-class MediaRootGoogleCloudStorage(GoogleCloudStorage):
-    location = "media"
-    file_overwrite = False
-
-
-DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+# from storages.backends.gcloud import GoogleCloudStorage  # noqa E402
+#
+#
+# class StaticRootGoogleCloudStorage(GoogleCloudStorage):
+#     location = "static"
+#     default_acl = "publicRead"
+#
+#
+# class MediaRootGoogleCloudStorage(GoogleCloudStorage):
+#     location = "media"
+#     file_overwrite = False
+#
+#
+# DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootGoogleCloudStorage"
+# MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -113,9 +113,7 @@ DEFAULT_FROM_EMAIL = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[Fight Covid19]"
-)
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[Fight Covid19]")
 
 # ADMIN
 # ------------------------------------------------------------------------------
