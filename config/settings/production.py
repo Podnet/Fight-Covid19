@@ -65,14 +65,15 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STORAGES
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
-INSTALLED_APPS += ["storages"]  # noqa F405
-GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
-GS_DEFAULT_ACL = "publicRead"
+# INSTALLED_APPS += ["storages"]  # noqa F405
+# GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+# GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "config.settings.production.StaticRootGoogleCloudStorage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
-STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
+STATIC_URL = "/static/"
+# STATICFILES_STORAGE = "config.settings.production.StaticRootGoogleCloudStorage"
+# COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
+# STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
 # MEDIA
 # ------------------------------------------------------------------------------
 # from storages.backends.gcloud import GoogleCloudStorage  # noqa E402
