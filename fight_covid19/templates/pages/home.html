@@ -24,59 +24,87 @@
   </div>
 
   <!-- Covid-19 Status -->
+  <h1>Coronavirus Cases</h1>
   <div class="row">
-  <div class="col-sm">
-    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-      <div class="card-header">Cases</div>
-      <div class="card-body">
-        <h1 class="card-title">{{ cases }}</h1>
+    <div class="col-sm">
+      <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card-header">Cases</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ cases }}</h1>
 
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Today's Cases</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ todayCases }}</h1>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">Deaths</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ deaths }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Recovered</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ recovered }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Critical</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ critical }}</h1>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col-sm">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-      <div class="card-header">Today's Cases</div>
-      <div class="card-body">
-        <h1 class="card-title">{{ todayCases }}</h1>
-      </div>
-    </div>
-  </div>
 
+  <h1>Health Statistics</h1>
+
+  <div class="row">
 
   <div class="col-sm">
-    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-      <div class="card-header">Deaths</div>
-      <div class="card-body">
-        <h1 class="card-title">{{ deaths }}</h1>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Total People</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ totalPeople }}</h1>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="col-sm">
-    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-      <div class="card-header">Recovered</div>
-      <div class="card-body">
-        <h1 class="card-title">{{ recovered }}</h1>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Sick People</div>
+        <div class="card-body">
+          <h1 class="card-title">{{ sickPeople }}</h1>
+        </div>
       </div>
     </div>
+
   </div>
 
-  <div class="col-sm">
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-      <div class="card-header">Critical</div>
-      <div class="card-body">
-        <h1 class="card-title">{{ critical }}</h1>
-      </div>
-    </div>
-  </div>
 
   {% comment %}
   2. Guidelines by WHO etc.
   <br>
   3. Helpline nos. in India
   <br><br>
-{% endcomment %}
+  {% endcomment %}
 
 {% endblock %}
