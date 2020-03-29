@@ -1,7 +1,11 @@
-Fight Covid19
-=============
+Health of India: Fight Covid19
+==============================
 
-Map of people in India for Covid19
+An application to map symptomatic patients of covid19 on map and collect continuous health updates from individuals.
+Visit covid19.thepodnet.com_.
+
+.. _covid19.thepodnet.com: https://covid19.thepodnet.com
+
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -12,6 +16,12 @@ Map of people in India for Covid19
 
 
 :License: MIT
+
+Todo
+----
+1. Update this README docs to post instructions for installation
+2. Tasks to perform
+3. Optimizations to perform on database
 
 
 Settings
