@@ -40,7 +40,15 @@ Setup
     
     $ sudo ./utility/install_os_dependencies.sh install
 
-5. Setup Postgres database
+5. Setup Postgres database (assuming you have already installed it)
+    ::
+    
+    $ sudo -i -u postgres
+    $ createdb fight_covid19
+    $ createuser --interactive
+    Enter name of role to add: <username>
+    Shall the new role be a superuser? (y/n) y
+    
 6. Point config.settings.base.py file to the correct database instance.
 6. Run project locally
     ::
