@@ -19,6 +19,7 @@ Visit covid19.thepodnet.com_.
 
 Setup
 -----
+
 1. Clone the repository
     ::
     
@@ -50,11 +51,22 @@ Setup
       
       Shall the new role be a superuser? (y/n) y
     
-6. Point config.settings.base.py file to the correct database instance.
-6. Run project locally
+6. Point django to the database instance. Create a .env file with the following content:
+
+7. Run project locally
     ::
     
     $ python manage.py runserver
+
+
+
+# These variables are used locally
+DATABASE_NAME=postgres:///fight_covid19
+DATABASE_USER=apoorva
+DATABASE_PASSWORD=apple007
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=5432
+
 
 Todo
 ----
