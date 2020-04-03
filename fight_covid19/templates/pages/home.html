@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <article class="uk-article">
+  <article class="uk-article uk-margin-top">
 
     <h1 class="uk-article-title"><a class="uk-link-reset" href="">Health of India</a></h1>
 
@@ -28,10 +28,10 @@
 
     <div class="uk-grid-small uk-child-width-auto" uk-grid>
       <div>
-        <a class="uk-button uk-button-text" href="{% url 'maps:health_form' %}">Report Health</a>
+        <a href="{% url 'maps:health_form' %}" class="uk-button uk-button-secondary">Record Health</a>
       </div>
       <div>
-        <a class="uk-button uk-button-text" href="{% url 'maps:home' %}">See Maps</a>
+         <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
       </div>
     </div>
 
