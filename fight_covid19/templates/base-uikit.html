@@ -15,10 +15,10 @@
 
   <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
-  {% block css %}
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
+  {% block css %}
 
 
     <!-- Your stuff: Third-party CSS libraries go here -->
@@ -47,7 +47,7 @@
           <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
           <li><a href="{% url 'users:detail' request.user.username %}">{% trans "My Account" %}</a></li>
           <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
-          {% else %}
+        {% else %}
           <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
           <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
         {% endif %}

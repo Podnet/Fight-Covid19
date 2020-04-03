@@ -1,5 +1,14 @@
 {% extends "base-uikit.html" %}
 
+{% block css %}
+  <style>
+    .uk-card-title {
+      font-size: 2rem;
+      line-height: 1.4;
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
 
   <article class="uk-article uk-margin-top">
@@ -31,14 +40,15 @@
         <a href="{% url 'maps:health_form' %}" class="uk-button uk-button-secondary">Record Health</a>
       </div>
       <div>
-         <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
+        <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
       </div>
     </div>
+    <hr>
 
   </article>
 
   <h1>Coronavirus Stats in India</h1>
-  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+  <div class="uk-child-width-1-3@s uk-grid-match" uk-grid>
     <div>
       <div class="uk-card uk-card-default uk-card-hover uk-card-body">
         <h3 class="uk-card-title">{{ cases }}</h3>
@@ -85,7 +95,7 @@
   </div>
 
   <h1>Health of India Stats</h1>
-  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+  <div class="uk-child-width-1-3@s uk-grid-match" uk-grid>
     <div>
       <div class="uk-card uk-card-default uk-card-hover uk-card-body">
         <h3 class="uk-card-title">{{ totalPeople }}</h3>
@@ -102,6 +112,7 @@
 
   </div>
 
+  <div class="uk-margin-large"></div>
 
   {% comment %}
   2. Guidelines by WHO etc.
