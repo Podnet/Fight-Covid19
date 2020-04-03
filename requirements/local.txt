@@ -33,3 +33,4 @@ pytest-django==3.8.0  # https://github.com/pytest-dev/pytest-django
 celery==4.4.0
 django-redis==4.11.0
 redis==3.4.1
+django-celery-beat==2.0.0
