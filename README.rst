@@ -17,6 +17,14 @@ Visit covid19.thepodnet.com_.
 
 :License: MIT
 
+Setup
+-----
+1. Clone the repository
+2. Create a virtual environment using virtualenv or venv.
+3. Install python packages
+4. Install OS dependencies
+5. Run project locally
+
 Todo
 ----
 1. Update this README docs to post instructions for installation
