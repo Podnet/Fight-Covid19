@@ -2,15 +2,15 @@ from __future__ import absolute_import
 import os
 from celery import Celery
 from django.conf import settings
+from . import celery_config
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
 # set the default Django settings module for the 'celery' program.
-app = Celery('fight_covid19')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
 
-
+app = Celery('Fight-Covid19')
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
-app.config_from_object('django.conf:settings')
+app.config_from_object(celery_config)
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
