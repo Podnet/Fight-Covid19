@@ -46,8 +46,9 @@ Setup
     $ sudo -i -u postgres
     $ createdb fight_covid19
     $ createuser --interactive
-    Enter name of role to add: <username>
-    Shall the new role be a superuser? (y/n) y
+      Enter name of role to add: <username>
+      
+      Shall the new role be a superuser? (y/n) y
     
 6. Point config.settings.base.py file to the correct database instance.
 6. Run project locally
