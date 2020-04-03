@@ -20,10 +20,32 @@ Visit covid19.thepodnet.com_.
 Setup
 -----
 1. Clone the repository
+    ::
+    
+    $ git clone https://github.com/meticulousCraftman/Fight-Covid19
+  
 2. Create a virtual environment using virtualenv or venv.
+    ::
+    
+    $ virtualenv -p python3 venv/
+    $ source venv/bin/activate
+
 3. Install python packages
-4. Install OS dependencies
-5. Run project locally
+    ::
+    
+    $ pip3 install -r requirements/local.txt
+    
+4. Install OS dependencies (For linux systems only, others have to install it manually)
+    ::
+    
+    $ sudo ./utility/install_os_dependencies.sh install
+
+5. Setup Postgres database
+6. Point config.settings.base.py file to the correct database instance.
+6. Run project locally
+    ::
+    
+    $ python manage.py runserver
 
 Todo
 ----
