@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from fight_covid19.maps.models import HealthEntry
 
 
