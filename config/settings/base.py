@@ -305,5 +305,14 @@ REST_FRAMEWORK = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 COVID19_STATS_API = "https://corona.lmao.ninja/countries"
+
+# Celery Config
+
+BROKER_URL = env('BROKER_URL')
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+CELERY_ACCEPT_CONTENT = [env('CELERY_ACCEPT_CONTENT')]
+CELERY_TASK_SERIALIZER = env('CELERY_TASK_SERIALIZER')
+CELERY_RESULT_SERIALIZER = env('CELERY_RESULT_SERIALIZER')
