@@ -99,6 +99,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "djcelery",
+    "django.contrib.humanize",
 ]
 
 LOCAL_APPS = [
