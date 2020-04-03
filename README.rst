@@ -105,4 +105,8 @@ The following details how to deploy this application.
 
 
 
+API Endpoints
+--------------
 
+- **users** : GET,PUT
+- **healthentry** : GET,POST,PUT
