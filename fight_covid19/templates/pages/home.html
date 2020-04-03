@@ -1,13 +1,19 @@
-{% extends "base.html" %}
+{% extends "base-uikit.html" %}
 
 {% block content %}
 
-  <div class="jumbotron">
-    <h1 class="display-4">Health of India</h1>
-    <p class="lead">Contribute your bit by letting us know about your health condition. This small information can help
+  <article class="uk-article">
+
+    <h1 class="uk-article-title"><a class="uk-link-reset" href="">Health of India</a></h1>
+
+    <p class="uk-article-meta">Written by Health of India team on 4th April 2020.
+    </p>
+
+    <p class="uk-text-lead">Contribute your bit by letting us know about your health condition. This small information
+      can help
       a lot people and save a lot of resources when fighting against coronavirus. You would be asked a small set of
       questions to know about your health status.</p>
-    <hr class="my-4">
+
     <p>
       You might be wondering, what's the use of such an application? Here are 6 reason why you should do it:
     </p>
@@ -19,81 +25,78 @@
       <li>Health of citizens on a nationwide level</li>
       <li>Help data scientists forecast the next breakout by generating all this information.</li>
     </ol>
-    <a class="btn btn-primary btn-lg" href="{% url 'maps:health_form' %}" role="button">Report Health</a>
-    <a class="btn btn-primary btn-lg" href="{% url 'maps:home' %}" role="button">See Map</a>
+
+    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+      <div>
+        <a class="uk-button uk-button-text" href="{% url 'maps:health_form' %}">Report Health</a>
+      </div>
+      <div>
+        <a class="uk-button uk-button-text" href="{% url 'maps:home' %}">See Maps</a>
+      </div>
+    </div>
+
+  </article>
+
+  <h1>Coronavirus Stats in India</h1>
+  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ cases }}</h3>
+        <p>Total number of cases</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ todayCases }}</h3>
+        <p>Today's Cases</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ deaths }}</h3>
+        <p>Today's death</p>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ recovered }}</h3>
+        <p>Recovered</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ critical }}</h3>
+        <p>Critical</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ activeCases }}</h3>
+        <p>Active Cases</p>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Covid-19 Status -->
-  <h1>Coronavirus Cases</h1>
-  <div class="row">
-    <div class="col-sm">
-      <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-        <div class="card-header">Cases</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ cases }}</h1>
-
-        </div>
+  <h1>Health of India Stats</h1>
+  <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ totalPeople }}</h3>
+        <p>Total number of people</p>
       </div>
     </div>
 
-    <div class="col-sm">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Today's Cases</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ todayCases }}</h1>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col-sm">
-      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-        <div class="card-header">Deaths</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ deaths }}</h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header">Recovered</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ recovered }}</h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Critical</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ critical }}</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <h1>Health Statistics</h1>
-
-  <div class="row justify-content-md-center">
-
-  <div class="col-sm-3">
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Total People</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ totalPeople }}</h1>
-        </div>
-      </div>
-    </div>
-
-  <div class="col-sm-3">
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Sick People</div>
-        <div class="card-body">
-          <h1 class="card-title">{{ sickPeople }}</h1>
-        </div>
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <h3 class="uk-card-title">{{ sickPeople }}</h3>
+        <p>Symptomatic People</p>
       </div>
     </div>
 
