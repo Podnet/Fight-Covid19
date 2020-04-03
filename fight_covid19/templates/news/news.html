@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+  <head> 
+    <meta charset="utf-8"> 
+    <title>Health of India</title> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head> 
+  <body> 
+
+  <!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+     Health of India News Board
+    </a>
+  </nav>
+    <div class="container"> 
+      {% for new, des, i, u in mylist %} 
+              <img src="{{ i }}" alt=""> 
+              <h1>news:</h1> {{ new }} 
+              {{ value|linebreaks }} 
+  
+              <h4>description:</h4>{{ des }}
+
+              {{ value|linebreaks }} 
+  <a href="{{u}}">Continue reading....</a>
+      {% endfor %} 
+    </div> 
+  
+  </body> 
+</html> 
