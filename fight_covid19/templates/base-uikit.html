@@ -1,0 +1,112 @@
+{% load static i18n %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}Fight Covid19{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+  {% block css %}
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
+
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+
+    <!-- This file stores project-specific CSS -->
+
+    {#    <link href="{% static 'css/project.css' %}" rel="stylesheet">#}
+
+
+  {% endblock %}
+
+</head>
+
+<body>
+
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+  <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+    <div class="uk-navbar-left">
+
+      <a class="uk-navbar-item uk-logo" href="#">Health of India</a>
+
+      <ul class="uk-navbar-nav">
+        <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'maps' %}">Maps</a></li>
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
+          <li><a href="{% url 'users:detail' request.user.username %}">{% trans "My Account" %}</a></li>
+          <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+          {% else %}
+          <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+          <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+        {% endif %}
+
+      </ul>
+
+    </div>
+  </nav>
+</div>
+
+<div class="uk-container">
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="uk-alert-{% if message.tags %} {{ message.tags }} {% endif %}" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>{{ message }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+
+  {% block content %}
+    <p>Use this document as a way to quick start any new project.</p>
+  {% endblock content %}
+
+</div>
+
+
+{% block modal %}{% endblock modal %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+
+  <!-- Bootstrap JS and its dependencies-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+  {#  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"#}
+  {#          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"#}
+  {#          crossorigin="anonymous"></script>#}
+  {#  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"#}
+  {#          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"#}
+  {#          crossorigin="anonymous"></script>#}
+
+  <!-- Your stuff: Third-party javascript libraries go here -->
+
+
+  <!-- place project specific Javascript in this file -->
+
+  {#  <script src="{% static 'js/project.js' %}"></script>#}
+
+
+{% endblock javascript %}
+</body>
+</html>
+
