@@ -44,24 +44,24 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 
 # Meant to be used in production
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DATABASE_NAME", default="fight_covid19", cast=str),
-        "USER": env("DATABASE_USER"),
-        "PASSWORD": env("DATABASE_PASSWORD"),
-        "HOST": env("DATABASE_HOST"),
-        "PORT": env("DATABASE_PORT"),
-    }
-}
-
-# Only for local/dev use
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(ROOT_DIR, "db.sqlite3"),
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": env("DATABASE_NAME", default="fight_covid19", cast=str),
+#         "USER": env("DATABASE_USER"),
+#         "PASSWORD": env("DATABASE_PASSWORD"),
+#         "HOST": env("DATABASE_HOST"),
+#         "PORT": env("DATABASE_PORT"),
 #     }
 # }
+
+# Only for local/dev use
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(ROOT_DIR, "db.sqlite3"),
+    }
+}
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 

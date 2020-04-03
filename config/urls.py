@@ -20,6 +20,7 @@ urlpatterns = [
     path("users/", include("fight_covid19.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("news/", include(("fight_covid19.news.urls", "news"), namespace="news")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # API URLS
 urlpatterns += [
