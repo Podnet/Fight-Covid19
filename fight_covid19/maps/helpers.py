@@ -9,12 +9,14 @@ def get_stats():
     data = dict()
     statewise = dict()  # To store total stats of the state
     last_updated = dict()
-    data["sickPeople"] = sick_people = HealthEntry.objects.filter(
+    total_people = HealthEntry.objects.all().order_by("user").distinct("user_id")
+    data["sickPeople"] = sick_people = total_people.filter(
         Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
     ).count()
-    data["totalPeople"] = (
-        HealthEntry.objects.all().order_by("user").distinct("user_id").count()
-    )
+    data["totalPeople"] = total_people.count()
+    data["shortnessOfBreath"] = total_people.filter(Q(difficult_breathing=True)).count()
+    data["fever"] = total_people.filter(Q(fever=True)).count()
+
     r = requests.get(settings.COVID19_STATS_API)
     if r.status_code == 200:
         r_data = r.json()
