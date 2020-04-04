@@ -27,8 +27,7 @@
   <link rel="icon" type="image/png" sizes="1152" href="{% static 'images/favicons/152_152.png' %}">
   <link rel="icon" type="image/png" sizes="180x180" href="{% static 'images/favicons/180_180.png' %}">
   <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicons/192_192.png' %}">
-  
-52x
+
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
 
@@ -52,7 +51,10 @@
   <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
     <div class="uk-navbar-left">
 
-      <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">Health of India</a>
+      <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">
+        <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
+        Health of India
+      </a>
 
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
