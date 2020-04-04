@@ -98,7 +98,6 @@ THIRD_PARTY_APPS = [
     # "allauth.socialaccount.providers.telegram",
     "rest_framework",
     "rest_framework.authtoken",
-    "djcelery",
     "django.contrib.humanize",
     "django_celery_beat",
 ]
