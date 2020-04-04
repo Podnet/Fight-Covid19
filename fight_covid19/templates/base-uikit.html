@@ -5,15 +5,42 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{% block title %}Fight Covid19{% endblock title %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19.">
+  <meta name="author" content="Health of India">
+
+  <meta property="og:description"
+        content="An initiative to gauage  Health of Citizens in India to fight against Covid19."/>
+  <meta property="og:url" content="https://covid19.thepodnet.com/"/>
+  <meta property="og:title" content="Health of India"/>
+  <meta property="og:image" content="https://covid19.thepodnet.com{% static 'images/favicons/500_500.jpg' %}"/>
+  <meta property="og:image:type" content="image/jpeg"/>
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
+  <link rel="icon" type="image/png" sizes="48x48" href="{% static 'images/favicons/48_48.png' %}">
+  <link rel="icon" type="image/png" sizes="57x57" href="{% static 'images/favicons/57_57.png' %}">
+  <link rel="icon" type="image/png" sizes="60x60" href="{% static 'images/favicons/60_60.png' %}">
+  <link rel="icon" type="image/png" sizes="70x70" href="{% static 'images/favicons/70_70.png' %}">
+  <link rel="icon" type="image/png" sizes="120x120" href="{% static 'images/favicons/120_120.png' %}">
+  <link rel="icon" type="image/png" sizes="144x144" href="{% static 'images/favicons/144_144.png' %}">
+  <link rel="icon" type="image/png" sizes="150x150" href="{% static 'images/favicons/150_150.png' %}">
+  <link rel="icon" type="image/png" sizes="1152" href="{% static 'images/favicons/152_152.png' %}">
+  <link rel="icon" type="image/png" sizes="180x180" href="{% static 'images/favicons/180_180.png' %}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicons/192_192.png' %}">
 
-  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162832950-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-162832950-1');
+  </script>
+
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
@@ -38,11 +65,15 @@
   <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
     <div class="uk-navbar-left">
 
-      <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">Health of India</a>
+      <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">
+        <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
+        Health of India
+      </a>
 
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'maps' %}">Maps</a></li>
+        <li><a href="{% url 'news:index' %}">News</a></li>
         {% if request.user.is_authenticated %}
           <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
           <li><a href="{% url 'users:detail' request.user.username %}">{% trans "My Account" %}</a></li>
@@ -82,15 +113,17 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<!-- Bootstrap JS and its dependencies-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+
 {% block javascript %}
 
-  <!-- Bootstrap JS and its dependencies-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"></script>
-  <!-- UIkit JS -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+
   {#  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"#}
   {#          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"#}
   {#          crossorigin="anonymous"></script>#}

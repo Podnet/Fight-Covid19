@@ -1,12 +1,14 @@
-import requests
-from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.db.models import Q
+from django.db import transaction
 from rest_framework import viewsets
 from rest_framework.response import Response
-
+import datetime
+from django.utils import timezone
+from fight_covid19.maps.helpers import get_stats
 from fight_covid19.maps.models import HealthEntry
-from .serializers import HealthEntrySerializer
+from .serializers import HealthEntrySerializer, HealthEntryFormSerializer
 
 User = get_user_model()
 
@@ -17,32 +19,48 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
     queryset = HealthEntry.objects.all()
     serializer_class = HealthEntrySerializer
 
+    def create(self, request, format=None, *args, **kwargs):
+        entryform_serializer = HealthEntryFormSerializer(
+            data=request.data, context={"request": request}
+        )
+        if entryform_serializer.is_valid():
+            try:
+                # Atomic transaction
+                with transaction.atomic():
+                    entry_form = entryform_serializer.save()
+                    entry_form.user = User.objects.get(pk=request.data["user_id"])
+                    entry_form.creation_timestamp = datetime.datetime.now(
+                        tz=timezone.utc
+                    )
+                    entry_form.save()
+            except Exception as e:
+                return Response({"error": str(e)})
+            resp = HealthEntrySerializer(entry_form)
+            return Response(resp.data)
+
+            # If there are errors, return them
+        else:
+            errors = dict()
+            HealthEntryFormSerializer.is_valid()
+            errors.update(dict(HealthEntryFormSerializer.errors))
+            return Response(errors)
+
 
 class CoronaVirusCasesViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
-        c = {
-            "cases": "N/A",
-            "activeCases": "N/A",
-            "todayCases": "N/A",
-            "deaths": "N/A",
-            "todayDeaths": "N/A",
-            "recovered": "N/A",
-            "critical": "N/A",
-        }
-        # Fetching data from API
-        r = requests.get(settings.COVID19_STATS_API)
-        if r.status_code == 200:
-            data = r.json()
-            india_stats = list(filter(lambda x: x["country"] == "India", data))
-            c["cases"] = india_stats[0]["cases"]
-            c["todayCases"] = india_stats[0]["todayCases"]
-            c["deaths"] = india_stats[0]["deaths"]
-            c["todayDeaths"] = india_stats[0]["todayDeaths"]
-            c["recovered"] = india_stats[0]["recovered"]
-            c["active"] = india_stats[0]["active"]
-            c["critical"] = india_stats[0]["critical"]
-
-        return Response(c)
+        data = dict()
+        statewise = dict()  # To store total stats of the state
+        last_updated = dict()
+        total = dict()
+        c = cache.get("stats", default=None)
+        if not c:
+            total, statewise, last_updated = get_stats()
+        else:
+            total, statewise, last_updated = c
+        data["total"] = total
+        data["statewise"] = statewise
+        data["last_updated"] = last_updated
+        return Response(data)
 
 
 class HealthStatisticsViewSet(viewsets.ViewSet):
