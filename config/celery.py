@@ -9,10 +9,15 @@ from . import celery_config
 # set the default Django settings module for the 'celery' program.
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
 
-app = Celery("fight-covid19")
+app = Celery(
+    "fight_covid19",
+    include=celery_config.INCLUDE_TASKS_PATH
+)
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
 app.config_from_object(celery_config)
+
+
 app.autodiscover_tasks()
 
 
