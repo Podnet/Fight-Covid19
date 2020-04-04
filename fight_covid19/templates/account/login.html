@@ -9,10 +9,12 @@
 {% block content %}
 
   {% if form.non_field_errors %}
-    <div class="uk-alert-danger uk-margin" uk-alert>
-      <a class="uk-alert-close" uk-close></a>
-      <p>{{ form.non_field_errors.0 }}</p>
-    </div>
+    {% for x in form.non_field_errors %}
+      <div class="uk-alert-danger uk-margin" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>{{ x }}</p>
+      </div>
+    {% endfor %}
   {% endif %}
 
   <div class="uk-align-center">
