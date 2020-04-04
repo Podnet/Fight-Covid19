@@ -8,16 +8,11 @@
 
 {% block content %}
 
-  <div class="jumbotron">
-    <h1 class="display-4">Health Status Form</h1>
-    <p class="lead">Please fill the form below. This information would help a
-      lot of people.</p>
-    <hr class="my-4">
-    <p>Please allow us to know your location. This might help us forecast future outbreaks.</p>
-    <p id="status"></p>
-    <button id="find-me" class="btn btn-primary">Know my location</button>
-  </div>
-
+  <h1>Health Status Form</h1>
+  <p>Fill out the form with correct information.</p>
+  <p id="status"></p>
+  <button id="find-me" class="btn btn-primary">Know my location</button>
+  <hr>
   <form method="POST" action="{% url 'maps:health_form' %}">
     {% csrf_token %}
 
@@ -56,6 +51,10 @@
       }
 
     }
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+      geoFindMe();
+    });
 
     document.querySelector('#find-me').addEventListener('click', geoFindMe);
   </script>

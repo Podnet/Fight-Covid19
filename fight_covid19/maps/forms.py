@@ -15,6 +15,10 @@ class HealthEntryForm(forms.ModelForm):
             "latitude",
             "longitude",
         ]
+        widgets = {
+            "latitude": forms.TextInput(attrs={"disabled": "True"}),
+            "longitude": forms.TextInput(attrs={"disabled": "True"}),
+        }
         labels = {
             "age": "What's your age?",
             "gender": "What's your gender?",
