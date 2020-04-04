@@ -144,6 +144,12 @@
 
   </div>
 
+  <h2>Tests Performed</h2>
+  <p>
+  <p>Total samples tested: <b>{{ last_updated.totalsamplestested|intcomma }}</b></p>
+  <p>Total positive samples: <b>{{ last_updated.totalpositivecases|intcomma }}</b></p>
+  </p>
+
   <h2>Statewise Data</h2>
 
   <table class="uk-table uk-table-small uk-table-divider">
@@ -170,7 +176,6 @@
     {% endfor %}
     </tbody>
   </table>
-
 
   <div class="uk-margin-large"></div>
 
