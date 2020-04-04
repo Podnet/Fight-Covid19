@@ -60,6 +60,7 @@
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'maps' %}">Maps</a></li>
+        <li><a href="{% url 'news:index' %}">News</a></li>
         {% if request.user.is_authenticated %}
           <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
           <li><a href="{% url 'users:detail' request.user.username %}">{% trans "My Account" %}</a></li>

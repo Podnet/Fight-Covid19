@@ -1,36 +1,60 @@
-{% extends "base.html" %}
+{% extends "base-uikit.html" %}
+
 {% load static %}
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
 {% block content %}
-<div class="container">
+  <div class="container">
+    <article class="uk-article uk-margin-top">
 
-  <div class="row">
-    <div class="col-sm-12">
+      <h1 class="uk-article-title"><a class="uk-link-reset" href="">Health of India</a></h1>
 
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+      <p class="uk-article-meta">Written by Health of India team on 4th April 2020.
+      </p>
+
+      <p class="uk-text-lead">Contribute your bit by letting us know about your health condition. This small information
+        can help
+        a lot people and save a lot of resources when fighting against coronavirus. You would be asked a small set of
+        questions to know about your health status.</p>
+
+      <p>
+        You might be wondering, what's the use of such an application? Here are 6 reason why you should do it:
+      </p>
+      <ol>
+        <li>Find the number of people who have coronavirus like symptoms.</li>
+        <li>Where are these sick people located?</li>
+        <li>Channelize government sanitization effors in places where covid-19/sick patients were found.</li>
+        <li>Which location are these sick people clustered?</li>
+        <li>Health of citizens on a nationwide level</li>
+        <li>Help data scientists forecast the next breakout by generating all this information.</li>
+      </ol>
+
+      <div class="uk-grid-small uk-child-width-auto" uk-grid>
+        <div>
+          <a href="{% url 'home' %}" class="uk-button uk-button-primary">Home</a>
+        </div>
+        <div>
+          <a href="{% url 'maps:health_form' %}" class="uk-button uk-button-primary">Record Health</a>
+        </div>
+        <div>
+          <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
+        </div>
+        <div>
+          <a href="{% url 'news:index' %}" class="uk-button uk-button-secondary">News Board</a>
+        </div>
+      </div>
+      <hr>
+
+    </article>
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h2>Welcome, {{ object.username }}</h2>
+      </div>
     </div>
+
   </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
-
-</div>
 {% endblock content %}
 
