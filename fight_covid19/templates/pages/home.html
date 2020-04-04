@@ -51,6 +51,39 @@
 
   </article>
 
+  <h1>Health of India Stats</h1>
+  <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{ total.totalPeople|intcomma }}</h3>
+        <p>Total number of people</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <h3 class="uk-card-title">{{ total.sickPeople|intcomma }}</h3>
+        <p>Total Symptomatic People</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <h3 class="uk-card-title">{{ total.sickPeople|intcomma }}</h3>
+        <p>People with Shortness of Breath</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <h3 class="uk-card-title">{{ total.sickPeople|intcomma }}</h3>
+        <p>People with Fever</p>
+      </div>
+    </div>
+
+  </div>
+
   <h1>Coronavirus Stats in India</h1>
   <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
     <div>
@@ -106,24 +139,6 @@
       <div class="uk-card uk-card-default uk-card-hover uk-card-body">
         <h3 class="uk-card-title">{{ total.deltaactive|intcomma }}</h3>
         <p>Today's Active</p>
-      </div>
-    </div>
-
-  </div>
-
-  <h1>Health of India Stats</h1>
-  <div class="uk-child-width-1-3@s uk-grid-match" uk-grid>
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.totalPeople|intcomma }}</h3>
-        <p>Total number of people</p>
-      </div>
-    </div>
-
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
-        <h3 class="uk-card-title">{{ total.sickPeople|intcomma }}</h3>
-        <p>Symptomatic People</p>
       </div>
     </div>
 
