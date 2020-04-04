@@ -84,6 +84,18 @@
 
   </div>
 
+  <div class="uk-margin">
+    <div class="uk-flex uk-flex-center">
+      <button class="uk-button uk-button-primary" onclick="geoFindMe();">Show patients near me</button>
+    </div>
+    <p id="status"></p>
+    <p id="latitude" style="display: none;"><b>Latitude</b>: </p>
+    <p id="longitude" style="display: none;"><b>Longitude</b>: </p>
+    <p id="infected_patients" style="display: none;"><b>Covid19 Infected Patients</b>: N/A </p>
+    <p id="symptomatic_patients" style="display: none;"><b>Symptomatic Patients</b>: N/A</p>
+    <p>Stats might show N/A from time to time. We are fixing the issue right now.</p>
+  </div>
+
   <h1>Coronavirus Stats in India</h1>
   <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
     <div>
@@ -145,10 +157,10 @@
   </div>
 
   <h2>Tests Performed</h2>
-  <p>
+
   <p>Total samples tested: <b>{{ last_updated.totalsamplestested|intcomma }}</b></p>
   <p>Total positive samples: <b>{{ last_updated.totalpositivecases|intcomma }}</b></p>
-  </p>
+
 
   <h2>Statewise Data</h2>
 
@@ -166,12 +178,12 @@
     <tbody>
     {% for state, values in statewise.items %}
       <tr>
-      <td>{{ state }}</td>
-      <td>{{ values.active }}</td>
-      <td>{{ values.confirmed }}</td>
-      <td>{{ values.recovered }}</td>
-      <td>{{ values.deaths }}</td>
-      <td>{{ values.lastupdatedtime }}</td>
+        <td>{{ state }}</td>
+        <td>{{ values.active }}</td>
+        <td>{{ values.confirmed }}</td>
+        <td>{{ values.recovered }}</td>
+        <td>{{ values.deaths }}</td>
+        <td>{{ values.lastupdatedtime }}</td>
       </tr>
     {% endfor %}
     </tbody>
@@ -186,4 +198,45 @@
   <br><br>
   {% endcomment %}
 
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    function geoFindMe() {
+
+      const latitude_field = document.querySelector('#latitude');
+      const longitude_field = document.querySelector('#longitude');
+      const infected_patients_field = document.querySelector('#infected_patients');
+      const symptomatic_patients_field = document.querySelector('#symptomatic_patients');
+      const status = document.querySelector('#status');
+
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        latitude_field.innerHTML = `<b>Latitude: </b> ${latitude}`;
+        latitude_field.style.display = "block";
+
+        longitude_field.innerHTML = `<b>Longitude: </b> ${longitude}`;
+        longitude_field.style.display = "block";
+
+        infected_patients_field.style.display = "block";
+        symptomatic_patients_field.style.display = "block";
+
+        status.textContent = 'Found your location. Looking for infected and symptomatic patients, nearby.';
+      }
+
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    }
+  </script>
 {% endblock %}
