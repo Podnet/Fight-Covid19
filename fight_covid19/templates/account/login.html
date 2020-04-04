@@ -9,10 +9,10 @@
 {% block content %}
 
   {% if form.non_field_errors %}
-  <div class="uk-alert-danger uk-margin" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>{{ form.non_field_errors.0 }}</p>
-  </div>
+    <div class="uk-alert-danger uk-margin" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ form.non_field_errors.0 }}</p>
+    </div>
   {% endif %}
 
   <div class="uk-align-center">
@@ -49,13 +49,16 @@
       </p>
       <button class="uk-button uk-button-primary" type="submit">{% trans "Sign In" %}</button>
       <hr class="uk-divider-small">
+      <p>Don't have an account? Sign in with Google or Sign up.</p>
+      {#      <div class="uk-flex uk-flex-between">#}
+      <p class="uk-margin">
+        <a class="uk-button uk-button-secondary" href="{% url 'account_signup' %}">Sign Up</a>
+      </p>
+      <p class="uk-margin">
+        <a class="uk-button uk-button-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
+      </p>
 
-      <div class="uk-flex uk-flex-between">
-        <p class="uk-margin">
-          <a class="uk-button uk-button-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
-          <a class="uk-button uk-button-secondary" href="{% url 'account_signup' %}">Sign Up</a>
-        </p>
-      </div>
+      {#      </div>#}
 
     </form>
   </div>
