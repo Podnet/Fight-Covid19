@@ -8,7 +8,6 @@ from fight_covid19.maps.models import HealthEntry
 def get_stats():
     data = dict()
     statewise = dict()  # To store total stats of the state
-    statewise_list = []
     last_updated = dict()
     data["sickPeople"] = sick_people = HealthEntry.objects.filter(
         Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
