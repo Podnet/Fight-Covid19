@@ -74,20 +74,22 @@ class MapMarkers(View):
 
 MapMarkersView = MapMarkers.as_view()
 
+
 class NearCount(View):
     def get(self, request, *args, **kwargs):
         ranges = get_range_coords(
-            request.GET['longitude'],
-            request.GET['latitude'],
-            request.GET['distance']
+            request.GET["longitude"], request.GET["latitude"], request.GET["distance"]
         )
 
-        total_count = HealthEntry.objects.all().filter(
-                        latitude__range=(ranges['min_lat'], ranges['max_lat']), 
-                        longitude__range=(ranges['min_lon'], ranges['max_lon']) 
-                      ).values('user_id').annotate(total=Count('user_id')).count()
-        
-        return JsonResponse({
-            'total': total_count
-        })
-        
+        total_count = (
+            HealthEntry.objects.all()
+            .filter(
+                latitude__range=(ranges["min_lat"], ranges["max_lat"]),
+                longitude__range=(ranges["min_lon"], ranges["max_lon"]),
+            )
+            .values("user_id")
+            .annotate(total=Count("user_id"))
+            .count()
+        )
+
+        return JsonResponse({"total": total_count})

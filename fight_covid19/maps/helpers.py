@@ -43,19 +43,18 @@ def get_map_markers():
     return list(points)
 
 
-
 def get_range_coords(deg_lat, deg_long, radius=5):
-    '''
+    """
     Takes coordinates in degrees with optional radius value (default=5)
     Returns a list of min & max longitudes and latitudes
-    '''
+    """
     location = GeoLocation.from_degrees(deg_lat, deg_long)
     sw_pos, ne_pos = location.distance(radius)
     # X => long
     # Y => lat
     return {
-        'min_lon': sw_pos.deg_lon, 
-        'min_lat': sw_pos.deg_lat,
-        'max_lon': ne_pos.deg_lon,
-        'max_lat': ne_pos.deg_lat,
+        "min_lon": sw_pos.deg_lon,
+        "min_lat": sw_pos.deg_lat,
+        "max_lon": ne_pos.deg_lon,
+        "max_lat": ne_pos.deg_lat,
     }
