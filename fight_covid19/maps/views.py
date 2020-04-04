@@ -1,5 +1,6 @@
 import requests
 from django.conf import settings
+from django.core.cache import cache
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import HttpResponse
 from django.shortcuts import render
@@ -11,45 +12,14 @@ from django.http import JsonResponse
 from django.db.models import Q
 from fight_covid19.maps import forms
 from fight_covid19.maps.models import HealthEntry
+from fight_covid19.maps.helpers import get_stats, get_map_markers
 
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
-        c = {
-            "cases": "N/A",
-            "activeCases": "N/A",
-            "todayCases": "N/A",
-            "deaths": "N/A",
-            "todayDeaths": "N/A",
-            "recovered": "N/A",
-            "critical": "N/A",
-        }
-
-        # Creating health statistics
-        # HealthEntry.objects.filter(fever=True).count()
-        # HealthEntry.objects.filter(cough=True).count()
-        # HealthEntry.objects.filter(difficult_breathing=True).count()
-        sick_people = HealthEntry.objects.filter(
-            Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
-        )
-        c["sickPeople"] = sick_people.count()
-        c["totalPeople"] = (
-            HealthEntry.objects.all().order_by("user").distinct("user_id").count()
-        )
-
-        # Fetching data from API
-        r = requests.get(settings.COVID19_STATS_API)
-        if r.status_code == 200:
-            data = r.json()
-            india_stats = list(filter(lambda x: x["country"] == "India", data))
-            c["cases"] = india_stats[0]["cases"]
-            c["todayCases"] = india_stats[0]["todayCases"]
-            c["deaths"] = india_stats[0]["deaths"]
-            c["todayDeaths"] = india_stats[0]["todayDeaths"]
-            c["recovered"] = india_stats[0]["recovered"]
-            c["active"] = india_stats[0]["active"]
-            c["critical"] = india_stats[0]["critical"]
-
+        c = cache.get("stats", default=None)
+        if not c:
+            c = get_stats()
         return render(request, "pages/home.html", context=c)
 
 
@@ -89,13 +59,10 @@ MyHealthView = MyHealth.as_view()
 
 class MapMarkers(View):
     def get(self, request, *args, **kwargs):
-        points = (
-            HealthEntry.objects.all()
-            .order_by("user", "-creation_timestamp")
-            .distinct("user")
-            .values("user_id", "latitude", "longitude")
-        )
-        return JsonResponse(list(points), safe=False)
+        points_list = cache.get("map_markers", default=None)
+        if not points_list:
+            points_list = get_map_markers()
+        return JsonResponse(points_list, safe=False)
 
 
 MapMarkersView = MapMarkers.as_view()

@@ -339,3 +339,4 @@ fight_covid19/media/
 
 .idea/
 db.sqlite3
+celerybeat-schedule

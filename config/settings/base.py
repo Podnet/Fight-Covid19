@@ -100,6 +100,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "djcelery",
     "django.contrib.humanize",
+    "django_celery_beat",
 ]
 
 LOCAL_APPS = [
