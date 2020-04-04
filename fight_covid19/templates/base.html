@@ -12,11 +12,11 @@
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
-  <meta property="og:description"  content="HOI intiative against novel covid19" />
-  <meta property="og:url"          content="https://covid19.thepodnet.com/" />
-  <meta property="og:title"        content="Health of India" />
-  <meta property="og:image"        content="{% static 'images/favicons/1024_1024.png' %}" />
-  <meta property="og:image:type"   content="image/png" />
+  <meta property="og:description" content="HOI intiative against novel covid19"/>
+  <meta property="og:url" content="https://covid19.thepodnet.com/"/>
+  <meta property="og:title" content="Health of India"/>
+  <meta property="og:image" content="{% static 'images/favicons/1024_1024.png' %}"/>
+  <meta property="og:image:type" content="image/png"/>
 
   <link rel="icon" type="image/png" sizes="48x48" href="{% static 'images/favicons/48_48.png' %}">
   <link rel="icon" type="image/png" sizes="57x57" href="{% static 'images/favicons/57_57.png' %}">
@@ -56,7 +56,10 @@
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{% url 'home' %}">Health of India</a>
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
+      Health of India
+    </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -65,6 +68,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'maps' %}">Maps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'news:index' %}">News</a>
         </li>
 
         {% comment %} Things to show when the user is logged in.{% endcomment %}
