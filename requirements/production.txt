@@ -18,3 +18,4 @@ django-redis==4.11.0
 redis==3.4.1
 anyjson==0.3.3
 newsapi-python==0.2.6
+django-celery-beat==2.0.0
