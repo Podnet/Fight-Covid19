@@ -98,7 +98,7 @@ THIRD_PARTY_APPS = [
     # "allauth.socialaccount.providers.telegram",
     "rest_framework",
     "rest_framework.authtoken",
-    'django_celery_beat',
+    "django_celery_beat",
 ]
 
 LOCAL_APPS = [

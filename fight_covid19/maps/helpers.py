@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db.models import Q
 from fight_covid19.maps.models import HealthEntry
 
+
 def get_stats():
     data = dict()
     data["sickPeople"] = sick_people = HealthEntry.objects.filter(
@@ -18,11 +19,12 @@ def get_stats():
         data.update(india_stats[0])
     return data
 
+
 def get_map_markers():
     points = (
-            HealthEntry.objects.all()
-            .order_by("user", "-creation_timestamp")
-            .distinct("user")
-            .values("user_id", "latitude", "longitude")
+        HealthEntry.objects.all()
+        .order_by("user", "-creation_timestamp")
+        .distinct("user")
+        .values("user_id", "latitude", "longitude")
     )
     return list(points)

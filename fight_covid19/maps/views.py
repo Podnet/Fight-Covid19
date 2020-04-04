@@ -14,9 +14,10 @@ from fight_covid19.maps import forms
 from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.helpers import get_stats, get_map_markers
 
+
 class HomePage(View):
     def get(self, request, *args, **kwargs):
-        c = cache.get('stats', default=None)
+        c = cache.get("stats", default=None)
         if not c:
             c = get_stats()
         return render(request, "pages/home.html", context=c)
@@ -58,7 +59,7 @@ MyHealthView = MyHealth.as_view()
 
 class MapMarkers(View):
     def get(self, request, *args, **kwargs):
-        points_list = cache.get('map_markers', default=None)
+        points_list = cache.get("map_markers", default=None)
         if not points_list:
             points_list = get_map_markers()
         return JsonResponse(points_list, safe=False)
