@@ -17,3 +17,12 @@ def get_stats():
         india_stats = list(filter(lambda x: x["country"] == "India", r_data))
         data.update(india_stats[0])
     return data
+
+def get_map_markers():
+    points = (
+            HealthEntry.objects.all()
+            .order_by("user", "-creation_timestamp")
+            .distinct("user")
+            .values("user_id", "latitude", "longitude")
+    )
+    return list(points)

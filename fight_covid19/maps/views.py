@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from fight_covid19.maps import forms
 from fight_covid19.maps.models import HealthEntry
-from fight_covid19.maps.helpers import get_stats
+from fight_covid19.maps.helpers import get_stats, get_map_markers
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
@@ -58,13 +58,10 @@ MyHealthView = MyHealth.as_view()
 
 class MapMarkers(View):
     def get(self, request, *args, **kwargs):
-        points = (
-            HealthEntry.objects.all()
-            .order_by("user", "-creation_timestamp")
-            .distinct("user")
-            .values("user_id", "latitude", "longitude")
-        )
-        return JsonResponse(list(points), safe=False)
+        points_list = cache.get('map_markers', default=None)
+        if not points_list:
+            points_list = get_map_markers()
+        return JsonResponse(points_list, safe=False)
 
 
 MapMarkersView = MapMarkers.as_view()
