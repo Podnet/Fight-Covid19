@@ -1,26 +1,25 @@
-import requests
-from django.conf import settings
-from django.core.cache import cache
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import HttpResponse
+from django.core.cache import cache
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
-from django.http import JsonResponse
-from django.db.models import Q
+
 from fight_covid19.maps import forms
-from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.helpers import get_stats, get_map_markers
+from fight_covid19.maps.models import HealthEntry
 
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
         c = cache.get("stats", default=None)
         if not c:
-            c = get_stats()
-        return render(request, "pages/home.html", context=c)
+            total, statewise = get_stats()
+        return render(
+            request, "pages/home.html", context={"total": total, "statewise": statewise}
+        )
 
 
 HomePageView = HomePage.as_view()

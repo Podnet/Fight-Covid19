@@ -309,4 +309,4 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
-COVID19_STATS_API = "https://corona.lmao.ninja/countries"
+COVID19_STATS_API = "https://api.covid19india.org/data.json"
