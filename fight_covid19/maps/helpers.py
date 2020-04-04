@@ -8,6 +8,7 @@ from fight_covid19.maps.models import HealthEntry
 def get_stats():
     data = dict()
     statewise = dict()  # To store total stats of the state
+    last_updated = dict()
     data["sickPeople"] = sick_people = HealthEntry.objects.filter(
         Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
     ).count()
@@ -25,7 +26,8 @@ def get_stats():
             statewise[i["state"]] = i
             statewise[i["state"]]["deltaactive"] = i["delta"]["active"]
         data.update(total_stats)
-    return data, statewise
+        last_updated = india_stats["tested"][-1]
+    return data, statewise, last_updated
 
 
 def get_map_markers():

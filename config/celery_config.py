@@ -14,6 +14,6 @@ CELERYBEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
 
 # tasks.py locations
 INCLUDE_TASKS_PATH = [
-    'fight_covid19.maps.tasks',
-    'fight_covid19.news.tasks',
+    "fight_covid19.maps.tasks",
+    "fight_covid19.news.tasks",
 ]
