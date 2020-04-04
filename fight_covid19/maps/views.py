@@ -16,9 +16,17 @@ class HomePage(View):
     def get(self, request, *args, **kwargs):
         c = cache.get("stats", default=None)
         if not c:
-            total, statewise = get_stats()
+            total, statewise, last_updated = get_stats()
+        else:
+            total, statewise, last_updated = c
         return render(
-            request, "pages/home.html", context={"total": total, "statewise": statewise}
+            request,
+            "pages/home.html",
+            context={
+                "total": total,
+                "statewise": statewise,
+                "last_updated": last_updated,
+            },
         )
 
 
