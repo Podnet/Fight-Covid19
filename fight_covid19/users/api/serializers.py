@@ -24,7 +24,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "last_login",
         ]
         read_only_fields = ("is_active", "is_staff", "is_superuser")
-
         extra_kwargs = {
             "url": {"view_name": "api:user-detail", "lookup_field": "username"},
             "password": {"write_only": True, "min_length": 6},
