@@ -4,6 +4,10 @@ from django.contrib.auth import get_user_model
 
 class HealthEntry(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    age = models.IntegerField(default=0)
+    gender = models.CharField(
+        choices=(("M", "Male"), ("F", "Female")), default="M", max_length=1
+    )
     fever = models.BooleanField(default=False)
     cough = models.BooleanField(default=False)
     difficult_breathing = models.BooleanField(default=False)
