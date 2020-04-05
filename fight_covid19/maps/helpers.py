@@ -6,6 +6,7 @@ from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.utils import GeoLocation
 from django.contrib.auth import get_user_model
 
+
 def get_covid19_stats():
     data = dict()
     statewise = dict()  # To store total stats of the state
@@ -16,15 +17,15 @@ def get_covid19_stats():
         india_stats = r.json()
 
         # To store total stats of the country
-        data['total_stats']= india_stats.get("statewise", list())[0]
+        data["total_stats"] = india_stats.get("statewise", list())[0]
 
         # Number of tests performed
-        data['tests_performed'] = india_stats.get("tested", list())[-1]
+        data["tests_performed"] = india_stats.get("tested", list())[-1]
 
         # State wise data
-        data['statewise'] = dict()
+        data["statewise"] = dict()
         for state in india_stats.get("statewise", list())[1:]:
-            data['statewise'][state["state"]] = state
+            data["statewise"][state["state"]] = state
 
     return data
 

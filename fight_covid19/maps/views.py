@@ -9,7 +9,12 @@ from django.views.generic.edit import FormView
 from django.db.models import Count
 from fight_covid19.maps import forms
 from fight_covid19.maps.models import HealthEntry
-from fight_covid19.maps.helpers import get_covid19_stats, get_hoi_stats, get_map_markers, get_range_coords
+from fight_covid19.maps.helpers import (
+    get_covid19_stats,
+    get_hoi_stats,
+    get_map_markers,
+    get_range_coords,
+)
 
 
 class HomePage(View):
@@ -26,10 +31,7 @@ class HomePage(View):
         return render(
             request,
             "pages/home.html",
-            context={
-                "covid19_stats": covid19_stats,
-                "hoi_stats": hoi_stats
-            },
+            context={"covid19_stats": covid19_stats, "hoi_stats": hoi_stats},
         )
 
 
