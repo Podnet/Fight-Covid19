@@ -73,6 +73,7 @@
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'maps' %}">Maps</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'news:index' %}">News</a></li>
         {% if request.user.is_authenticated %}
           <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
@@ -82,7 +83,6 @@
           <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
           <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
         {% endif %}
-
       </ul>
 
     </div>
@@ -105,8 +105,12 @@
     <p>Use this document as a way to quick start any new project.</p>
   {% endblock content %}
 
-</div>
 
+
+</div>
+<footer>
+    {% include 'pages/footer.html' %}
+  </footer>
 
 {% block modal %}{% endblock modal %}
 

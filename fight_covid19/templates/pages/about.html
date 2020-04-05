@@ -1,1 +1,55 @@
-{% extends "base.html" %}
+{% extends "base-uikit.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+  <div class="uk-container" style="margin-bottom: 3em;margin-top: 2em;">
+    <h1>Health of India</h1>
+    <div class="uk-panel">
+      <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/192_192.png' %}" width="225" height="150" alt="Health of India image">
+      <p><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>. This is an <b>open source project</b>, where we collect <b>health data</b> from people living in different parts of the world.</p>
+      <p>We are trying to sufficient and efficient <b>nationwide self-assessed database</b> of people who are showing symptoms of COVID19. This database can be used by <b>developers and concerned authorities</b> to establish some relationship between the <b>geagraphical areas, climatic conditions, age and health condition of the people. </b></p>
+    </div>
+    <div class="uk-panel">
+      <h3>Use Cases of these data and still trying to figure out more</h3>
+      <ol>
+        <li>Help data scientists forecast the next outbreak</li>
+        <li>Channelize government sanitization efforts in places where sick patients are found.</li>
+        <li>Find symptomatic and infected patients near you</li>
+        <li>See real-time data of COVID19 patients on the map.</li>
+      </ol>
+    </div>
+
+    <h2>Frequetly Asked Questions</h2>
+    <ul uk-accordion>
+      <li class="">
+        <a class="uk-accordion-title" href="#">Why do we need to sign up ?</a>
+        <div class="uk-accordion-content">
+          <p class="uk-text-lead">
+            The data we are collecting will be used to
+            <ol>
+              <li>Help data scientists forecast the next outbreak</li>
+              <li>Channelize government sanitization efforts in places where sick patients are found.</li>
+              <li>Find symptomatic and infected patients near you</li>
+              <li>See real-time data of COVID19 patients on the map</li>
+              <li>Fully open-source project, made with <a href="" uk-icon="icon: heart" style="color: red;"></a></li>
+            </ol>
+          </p>
+
+          <p>
+            It would be more useful for them if we provide them with validated data, and that is why we request yu to kindly sign up and record your health.
+          </p>
+        </div>
+      </li>
+    </ul>
+    <ul uk-accordion>
+      <li class="">
+        <a class="uk-accordion-title" href="#">What all information do you store about me ?</a>
+        <div class="uk-accordion-content">
+          <p>
+            We only store your location, Email Id, and the data which you enter in the Health Entry Form.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
