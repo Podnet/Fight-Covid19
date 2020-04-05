@@ -20,17 +20,18 @@ def get_stats():
 
     r = requests.get(settings.COVID19_STATS_API)
     if r.status_code == 200:
+        r_data = r.json()
+        india_stats = r_data
+        total_stats = dict()  # To store total stats of the country
+        total_stats.update(india_stats["statewise"][0])
+        data.update(total_stats)
+        last_updated = india_stats["tested"][-1]
         try:
-            r_data = r.json()
-            india_stats = r_data
-            total_stats = dict()  # To store total stats of the country
-            total_stats.update(india_stats["statewise"][0])
             total_stats["deltaactive"] = india_stats["statewise"][0]["delta"]["active"]
             for i in india_stats["statewise"][1:]:
                 statewise[i["state"]] = i
                 statewise[i["state"]]["deltaactive"] = i["delta"]["active"]
-            data.update(total_stats)
-            last_updated = india_stats["tested"][-1]
+
         except Exception:
             pass
     return data, statewise, last_updated
