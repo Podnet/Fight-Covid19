@@ -26,14 +26,9 @@ def get_stats():
         total_stats.update(india_stats["statewise"][0])
         data.update(total_stats)
         last_updated = india_stats["tested"][-1]
-        try:
-            total_stats["deltaactive"] = india_stats["statewise"][0]["delta"]["active"]
-            for i in india_stats["statewise"][1:]:
-                statewise[i["state"]] = i
-                statewise[i["state"]]["deltaactive"] = i["delta"]["active"]
+        for i in india_stats["statewise"][1:]:
+            statewise[i["state"]] = i
 
-        except Exception:
-            pass
     return data, statewise, last_updated
 
 
