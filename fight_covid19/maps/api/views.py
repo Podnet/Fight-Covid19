@@ -54,12 +54,10 @@ class CoronaVirusCasesViewSet(viewsets.ViewSet):
         total = dict()
         c = cache.get("stats", default=None)
         if not c:
-            total, statewise, last_updated = get_stats()
-        else:
-            total, statewise, last_updated = c
-        data["total"] = total
-        data["statewise"] = statewise
-        data["last_updated"] = last_updated
+            c = get_stats()
+        data["total"] = c[0]
+        data["statewise"] = c[1:-1]
+        data["last_updated"] = c[-1]
         return Response(data)
 
 
