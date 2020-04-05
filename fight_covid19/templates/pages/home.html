@@ -108,61 +108,78 @@
 
   <h1>Coronavirus Stats in India</h1>
   <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.confirmed|intcomma }}</h3>
-        <p>Total number of cases</p>
-      </div>
-    </div>
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.recovered|intcomma }}</h3>
-        <p>Recovered</p>
+    {% if total.confirmed %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.confirmed|intcomma }}</h3>
+          <p>Total number of cases</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.active|intcomma }}</h3>
-        <p>Active Cases</p>
+    {% if total.recovered %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.recovered|intcomma }}</h3>
+          <p>Recovered</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.deaths|intcomma }}</h3>
-        <p>Total death</p>
+    {% if total.active %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.active|intcomma }}</h3>
+          <p>Active Cases</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.deltaconfirmed|intcomma }}</h3>
-        <p>Today's Cases</p>
+    {% if total.deaths %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.deaths|intcomma }}</h3>
+          <p>Total death</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.deltarecovered|intcomma }}</h3>
-        <p>Recovered Today</p>
+    {% if total.deltaconfirmed %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.deltaconfirmed|intcomma }}</h3>
+          <p>Today's Cases</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.deltadeaths|intcomma }}</h3>
-        <p>Today's Death</p>
+    {% if total.deltarecovered %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.deltarecovered|intcomma }}</h3>
+          <p>Recovered Today</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    <div>
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{ total.deltaactive|intcomma }}</h3>
-        <p>Today's Active</p>
+    {% if total.deltadeaths %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.deltadeaths|intcomma }}</h3>
+          <p>Today's Death</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
+
+    {% if total.deltaactive %}
+      <div>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <h3 class="uk-card-title">{{ total.deltaactive|intcomma }}</h3>
+          <p>Today's Active</p>
+        </div>
+      </div>
+    {% endif %}
 
   </div>
 
