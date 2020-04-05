@@ -22,11 +22,17 @@ def get_stats():
     if r.status_code == 200:
         r_data = r.json()
         india_stats = r_data
-        total_stats = dict()  # To store total stats of the country
-        total_stats.update(india_stats["statewise"][0])
+
+        # To store total stats of the country
+        total_stats = dict()
+        total_stats.update(india_stats.get("statewise", list())[0])
         data.update(total_stats)
-        last_updated = india_stats["tested"][-1]
-        for i in india_stats["statewise"][1:]:
+
+        # Number of tests performed
+        last_updated = india_stats.get("tested", list())[-1]
+
+        # State wise data
+        for i in india_stats.get("statewise", list())[1:]:
             statewise[i["state"]] = i
 
     return data, statewise, last_updated
