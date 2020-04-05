@@ -4,6 +4,7 @@ from django.db.models import Q
 
 from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.utils import GeoLocation
+from django.contrib.auth import get_user_model
 
 
 def get_stats():
@@ -14,7 +15,7 @@ def get_stats():
     data["sickPeople"] = sick_people = total_people.filter(
         Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
     ).count()
-    data["totalPeople"] = total_people.count()
+    data["totalPeople"] = get_user_model().objects.all().count()
     data["shortnessOfBreath"] = total_people.filter(Q(difficult_breathing=True)).count()
     data["fever"] = total_people.filter(Q(fever=True)).count()
 
