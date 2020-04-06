@@ -127,32 +127,32 @@
                 latitude: latitude,
                 longitude: longitude,
                 age: app.age,
-                cough:app.cough,
+                cough: app.cough,
                 gender: app.gender,
                 fever: app.fever,
                 difficult_breathing: app.difficult_breathing,
-                quarantine: app.quarantine
+                quarantine: app.quarantine,
+                datetime: new Date()
               };
 
-              // Get unique key for this device from server
-              var unique_id = await fetch('/maps/generate_unique_key')
-                      .then((response) => {
-                        return response.json();
-                      })
-                      .then((data) => {
-                        return data.id;
-                      });
-              form_data['unique_id'] = unique_id;
-
-              // Stroing information locally
-              localStorage.setItem('unique_id', unique_id);
+              // Generate or Fetch unique id for this device
+              if ('unique_id' in localStorage) {
+                form_data['unique_id'] = localStorage.getItem('unique_id');
+              } else {
+                form_data['unique_id'] = await fetch('/maps/generate_unique_key')
+                        .then((response) => {
+                          return response.json();
+                        })
+                        .then((data) => {
+                          return data.id;
+                        });
+              }
 
               //Check for existing health entries & store it locally
-              if('health_entries' in localStorage) {
+              if ('health_entries' in localStorage) {
                 var d = localStorage.getItem('health_entries');
                 var existing_entries = JSON.parse(d);
-              }
-              else {
+              } else {
                 existing_entries = [];
               }
               existing_entries.push(form_data);
@@ -171,11 +171,12 @@
                         return response.json();
                       })
                       .then((data) => {
-                        if('status' in data) {
-                          app.form_status = "Form submitted. Thank you filling in your information.";
-                          window.location.href = "/";
-                        }
-                        else {
+                        if ('status' in data) {
+                          app.form_status = "Form submitted. Thank you filling in your information. You'll be redirected to homepage in 5 seconds.";
+                          setTimeout(() => {
+                            window.location.href = "/"
+                          }, 5000);
+                        } else {
                           app.form_status = "Something went wrong. We were unable to save your information. Please try again later."
                         }
                       });
