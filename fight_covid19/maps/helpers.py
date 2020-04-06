@@ -91,7 +91,7 @@ def get_range_coords(deg_lat, deg_long, radius=5):
     Returns a list of min & max longitudes and latitudes
     """
     location = GeoLocation.from_degrees(deg_lat, deg_long)
-    sw_pos, ne_pos = location.distance(radius)
+    sw_pos, ne_pos = location.bounding_locations(radius)
     # X => long
     # Y => lat
     return {
