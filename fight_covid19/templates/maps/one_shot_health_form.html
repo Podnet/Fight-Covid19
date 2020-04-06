@@ -9,7 +9,7 @@
 {% block content %}
 
   <div class="uk-margin-small">
-  <br>
+    <br>
     <h1>Health Status Form</h1>
     <p>Please fill this form with correct information.</p>
   </div>
@@ -17,70 +17,97 @@
   <hr>
 
   <!-- Health entry form -->
-  <form class="uk-form-horizontal uk-margin-large" method="POST" action="{% url 'maps:health_form' %}">
-    {% csrf_token %}
-    <div class="uk-margin">
-      <label class="uk-form-label" for="form-horizontal-text">What is your age?</label>
-      <div class="uk-form-controls">
-        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Age">
+  {% verbatim %}
+  <div id="vue-app">
+    <div class="uk-form-horizontal uk-margin-large">
+
+      <!-- age -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">What is your age?</label>
+        <div class="uk-form-controls">
+          <input v-model="age" class="uk-input" id="form-horizontal-text" type="text" placeholder="Age">
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-select">What is your gender?</label>
+        <div class="uk-form-controls">
+          <select v-model="gender" class="uk-select" id="form-horizontal-select">
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="O">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Fever -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have fever?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="fever" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Cough -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have Cough?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="cough" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Difficulty in Breathing -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have any difficulty in breathing?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="difficult_breathing" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Self quarantined -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Have you self-quarantined yourself?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="quarantine" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <br>
+      <div class="uk-margin">
+        <p>{{ form_status }}</p>
+        <button v-on:click="submitForm" class="uk-button uk-button-primary">Submit</button>
       </div>
     </div>
+  </div>
 
-    <div class="uk-margin">
-      <label class="uk-form-label" for="form-horizontal-select">What is your gender?</label>
-      <div class="uk-form-controls">
-        <select class="uk-select" id="form-horizontal-select">
-          <option>Female</option>
-          <option>Male</option>
-          <option>Other</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="uk-margin">
-      <div class="uk-form-label">Do you have fever?</div>
-      <div class="uk-form-controls uk-form-controls-text">
-        <input class="uk-checkbox" type="checkbox" name="radio1">
-      </div>
-    </div>
-
-    <div class="uk-margin">
-      <div class="uk-form-label">Do you have Cough?</div>
-      <div class="uk-form-controls uk-form-controls-text">
-        <input class="uk-checkbox" type="checkbox" name="radio1">
-      </div>
-    </div>
-
-    <div class="uk-margin">
-      <div class="uk-form-label">Do you have any difficulty in breathing?</div>
-      <div class="uk-form-controls uk-form-controls-text">
-        <input class="uk-checkbox" type="checkbox" name="radio1">
-      </div>
-    </div>
-
-    <div class="uk-margin">
-      <div class="uk-form-label">Have you self-quarantined yourself?</div>
-      <div class="uk-form-controls uk-form-controls-text">
-        <input class="uk-checkbox" type="checkbox" name="radio1">
-      </div>
-    </div>
-
-    <input type="hidden">
-    <input type="hidden">
-    <p id="status"></p>
-    <br>
-    <div class="uk-margin">
-      <input type="submit" value="Submit" class="uk-button uk-button-primary">
-      <button id="find-me" class="uk-button uk-button-default">Know my location</button>
-    </div>
-
-  </form>
-
-
+  <br><br><br>
+  {% endverbatim %}
 {% endblock %}
 
 {% block javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+
+  // Vue code
+  var app = new Vue({
+    el: "#vue-app",
+    data: {
+      age:0,
+      gender: "F",
+      fever:false,
+      cough: false,
+      difficult_breathing: false,
+      quarantine: false,
+      form_status:""
+    },
+    methods: {
+      submitForm: function(event) {
+        alert("Its wokring!")
+      }
+    }
+  });
+
     function geoFindMe() {
 
       const latitude_field = document.querySelector('#id_latitude');
