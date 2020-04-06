@@ -9,4 +9,9 @@ urlpatterns = [
     path("map_markers/", map_views.MapMarkersView, name="map_markers"),
     path("my_health", map_views.MyHealthView, name="my_health"),
     path("patients_nearme", map_views.NearCount.as_view(), name="near_count"),
+    path(
+        "1shot_health_entry",
+        TemplateView.as_view(template_name="maps/one_shot_health_form.html"),
+        name="1shot_health_entry",
+    ),
 ]
