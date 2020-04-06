@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
+from django.db.models import Count
 
 from fight_covid19.maps import forms
 from fight_covid19.maps.helpers import (
