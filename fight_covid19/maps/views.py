@@ -89,7 +89,8 @@ class NearCount(View):
         )
 
         total_count = (
-            HealthEntry.objects.all().filter(
+            HealthEntry.objects.all()
+            .filter(
                 latitude__range=(ranges["min_lat"], ranges["max_lat"]),
                 longitude__range=(ranges["min_lon"], ranges["max_lon"]),
             )
