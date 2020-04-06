@@ -17,3 +17,8 @@ class HealthEntry(models.Model):
     latitude = models.DecimalField(max_digits=18, decimal_places=15, null=True)
     longitude = models.DecimalField(max_digits=18, decimal_places=15, null=True)
     creation_timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+class KeyValuePair(models.Model):
+    name = models.CharField(max_length=50)
+    value = models.CharField(max_length=100)

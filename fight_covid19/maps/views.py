@@ -1,20 +1,22 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
+from django.db.models import F
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
-from django.db.models import Count
+
 from fight_covid19.maps import forms
-from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.helpers import (
     get_covid19_stats,
     get_hoi_stats,
     get_map_markers,
     get_range_coords,
 )
+from fight_covid19.maps.models import HealthEntry
+from fight_covid19.maps.models import KeyValuePair
 
 
 class HomePage(View):
@@ -99,3 +101,19 @@ class NearCount(View):
         )
 
         return JsonResponse({"total": total_count})
+
+
+class GenerateUniqueKey(View):
+    def get(self, request, *args, **kwargs):
+        try:
+            counter = KeyValuePair.objects.get(name="unique_key_counter")
+        except KeyValuePair.DoesNotExist:
+            counter = KeyValuePair.objects.create(name="unique_key_counter", value="1")
+
+        unique_id = counter.value
+
+        # Updating values
+        counter.value = str(int(counter.value) + 1)
+        counter.save()
+
+        return JsonResponse({"id": unique_id})
