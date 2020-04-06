@@ -13,9 +13,13 @@ def get_covid19_stats():
     r = requests.get(settings.COVID19_STATS_API)
     if r.status_code == 200:
         india_stats = r.json()
-
         # To store total stats of the country
         data["total_stats"] = india_stats.get("statewise", list())[0]
+        data["total_stats"]["deltaactive"] = str(
+            int(data["total_stats"]["deltaconfirmed"])
+            - int(data["total_stats"]["deltadeaths"])
+            - int(data["total_stats"]["deltarecovered"])
+        )
 
         # Number of tests performed
         data["tests_performed"] = india_stats.get("tested", list())[-1]
@@ -24,7 +28,11 @@ def get_covid19_stats():
         data["statewise"] = dict()
         for state in india_stats.get("statewise", list())[1:]:
             data["statewise"][state["state"]] = state
-
+            data["statewise"][state["state"]]["deltaactive"] = str(
+                int(data["statewise"][state["state"]]["deltaconfirmed"])
+                - int(data["statewise"][state["state"]]["deltadeaths"])
+                - int(data["statewise"][state["state"]]["deltarecovered"])
+            )
     return data
 
 
