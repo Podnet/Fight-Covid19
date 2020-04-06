@@ -1,13 +1,15 @@
 from __future__ import absolute_import, unicode_literals
+
 from celery import task
+from celery.signals import celeryd_after_setup
+from django.core.cache import cache
+
 from fight_covid19.maps.helpers import (
-    get_stats,
     get_map_markers,
     get_covid19_stats,
     get_hoi_stats,
 )
-from django.core.cache import cache
-from celery.signals import celeryd_after_setup
+
 
 # Initial Data Load to Cache
 @celeryd_after_setup.connect

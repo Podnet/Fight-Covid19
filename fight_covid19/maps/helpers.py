@@ -9,8 +9,6 @@ from django.contrib.auth import get_user_model
 
 def get_covid19_stats():
     data = dict()
-    statewise = dict()  # To store total stats of the state
-    last_updated = dict()
 
     r = requests.get(settings.COVID19_STATS_API)
     if r.status_code == 200:
@@ -41,38 +39,6 @@ def get_hoi_stats():
     data["fever"] = total_people.filter(Q(fever=True)).count()
 
     return data
-
-
-def get_stats():
-    data = dict()
-    statewise = dict()  # To store total stats of the state
-    last_updated = dict()
-    total_people = HealthEntry.objects.all().order_by("user").distinct("user_id")
-    data["sickPeople"] = sick_people = total_people.filter(
-        Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
-    ).count()
-    data["totalPeople"] = get_user_model().objects.all().count()
-    data["shortnessOfBreath"] = total_people.filter(Q(difficult_breathing=True)).count()
-    data["fever"] = total_people.filter(Q(fever=True)).count()
-
-    r = requests.get(settings.COVID19_STATS_API)
-    if r.status_code == 200:
-        r_data = r.json()
-        india_stats = r_data
-
-        # To store total stats of the country
-        total_stats = dict()
-        total_stats.update(india_stats.get("statewise", list())[0])
-        data.update(total_stats)
-
-        # Number of tests performed
-        last_updated = india_stats.get("tested", list())[-1]
-
-        # State wise data
-        for i in india_stats.get("statewise", list())[1:]:
-            statewise[i["state"]] = i
-
-    return data, statewise, last_updated
 
 
 def get_map_markers():
