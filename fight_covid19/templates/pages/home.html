@@ -7,14 +7,6 @@
       font-size: 2rem;
       line-height: 1.4;
     }
-
-
-
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
   </style>
 {% endblock %}
 
@@ -28,14 +20,14 @@
 
     <div class="uk-grid-small uk-child-width-auto" uk-grid>
       <div>
-        <a href="{% url 'maps:health_form' %}" class="uk-button uk-button-primary">Record Health</a>
+        <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button uk-button-primary">Record Health</a>
       </div>
-      <div>
-        <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
-      </div>
-      <div>
-        <a href="{% url 'news:index' %}" class="uk-button uk-button-secondary">News Board</a>
-      </div>
+{#      <div>#}
+{#        <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>#}
+{#      </div>#}
+{#      <div>#}
+{#        <a href="{% url 'news:index' %}" class="uk-button uk-button-secondary">News Board</a>#}
+{#      </div>#}
     </div>
     <hr>
 

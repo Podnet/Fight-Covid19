@@ -113,7 +113,7 @@
 
             // Disable Submit button
             this.submit_disabled = true;
-            this.form_status = "Locating...";
+            this.form_status = "Locating...(Check if you given this page permission for Location access, if it takes too long).";
 
             navigator.geolocation.getCurrentPosition(async function (position) {
               // We've received users current location
@@ -221,11 +221,5 @@
       }
 
     }
-
-    window.addEventListener('DOMContentLoaded', (event) => {
-      geoFindMe();
-    });
-
-    document.querySelector('#find-me').addEventListener('click', geoFindMe);
   </script>
 {% endblock %}
