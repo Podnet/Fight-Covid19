@@ -7,9 +7,23 @@
 
 {% block content %}
   <h1 class="uk-margin-top">My Health</h1>
-  <br>
-  <a href="{% url 'maps:health_form' %}">Record a new entry by clicking here.</a>
-  <br><br>
+  <div class="uk-margin">
+  Look at maps to visualize health entry data.
+  </div>
+  <div class="uk-grid-small uk-child-width-auto" uk-grid>
+    <div>
+      <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>
+    </div>
+    <div>
+      <a href="{% url 'news:index' %}" class="uk-button uk-button-secondary">News Board</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="uk-margin">
+    <a href="{% url 'maps:health_form' %}">Record a new entry by clicking here.</a>
+  </div>
   <table class="uk-table uk-table-small uk-table-divider">
     <thead>
     <tr>
@@ -37,6 +51,6 @@
     </tbody>
   </table>
 
-  <div class="uk-margin-large"> </div>
+  <div class="uk-margin-large"></div>
 {% endblock %}
 

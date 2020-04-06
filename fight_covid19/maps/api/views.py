@@ -1,12 +1,14 @@
+import datetime
+
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from django.db.models import Q
 from django.db import transaction
+from django.db.models import Q
+from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.response import Response
-import datetime
-from django.utils import timezone
-from fight_covid19.maps.helpers import get_stats
+
+from fight_covid19.maps.helpers import get_covid19_stats
 from fight_covid19.maps.models import HealthEntry
 from .serializers import HealthEntrySerializer, HealthEntryFormSerializer
 
@@ -52,14 +54,12 @@ class CoronaVirusCasesViewSet(viewsets.ViewSet):
         statewise = dict()  # To store total stats of the state
         last_updated = dict()
         total = dict()
-        c = cache.get("stats", default=None)
+        c = cache.get("covid19_stats", default=None)
         if not c:
-            total, statewise, last_updated = get_stats()
-        else:
-            total, statewise, last_updated = c
-        data["total"] = total
-        data["statewise"] = statewise
-        data["last_updated"] = last_updated
+            c = get_covid19_stats()
+        data["total"] = c["total_stats"]
+        data["statewise"] = c["statewise"]
+        data["last_updated"] = c["tests_performed"]
         return Response(data)
 
 

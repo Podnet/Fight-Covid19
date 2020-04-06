@@ -1,0 +1,42 @@
+
+{% load static %}
+{% load humanize %}
+{% block footer %}
+  <hr class="uk-divider-icon">
+  <div class="uk-container">
+{#    <div class="uk-flex uk-flex-center uk-margin">#}
+{#      <div class="uk-padding">#}
+{#        <a class="uk-button uk-button-secondary" href="https://github.com/meticulousCraftman/Fight-Covid19">Show project#}
+{#          on#}
+{#          Github</a>#}
+{#      </div>#}
+{#      <div class="uk-padding">#}
+{#        <a class="uk-button uk-button-primary" href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Join Telegram Group</a>#}
+{#      </div>#}
+{#    </div>#}
+    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+      <div class="uk-panel" style="text-align: justify">
+        <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/60_60.png' %}" alt="Health of India image">
+        <p><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>. This is an <b>open source project</b>, where we collect <b>health data</b> from people living in different parts of the world.</p>
+        <a href="https://covid19.thepodnet.com/">covid19.thepodnet.com</a>
+      </div>
+      <div class="uk-panel" style="text-align: justify">
+        <p>We have open sourced our project on <b>GitHub</b>. We are looking for the contributions in the project in making our moto easier for the people as well as the developers.</p>
+        <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web Project on GitHub</a><br>
+        <a href="https://github.com/mornville/Fight-Covid19-App">Android Project on GitHub</a>
+      </div>
+      <div class="uk-panel" style="text-align: justify">
+        <p><b>Join us in our mission</b></p>
+        <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Join Telegram Group</a>
+        <br>
+        <a href="https://twitter.com/health_of_india">Join us on Twitter</a>
+        <br>
+        <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 3em;text-align: center">
+    <p>Copyright &copy; 2020 , made with <span uk-icon="heart" style="color: red"></span> by Health of India. All rights reserved</p>
+  </div>
+  <div style="margin-bottom: 5em;"></div>
+{% endblock footer %}

@@ -6,27 +6,32 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
-
+from django.db.models import Count
 from fight_covid19.maps import forms
-from fight_covid19.maps.helpers import get_stats, get_map_markers
 from fight_covid19.maps.models import HealthEntry
+from fight_covid19.maps.helpers import (
+    get_covid19_stats,
+    get_hoi_stats,
+    get_map_markers,
+    get_range_coords,
+)
 
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
-        c = cache.get("stats", default=None)
-        if not c:
-            total, statewise, last_updated = get_stats()
-        else:
-            total, statewise, last_updated = c
+        covid19_stats = cache.get("covid19_stats", default=None)
+        hoi_stats = cache.get("hoi_stats", default=None)
+        if not covid19_stats:
+            covid19_stats = get_covid19_stats()
+        if not hoi_stats:
+            hoi_stats = get_hoi_stats()
+
+        # else:
+        #     total, statewise, last_updated = c
         return render(
             request,
             "pages/home.html",
-            context={
-                "total": total,
-                "statewise": statewise,
-                "last_updated": last_updated,
-            },
+            context={"covid19_stats": covid19_stats, "hoi_stats": hoi_stats},
         )
 
 
@@ -73,3 +78,24 @@ class MapMarkers(View):
 
 
 MapMarkersView = MapMarkers.as_view()
+
+
+class NearCount(View):
+    def get(self, request, *args, **kwargs):
+        ranges = get_range_coords(
+            float(request.GET["longitude"]),
+            float(request.GET["latitude"]),
+            float(request.GET["distance"]),
+        )
+
+        total_count = (
+            HealthEntry.objects.all().filter(
+                latitude__range=(ranges["min_lat"], ranges["max_lat"]),
+                longitude__range=(ranges["min_lon"], ranges["max_lon"]),
+            )
+            # .values("user_id")
+            # .annotate(total=Count("user_id"))
+            .count()
+        )
+
+        return JsonResponse({"total": total_count})
