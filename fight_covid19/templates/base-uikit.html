@@ -40,16 +40,114 @@
     gtag('js', new Date());
     gtag('config', 'UA-162832950-1');
   </script>
+   <style>
 
+.navbar {
+  font-size: 18px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  box-shadow: 0 5px 5px -2px rgba(0,0,0,.2);
+
+}
+
+.main-nav {
+  list-style-type: none;
+  display: none;
+}
+
+.nav-links,
+.logo {
+  text-decoration: none;
+  color: black;
+}
+
+.main-nav li {
+  text-align: center;
+  margin: 15px auto;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.navbar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+}
+
+#chkToggle {
+  display: none;
+}
+
+#chkToggle:checked + ul.main-nav {
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+  .nav-links {
+    margin-left: 0px;
+  }
+
+}
+@media screen and (min-width: 1000px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+    height: 70px;
+    align-items: center;
+  }
+
+  #chkToggle:checked + ul.main-nav {
+    display: flex;
+  }
+
+  .main-nav {
+    display: flex;
+    margin-right: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .main-nav li {
+    margin: 0;
+  }
+
+  .nav-links {
+    margin-left: 40px;
+  }
+
+  .logo {
+    margin-top: 0;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .logo:hover,
+  .nav-links:hover {
+    color: rgb(101, 101, 101);
+  }
+}
+
+    </style>
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
-
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   {% block css %}
 
 
     <!-- Your stuff: Third-party CSS libraries go here -->
-
+ 
     <!-- This file stores project-specific CSS -->
 
     {#    <link href="{% static 'css/project.css' %}" rel="stylesheet">#}
@@ -62,30 +160,32 @@
 <body>
 
 <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-  <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
-    <div class="uk-navbar-left">
+ 
+  <nav class="navbar">
+    <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+            <i uk-icon="list" style="color:black"></i>
+        </label>
+        <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
+        ">
+          <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
+          Health of India
+        </a>
+    <input type="checkbox" id="chkToggle"></input>
+    <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
+      <li class="uk-active"><a style="text-decoration: none;" href="{% url 'home' %}"  class="nav-links">Home</a></li>
+      <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
+      <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
+      <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
+      {% if request.user.is_authenticated %}
+        <li><a style="text-decoration: none;" href="{% url 'maps:my_health' %}" class="nav-links">{% trans "My Health" %}</a></li>
+        <li><a style="text-decoration: none;" href="{% url 'users:detail' request.user.username %}"  class="nav-links">{% trans "My Account" %}</a></li>
+        <li><a style="text-decoration: none;" href="{% url 'account_logout' %}"  class="nav-links">{% trans "Sign Out" %}</a></li>
+      {% else %}
+        <li><a style="text-decoration: none;" href="{% url 'account_signup' %}" class="nav-links">{% trans "Sign Up" %}</a></li>
+        <li><a style="text-decoration: none;" href="{% url 'account_login' %}"  class="nav-links">{% trans "Sign In" %}</a></li>
+      {% endif %}
+    </ul>
 
-      <a class="uk-navbar-item uk-logo" href="{% url 'home' %}">
-        <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
-        Health of India
-      </a>
-
-      <ul class="uk-navbar-nav">
-        <li class="uk-active"><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'maps' %}">Maps</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'news:index' %}">News</a></li>
-        {% if request.user.is_authenticated %}
-          <li><a href="{% url 'maps:my_health' %}">{% trans "My Health" %}</a></li>
-          <li><a href="{% url 'users:detail' request.user.username %}">{% trans "My Account" %}</a></li>
-          <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
-        {% else %}
-          <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-          <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
-        {% endif %}
-      </ul>
-
-    </div>
   </nav>
 </div>
 
