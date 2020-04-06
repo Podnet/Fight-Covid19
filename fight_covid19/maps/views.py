@@ -123,4 +123,15 @@ class OneShotFormEntry(View):
     def post(self, request, *args, **kwargs):
         raw_data = request.body.decode("utf-8")
         form_data = json.loads(raw_data)
+        HealthEntry.objects.create(
+            age=form_data["age"],
+            gender=form_data["gender"],
+            fever=form_data["fever"],
+            cough=form_data["cough"],
+            difficult_breathing=form_data["difficult_breathing"],
+            self_quarantine=form_data["quarantine"],
+            latitude=form_data["latitude"],
+            longitude=form_data["longitude"],
+            unique_id=form_data["unique_id"],
+        )
         return JsonResponse({"status": "success"})

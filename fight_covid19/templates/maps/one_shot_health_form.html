@@ -127,6 +127,7 @@
                 latitude: latitude,
                 longitude: longitude,
                 age: app.age,
+                cough:app.cough,
                 gender: app.gender,
                 fever: app.fever,
                 difficult_breathing: app.difficult_breathing,
@@ -143,6 +144,20 @@
                       });
               form_data['unique_id'] = unique_id;
 
+              // Stroing information locally
+              localStorage.setItem('unique_id', unique_id);
+
+              //Check for existing health entries & store it locally
+              if('health_entries' in localStorage) {
+                var d = localStorage.getItem('health_entries');
+                var existing_entries = JSON.parse(d);
+              }
+              else {
+                existing_entries = [];
+              }
+              existing_entries.push(form_data);
+              localStorage.setItem('health_entries', JSON.stringify(existing_entries));
+
               // Send data to the server to be saved.
               var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
               fetch('/maps/oneshot_form_entry', {
@@ -156,7 +171,13 @@
                         return response.json();
                       })
                       .then((data) => {
-                        alert(data);
+                        if('status' in data) {
+                          app.form_status = "Form submitted. Thank you filling in your information.";
+                          window.location.href = "/";
+                        }
+                        else {
+                          app.form_status = "Something went wrong. We were unable to save your information. Please try again later."
+                        }
                       });
 
             }, function () {
