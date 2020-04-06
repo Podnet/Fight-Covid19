@@ -96,14 +96,14 @@
 
   <div class="uk-margin">
     <div class="uk-flex uk-flex-center">
-      <button class="uk-button uk-button-primary" onclick="geoFindMe();">Show patients near me</button>
+      <button class="uk-button uk-button-primary" onclick="findPatientsNearMe();">Show patients near me</button>
     </div>
     <p id="status"></p>
     <p id="latitude" style="display: none;"><b>Latitude</b>: </p>
     <p id="longitude" style="display: none;"><b>Longitude</b>: </p>
     <p id="infected_patients" style="display: none;"><b>Covid19 Infected Patients</b>: N/A </p>
     <p id="symptomatic_patients" style="display: none;"><b>Symptomatic Patients</b>: N/A</p>
-    <p>Stats might show N/A sometimes, if the problem persists. Please reach out to us on our Telegram Channel.</p>
+    <p>The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
   </div>
 
   <h1>Coronavirus Stats in India</h1>
@@ -233,7 +233,7 @@
 
 {% block javascript %}
   <script>
-    function geoFindMe() {
+    function findPatientsNearMe() {
 
       const latitude_field = document.querySelector('#latitude');
       const longitude_field = document.querySelector('#longitude');
@@ -251,10 +251,20 @@
         longitude_field.innerHTML = `<b>Longitude: </b> ${longitude}`;
         longitude_field.style.display = "block";
 
-        infected_patients_field.style.display = "block";
+        {#infected_patients_field.style.display = "block";#}
         symptomatic_patients_field.style.display = "block";
 
         status.textContent = 'Found your location. Looking for infected and symptomatic patients, nearby.';
+
+        // fetching patients near me
+        fetch(`/maps/patients_nearme?latitude=${latitude}&longitude=${longitude}`)
+                .then((response) => {
+                  return response.json();
+                })
+                .then((data) => {
+                  console.log(data);
+                  symptomatic_patients_field.innerHTML = `<b>Symptomatic Patients</b>: ${data.total}`;
+                });
       }
 
       function error() {
