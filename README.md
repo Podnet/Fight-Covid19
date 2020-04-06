@@ -6,10 +6,10 @@ An application to map symptomatic patients of covid19 on map and collect continu
 
 ![image](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg)
 ![image](https://img.shields.io/badge/code%20style-black-000000.svg)
-[![GitHub license](https://img.shields.io/github/license/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/blob/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/stargazers) 
-[![GitHub forks](https://img.shields.io/github/forks/Podnet/Fight-Covid19.svg?logo=github&color=teal)](https://github.com/meticulousCraftman/Fight-Covid19/network/members) 
-[![GitHub top language](https://img.shields.io/github/languages/top/meticulousCraftman/Fight-Covid19?color=blue&logo=python)](https://github.com/meticulousCraftman/Fight-Covid19)
+[![GitHub license](https://img.shields.io/github/license/Podnet/Fight-Covid19.svg?logo=github)](https://github.com/Podnet/Fight-Covid19/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Podnet/Fight-Covid19.svg?logo=github)](https://github.com/Podnet/Fight-Covid19/stargazers) 
+[![GitHub forks](https://img.shields.io/github/forks/Podnet/Fight-Covid19.svg?logo=github&color=teal)](https://github.com/Podnet/Fight-Covid19/network/members) 
+[![GitHub top language](https://img.shields.io/github/languages/top/Podnet/Fight-Covid19?color=blue&logo=python)](https://github.com/Podnet/Fight-Covid19)
 
 License
 :   MIT
@@ -17,13 +17,13 @@ License
 Setup
 -----
 
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/) 
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/meticulousCraftman/Fight-Covid19?color=bluevoilet&logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/commits/) 
-[![GitHub repo size](https://img.shields.io/github/repo-size/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Podnet/Fight-Covid19?logo=github)](https://github.com/Podnet/Fight-Covid19/) 
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Podnet/Fight-Covid19?color=bluevoilet&logo=github)](https://github.com/Podnet/Fight-Covid19/commits/) 
+[![GitHub repo size](https://img.shields.io/github/repo-size/Podnet/Fight-Covid19?logo=github)](https://github.com/Podnet/Fight-Covid19/)
 
 1.  Clone the repository
     ```console
-    $ git clone https://github.com/meticulousCraftman/Fight-Covid19
+    $ git clone https://github.com/Podnet/Fight-Covid19
     ```
 
 2.  Create a virtual environment using virtualenv or venv.
@@ -143,18 +143,18 @@ You must set the DSN url in production.
 
 ## Issues
 
-[![GitHub issues](https://img.shields.io/github/issues/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/issues) 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&logo=git&logoColor=white)](https://github.com/meticulousCraftman/Fight-Covid19/pulls) 
-[![GitHub last commit](https://img.shields.io/github/last-commit/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/)
+[![GitHub issues](https://img.shields.io/github/issues/Podnet/Fight-Covid19?logo=github)](https://github.com/Podnet/Fight-Covid19/issues) 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&logo=git&logoColor=white)](https://github.com/Podnet/Fight-Covid19/pulls) 
+[![GitHub last commit](https://img.shields.io/github/last-commit/Podnet/Fight-Covid19?logo=github)](https://github.com/Podnet/Fight-Covid19/)
 
 > // No Issues now.
 
-**NOTE**: **Feel free to [open issues](https://github.com/meticulousCraftman/Fight-Covid19/issues/new/choose)**. Make sure you follow the Issue Template provided.
+**NOTE**: **Feel free to [open issues](https://github.com/Podnet/Fight-Covid19/issues/new/choose)**. Make sure you follow the Issue Template provided.
 
 ## Contribution Guidelines
 
-[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/meticulousCraftman/Fight-Covid19?logo=git&logoColor=white)](https://github.com/meticulousCraftman/Fight-Covid19/compare) 
-[![GitHub contributors](https://img.shields.io/github/contributors/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/graphs/contributors) 
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Podnet/Fight-Covid19?logo=git&logoColor=white)](https://github.com/Podnet/Fight-Covid19/compare) 
+[![GitHub contributors](https://img.shields.io/github/contributors/Podnet/Fight-Covid19?logo=github)](https://github.com/Podnet/Fight-Covid19/graphs/contributors) 
 
 - Write clear meaningful git commit messages (Do read [this](http://chris.beams.io/posts/git-commit/)).
 
@@ -164,13 +164,13 @@ You must set the DSN url in production.
 
 - When you're submitting a PR for a UI-related issue, it would be really awesome if you add a screenshot of your change or a link to a deployment where it can be tested out along with your PR. It makes it very easy for the reviewers and you'll also get reviews quicker.
 
-- Please follow the [PR Template](https://github.com/meticulousCraftman/Fight-Covid19/blob/master/.github/PULL_REQUEST_TEMPLATE.md) to create the PR.
+- Please follow the [PR Template](https://github.com/Podnet/Fight-Covid19/blob/master/.github/PULL_REQUEST_TEMPLATE.md) to create the PR.
 
 - Always create PR to `develop` branch.
 
 - Please read our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-- Refer [this](https://github.com/meticulousCraftman/Fight-Covid19/blob/master/CONTRIBUTING.md) for more.
+- Refer [this](https://github.com/Podnet/Fight-Covid19/blob/master/CONTRIBUTING.md) for more.
 
 
-[![with love](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/meticulousCraftman/Fight-Covid19/) [![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://github.com/meticulousCraftman/Fight-Covid19/) [![smile please](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://github.com/meticulousCraftman/Fight-Covid19/)
+[![with love](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/Podnet/Fight-Covid19/) [![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://github.com/Podnet/Fight-Covid19/) [![smile please](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://github.com/Podnet/Fight-Covid19/)
