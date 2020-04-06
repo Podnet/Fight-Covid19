@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
-from django.db.models import F
+import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -117,3 +117,10 @@ class GenerateUniqueKey(View):
         counter.save()
 
         return JsonResponse({"id": unique_id})
+
+
+class OneShotFormEntry(View):
+    def post(self, request, *args, **kwargs):
+        raw_data = request.body.decode("utf-8")
+        form_data = json.loads(raw_data)
+        return JsonResponse({"status": "success"})

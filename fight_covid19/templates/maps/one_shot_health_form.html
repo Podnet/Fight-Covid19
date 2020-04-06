@@ -17,6 +17,7 @@
   <hr>
 
   <!-- Health entry form -->
+  {% csrf_token %}
   {% verbatim %}
   <div id="vue-app">
     <div class="uk-form-horizontal uk-margin-large">
@@ -76,7 +77,8 @@
       <br>
       <div class="uk-margin">
         <p>{{ form_status }}</p>
-        <button v-bind:disabled="submit_disabled" v-on:click="submitForm" class="uk-button uk-button-primary">Submit</button>
+        <button v-bind:disabled="submit_disabled" v-on:click="submitForm" class="uk-button uk-button-primary">Submit
+        </button>
       </div>
     </div>
   </div>
@@ -100,7 +102,7 @@
         difficult_breathing: false,
         quarantine: false,
         form_status: "",
-        submit_disabled:false,
+        submit_disabled: false,
       },
       methods: {
         submitForm: function (event) {
@@ -113,21 +115,12 @@
             this.submit_disabled = true;
             this.form_status = "Locating...";
 
-            navigator.geolocation.getCurrentPosition(function (position) {
+            navigator.geolocation.getCurrentPosition(async function (position) {
               // We've received users current location
               // Note this variable wouldn't work inside this function scope
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
               app.form_status = "Location received. Thank you :)";
-
-              // Get unique key for this device from server
-              fetch('/maps/generate_unique_key')
-                      .then((response) => {
-                        return response.json();
-                      })
-                      .then((data) => {
-                        alert(data.id);
-                      });
 
               // Collected information
               var form_data = {
@@ -140,6 +133,31 @@
                 quarantine: app.quarantine
               };
 
+              // Get unique key for this device from server
+              var unique_id = await fetch('/maps/generate_unique_key')
+                      .then((response) => {
+                        return response.json();
+                      })
+                      .then((data) => {
+                        return data.id;
+                      });
+              form_data['unique_id'] = unique_id;
+
+              // Send data to the server to be saved.
+              var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+              fetch('/maps/oneshot_form_entry', {
+                method: 'POST',
+                body: JSON.stringify(form_data),
+                headers: {
+                  'X-CSRFToken': csrf_token
+                }
+              })
+                      .then((response) => {
+                        return response.json();
+                      })
+                      .then((data) => {
+                        alert(data);
+                      });
 
             }, function () {
               this.form_status = "We were unable to access your location. Please allow us to access your location to complete the form."
