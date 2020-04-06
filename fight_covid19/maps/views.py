@@ -83,9 +83,9 @@ MapMarkersView = MapMarkers.as_view()
 class NearCount(View):
     def get(self, request, *args, **kwargs):
         ranges = get_range_coords(
-            float(request.GET["longitude"]),
-            float(request.GET["latitude"]),
-            float(request.GET["distance"]),
+            float(request.GET.get("longitude")),
+            float(request.GET.get("latitude")),
+            float(request.GET.get("distance", 5)),
         )
 
         total_count = (
