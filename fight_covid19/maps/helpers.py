@@ -70,7 +70,7 @@ def get_map_markers():
         HealthEntry.objects.all()
         .order_by("user", "-creation_timestamp")
         .distinct("user")
-        .values("user_id", "latitude", "longitude")
+        .values("id", "latitude", "longitude")
     )
     return list(points)
 

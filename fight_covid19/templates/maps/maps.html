@@ -41,7 +41,7 @@
               var markers = jsonData.map(function (x, i) {
                 return new google.maps.Marker({
                   position: {lat: parseFloat(x['latitude']), lng: parseFloat(x['longitude'])},
-                  label: "P" + x['user_id']
+                  label: "P" + x['id']
                 });
               });
 
