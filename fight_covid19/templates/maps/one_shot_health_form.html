@@ -89,24 +89,43 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
 
-  // Vue code
-  var app = new Vue({
-    el: "#vue-app",
-    data: {
-      age:0,
-      gender: "F",
-      fever:false,
-      cough: false,
-      difficult_breathing: false,
-      quarantine: false,
-      form_status:""
-    },
-    methods: {
-      submitForm: function(event) {
-        alert("Its wokring!")
+    // Vue code
+    var app = new Vue({
+      el: "#vue-app",
+      data: {
+        age: 0,
+        gender: "F",
+        fever: false,
+        cough: false,
+        difficult_breathing: false,
+        quarantine: false,
+        form_status: ""
+      },
+      methods: {
+        submitForm: function (event) {
+          if (navigator.geolocation) {
+            // Geolocation works
+            this.form_status = "Locating...";
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+              // We've received users current location
+              // Note this variable wouldn't work inside this function scope
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              app.form_status = "Location received. Thank you :)";
+
+              alert(`${app.age}, ${app.gender}, ${app.fever}, ${app.cough}, ${app.difficult_breathing}, ${app.quarantine}, ${latitude}, ${longitude}`);
+
+            }, function () {
+              this.form_status = "We were unable to access your location. Please allow us to access your location to complete the form."
+            });
+          } else {
+            // Geolocation not supported
+            this.form_status = "Geolocation is not supported by your browser. You cannot fill this form."
+          }
+        }
       }
-    }
-  });
+    });
 
     function geoFindMe() {
 
