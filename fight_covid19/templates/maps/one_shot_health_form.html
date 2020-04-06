@@ -183,10 +183,12 @@
 
             }, function () {
               this.form_status = "We were unable to access your location. Please allow us to access your location to complete the form."
+              app.submit_disabled = false;
             });
           } else {
             // Geolocation not supported
             this.form_status = "Geolocation is not supported by your browser. You cannot fill this form."
+            app.submit_disabled = false;
           }
         }
       }
