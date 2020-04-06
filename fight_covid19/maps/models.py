@@ -16,4 +16,10 @@ class HealthEntry(models.Model):
     self_quarantine = models.BooleanField(default=False)
     latitude = models.DecimalField(max_digits=18, decimal_places=15, null=True)
     longitude = models.DecimalField(max_digits=18, decimal_places=15, null=True)
+    unique_id = models.CharField(null=True, blank=True, max_length=15)
     creation_timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+class KeyValuePair(models.Model):
+    name = models.CharField(max_length=50)
+    value = models.CharField(max_length=100)

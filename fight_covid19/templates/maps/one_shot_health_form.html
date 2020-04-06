@@ -1,0 +1,225 @@
+{% extends "base-uikit.html" %}
+
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Health Status Form" %}{% endblock %}
+
+
+{% block content %}
+
+  <div class="uk-margin-small">
+    <br>
+    <h1>Health Status Form</h1>
+    <p>Please fill this form with correct information.</p>
+  </div>
+
+  <hr>
+
+  <!-- Health entry form -->
+  {% csrf_token %}
+  {% verbatim %}
+  <div id="vue-app">
+    <div class="uk-form-horizontal uk-margin-large">
+
+      <!-- age -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">What is your age?</label>
+        <div class="uk-form-controls">
+          <input v-model="age" class="uk-input" id="form-horizontal-text" type="text" placeholder="Age">
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-select">What is your gender?</label>
+        <div class="uk-form-controls">
+          <select v-model="gender" class="uk-select" id="form-horizontal-select">
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="O">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Fever -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have fever?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="fever" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Cough -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have Cough?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="cough" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Difficulty in Breathing -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Do you have any difficulty in breathing?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="difficult_breathing" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <!-- Self quarantined -->
+      <div class="uk-margin">
+        <div class="uk-form-label">Have you self-quarantined yourself?</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <input v-model="quarantine" class="uk-checkbox" type="checkbox" name="radio1">
+        </div>
+      </div>
+
+      <br>
+      <div class="uk-margin">
+        <p>{{ form_status }}</p>
+        <button v-bind:disabled="submit_disabled" v-on:click="submitForm" class="uk-button uk-button-primary">Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br>
+  {% endverbatim %}
+{% endblock %}
+
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+
+    // Vue code
+    var app = new Vue({
+      el: "#vue-app",
+      data: {
+        age: 0,
+        gender: "F",
+        fever: false,
+        cough: false,
+        difficult_breathing: false,
+        quarantine: false,
+        form_status: "",
+        submit_disabled: false,
+      },
+      methods: {
+        submitForm: function (event) {
+          if (navigator.geolocation) {
+            // Geolocation works
+
+            //Verify the incoming data
+
+            // Disable Submit button
+            this.submit_disabled = true;
+            this.form_status = "Locating...(Check if you given this page permission for Location access, if it takes too long).";
+
+            navigator.geolocation.getCurrentPosition(async function (position) {
+              // We've received users current location
+              // Note this variable wouldn't work inside this function scope
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              app.form_status = "Location received. Thank you :)";
+
+              // Collected information
+              var form_data = {
+                latitude: latitude,
+                longitude: longitude,
+                age: app.age,
+                cough: app.cough,
+                gender: app.gender,
+                fever: app.fever,
+                difficult_breathing: app.difficult_breathing,
+                quarantine: app.quarantine,
+                datetime: new Date()
+              };
+
+              // Generate or Fetch unique id for this device
+              if ('unique_id' in localStorage) {
+                form_data['unique_id'] = localStorage.getItem('unique_id');
+              } else {
+                form_data['unique_id'] = await fetch('/maps/generate_unique_key')
+                        .then((response) => {
+                          return response.json();
+                        })
+                        .then((data) => {
+                          return data.id;
+                        });
+              }
+
+              //Check for existing health entries & store it locally
+              if ('health_entries' in localStorage) {
+                var d = localStorage.getItem('health_entries');
+                var existing_entries = JSON.parse(d);
+              } else {
+                existing_entries = [];
+              }
+              existing_entries.push(form_data);
+              localStorage.setItem('health_entries', JSON.stringify(existing_entries));
+
+              // Send data to the server to be saved.
+              var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+              fetch('/maps/oneshot_form_entry', {
+                method: 'POST',
+                body: JSON.stringify(form_data),
+                headers: {
+                  'X-CSRFToken': csrf_token
+                }
+              })
+                      .then((response) => {
+                        return response.json();
+                      })
+                      .then((data) => {
+                        if ('status' in data) {
+                          app.form_status = "Form submitted. Thank you filling in your information. You'll be redirected to homepage in 5 seconds.";
+                          setTimeout(() => {
+                            window.location.href = "/"
+                          }, 5000);
+                        } else {
+                          app.form_status = "Something went wrong. We were unable to save your information. Please try again later."
+                        }
+                      });
+
+            }, function () {
+              this.form_status = "We were unable to access your location. Please allow us to access your location to complete the form."
+              app.submit_disabled = false;
+            });
+          } else {
+            // Geolocation not supported
+            this.form_status = "Geolocation is not supported by your browser. You cannot fill this form."
+            app.submit_disabled = false;
+          }
+        }
+      }
+    });
+
+    function geoFindMe() {
+
+      const latitude_field = document.querySelector('#id_latitude');
+      const longitude_field = document.querySelector('#id_longitude');
+      const status = document.querySelector('#status');
+
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        latitude_field.value = latitude;
+        longitude_field.value = longitude;
+        status.textContent = 'Done. Thank You!';
+      }
+
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    }
+  </script>
+{% endblock %}
