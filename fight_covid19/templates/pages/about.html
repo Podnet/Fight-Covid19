@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-  <div class="uk-container" style="margin-bottom: 3em;margin-top: 2em;">
+  <div class="uk-container" style="margin-bottom: 5em;margin-top: 2em;">
     <h1>Health of India</h1>
     <div class="uk-panel">
       <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/192_192.png' %}" width="225" height="150" alt="Health of India image">
@@ -15,11 +15,33 @@
         <li>Help data scientists forecast the next outbreak</li>
         <li>Channelize government sanitization efforts in places where sick patients are found.</li>
         <li>Find symptomatic and infected patients near you</li>
-        <li>See real-time data of COVID19 patients on the map.</li>
+        <li>See real-time data of COVID-19 patients on the map.</li>
       </ol>
+    </div>
+    <h2>Our Sources of Data</h2>
+    <div class="uk-panel">
+      <ul>
+        <li><a href="https://www.covid19india.org">https://www.covid19india.org</a></li>
+        <li><a href="https://icmr.nic.in/content/covid-19">https://icmr.nic.in/content/covid-19</a></li>
+        <li><a href="https://www.mohfw.gov.in/">https://www.mohfw.gov.in/</a></li>
+        <li>Different State and National Bulletins</li>
+        <li>Press Release</li>
+        <li>Entry from our Users</li>
+      </ul>
+      <p>We really appreciate and thank all of our data sources, who really thought of contributing and fight against this pandemic <b>"COVID-19"</b></p>
     </div>
 
     <h2>Frequetly Asked Questions</h2>
+    <ul uk-accordion>
+      <li class="">
+        <a class="uk-accordion-title" href="#">Are you official ?</a>
+        <div class="uk-accordion-content">
+          <p>
+            No, we are not official. We are just collecting data from different sources and appending our own logic and algorithms to append those data to create new dataset.
+          </p>
+        </div>
+      </li>
+    </ul>
     <ul uk-accordion>
       <li class="">
         <a class="uk-accordion-title" href="#">Why do we need to sign up ?</a>

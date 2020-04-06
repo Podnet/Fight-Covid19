@@ -6,7 +6,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 import datetime
 from django.utils import timezone
-from fight_covid19.maps.helpers import get_stats
+from fight_covid19.maps.helpers import get_stats, get_covid19_stats, get_hoi_stats
 from fight_covid19.maps.models import HealthEntry
 from .serializers import HealthEntrySerializer, HealthEntryFormSerializer
 
@@ -49,31 +49,18 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
 class CoronaVirusCasesViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
         data = dict()
-        statewise = dict()  # To store total stats of the state
-        last_updated = dict()
-        total = dict()
-        c = cache.get("stats", default=None)
-        if not c:
-            c = get_stats()
-        data["total"] = c[0]
-        data["statewise"] = c[1:-1]
-        data["last_updated"] = c[-1]
+        covid19_stats = cache.get("covid19_stats", default=None)
+        if not covid19_stats:
+            covid19_stats = get_covid19_stats()
+        data["total"] = covid19_stats["total_stats"]
+        data["last_updated"] = covid19_stats["tests_performed"]
+        data["statewise"] = covid19_stats["statewise"]
         return Response(data)
 
 
 class HealthStatisticsViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
-        c = {}
-        # Creating health statistics
-        # HealthEntry.objects.filter(fever=True).count()
-        # HealthEntry.objects.filter(cough=True).count()
-        # HealthEntry.objects.filter(difficult_breathing=True).count()
-        sick_people = HealthEntry.objects.filter(
-            Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
-        )
-        c["sickPeople"] = sick_people.count()
-        c["totalPeople"] = (
-            HealthEntry.objects.all().order_by("user").distinct("user_id").count()
-        )
-
-        return Response(c)
+        hoi_stats = cache.get("hoi_stats", default=None)
+        if not hoi_stats:
+            hoi_stats = get_hoi_stats()
+        return Response(hoi_stats)
