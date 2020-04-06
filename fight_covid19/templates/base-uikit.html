@@ -147,7 +147,7 @@
 
 
     <!-- Your stuff: Third-party CSS libraries go here -->
- 
+
     <!-- This file stores project-specific CSS -->
 
     {#    <link href="{% static 'css/project.css' %}" rel="stylesheet">#}
@@ -160,7 +160,7 @@
 <body>
 
 <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
- 
+
   <nav class="navbar">
     <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
             <i uk-icon="list" style="color:black"></i>
@@ -176,14 +176,14 @@
       <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
       <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
       <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-      {% if request.user.is_authenticated %}
-        <li><a style="text-decoration: none;" href="{% url 'maps:my_health' %}" class="nav-links">{% trans "My Health" %}</a></li>
-        <li><a style="text-decoration: none;" href="{% url 'users:detail' request.user.username %}"  class="nav-links">{% trans "My Account" %}</a></li>
-        <li><a style="text-decoration: none;" href="{% url 'account_logout' %}"  class="nav-links">{% trans "Sign Out" %}</a></li>
-      {% else %}
-        <li><a style="text-decoration: none;" href="{% url 'account_signup' %}" class="nav-links">{% trans "Sign Up" %}</a></li>
-        <li><a style="text-decoration: none;" href="{% url 'account_login' %}"  class="nav-links">{% trans "Sign In" %}</a></li>
-      {% endif %}
+{#      {% if request.user.is_authenticated %}#}
+{#        <li><a style="text-decoration: none;" href="{% url 'maps:my_health' %}" class="nav-links">{% trans "My Health" %}</a></li>#}
+{#        <li><a style="text-decoration: none;" href="{% url 'users:detail' request.user.username %}"  class="nav-links">{% trans "My Account" %}</a></li>#}
+{#        <li><a style="text-decoration: none;" href="{% url 'account_logout' %}"  class="nav-links">{% trans "Sign Out" %}</a></li>#}
+{#      {% else %}#}
+{#        <li><a style="text-decoration: none;" href="{% url 'account_signup' %}" class="nav-links">{% trans "Sign Up" %}</a></li>#}
+{#        <li><a style="text-decoration: none;" href="{% url 'account_login' %}"  class="nav-links">{% trans "Sign In" %}</a></li>#}
+{#      {% endif %}#}
     </ul>
 
   </nav>
