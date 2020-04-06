@@ -38,13 +38,29 @@ def get_covid19_stats():
 
 def get_hoi_stats():
     data = dict()
-    total_people = HealthEntry.objects.all().order_by("user").distinct("user_id")
-    data["sickPeople"] = sick_people = total_people.filter(
-        Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
-    ).count()
-    data["totalPeople"] = get_user_model().objects.all().count()
-    data["shortnessOfBreath"] = total_people.filter(Q(difficult_breathing=True)).count()
-    data["fever"] = total_people.filter(Q(fever=True)).count()
+    loggedin_people = HealthEntry.objects.all().order_by("user").distinct("user_id")
+    oneshot_people = (
+        HealthEntry.objects.all().order_by("unique_id").distinct("unique_id")
+    )
+
+    data["totalPeople"] = loggedin_people.count() + oneshot_people.count()
+
+    data["sickPeople"] = (
+        loggedin_people.filter(
+            Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
+        ).count()
+        + oneshot_people.filter(
+            Q(fever=True) | Q(cough=True) | Q(difficult_breathing=True)
+        ).count()
+    )
+    data["shortnessOfBreath"] = (
+        loggedin_people.filter(Q(difficult_breathing=True)).count()
+        + oneshot_people.filter(Q(difficult_breathing=True)).count()
+    )
+    data["fever"] = (
+        loggedin_people.filter(Q(fever=True)).count()
+        + oneshot_people.filter(Q(fever=True)).count()
+    )
 
     return data
 
