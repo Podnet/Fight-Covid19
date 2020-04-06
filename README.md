@@ -8,7 +8,7 @@ An application to map symptomatic patients of covid19 on map and collect continu
 ![image](https://img.shields.io/badge/code%20style-black-000000.svg)
 [![GitHub license](https://img.shields.io/github/license/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/stargazers) 
-[![GitHub forks](https://img.shields.io/github/forks/meticulousCraftman/Fight-Covid19.svg?logo=github&color=teal)](https://github.com/meticulousCraftman/Fight-Covid19/network/members) 
+[![GitHub forks](https://img.shields.io/github/forks/Podnet/Fight-Covid19.svg?logo=github&color=teal)](https://github.com/meticulousCraftman/Fight-Covid19/network/members) 
 [![GitHub top language](https://img.shields.io/github/languages/top/meticulousCraftman/Fight-Covid19?color=blue&logo=python)](https://github.com/meticulousCraftman/Fight-Covid19)
 
 License
