@@ -7,7 +7,7 @@ from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from fight_covid19.maps.helpers import get_covid19_stats, get_hoi_stats
+from fight_covid19.maps.helpers import get_hoi_stats
 from fight_covid19.maps.models import HealthEntry
 from .serializers import HealthEntrySerializer, HealthEntryFormSerializer
 
@@ -45,18 +45,6 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
             HealthEntryFormSerializer.is_valid()
             errors.update(dict(HealthEntryFormSerializer.errors))
             return Response(errors)
-
-
-class CoronaVirusCasesViewSet(viewsets.ViewSet):
-    def list(self, request, *args, **kwargs):
-        data = dict()
-        covid19_stats = cache.get("covid19_stats", default=None)
-        if not covid19_stats:
-            covid19_stats = get_covid19_stats()
-        data["total"] = covid19_stats["total_stats"]
-        data["last_updated"] = covid19_stats["tests_performed"]
-        data["statewise"] = covid19_stats["statewise"]
-        return Response(data)
 
 
 class HealthStatisticsViewSet(viewsets.ViewSet):
