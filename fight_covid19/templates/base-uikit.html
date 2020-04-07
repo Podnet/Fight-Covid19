@@ -164,8 +164,27 @@
 
 <body>
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-    {% include 'pages/navbar.html' %}
-  </div>
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+ 
+      <nav class="navbar">
+        <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+                <i uk-icon="list" style="color:black"></i>
+            </label>
+            <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
+            ">
+              <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
+              Health of India
+            </a>
+        <input type="checkbox" id="chkToggle"></input>
+        <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
+          <li class="uk-active"><a style="text-decoration: none;" href="{% url 'home' %}"  class="nav-links">Home</a></li>
+          <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
+          <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
+          <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
+        </ul>
+    
+      </nav>
+    </div>  </div>
   <div class="uk-container">
     {% if messages %}
     {% for message in messages %}
