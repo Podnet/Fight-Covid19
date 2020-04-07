@@ -43,15 +43,15 @@
 <div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
 <div class="center head">
 
-  <img src="{% static 'images/favicons/b.png' %}" class="logoImage" style="height: 250px;margin-bottom: -20px;">
-  <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;">
+  <img src="{% static 'images/favicons/b.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
+  <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;" class="animated fadeIn slow">
     Health Of India
   </h2>
-  <p class="uk-text-lead exo">Contribute your bit towards stopping this virus by recording your health status</p>
+  <p class="uk-text-lead exo animated fadeInUp" >Contribute your bit towards stopping this virus by recording your health status</p>
 
-  <div class="">
+  <div>
     <div>
-      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button uk-button-medium record-health">Record Health</a>
+      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record.Health</a>
     </div>
   </div>
 </div>
