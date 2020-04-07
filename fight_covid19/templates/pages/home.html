@@ -12,7 +12,7 @@
       .logoImage {
        height: 150px !important;
       }
-      h2{
+      .head h2{
         font-size: 2.3em !important;
       }
       p{
@@ -41,7 +41,7 @@
 {% block content %}
 
 <div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
-<div class="center">
+<div class="center head">
 
   <img src="{% static 'images/favicons/b.png' %}" class="logoImage" style="height: 250px;margin-bottom: -20px;">
   <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;">
@@ -59,7 +59,7 @@
 </div>
 
 <div class="uk-container">
-  {% include 'pages/home/components/hoi-about.html' %}
+  <!-- {% include 'pages/home/components/hoi-about.html' %} -->
 {% include 'pages/home/components/hoi-stats.html' %}
 {% include 'pages/home/components/show-patients.html' %}
 {% include 'pages/home/components/india-covid-stats.html' %}
