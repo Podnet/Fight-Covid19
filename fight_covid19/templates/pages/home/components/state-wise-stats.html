@@ -1,0 +1,25 @@
+<h2 class="exo"><b>COVID-19 Statewise Stats</b></h2>
+<table class="uk-table uk-table-hover uk-table-divider exo">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Active</th>
+      <th>Confirmed</th>
+      <th>Recovered</th>
+      <th>Deaths</th>
+      <th>Last Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for state, values in covid19_stats.statewise.items %}
+    <tr>
+      <td>{{ state }}</td>
+      <td>{{ values.active }}</td>
+      <td>{{ values.confirmed }}</td>
+      <td>{{ values.recovered }}</td>
+      <td>{{ values.deaths }}</td>
+      <td>{{ values.lastupdatedtime }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

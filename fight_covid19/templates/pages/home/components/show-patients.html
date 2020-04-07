@@ -1,0 +1,65 @@
+<div class="uk-margin uk-margin-medium-top exo">
+  <div class="uk-flex uk-flex-center">
+    <button class="uk-button patients-near-me" onclick="findPatientsNearMe();">Show patients near me</button>
+  </div>
+  <p id="status"></p>
+  <p id="latitude" style="display: none;"><b>Latitude</b>: </p>
+  <p id="longitude" style="display: none;"><b>Longitude</b>: </p>
+  <p id="infected_patients" style="display: none;"><b>Covid19 Infected Patients</b>: N/A </p>
+  <p id="symptomatic_patients" style="display: none;"><b>Symptomatic Patients</b>: N/A</p>
+  <p class="exo">The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
+</div>
+
+
+
+
+{% block javascript %}
+  <script>
+    function findPatientsNearMe() {
+
+      const latitude_field = document.querySelector('#latitude');
+      const longitude_field = document.querySelector('#longitude');
+      const infected_patients_field = document.querySelector('#infected_patients');
+      const symptomatic_patients_field = document.querySelector('#symptomatic_patients');
+      const status = document.querySelector('#status');
+
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        latitude_field.innerHTML = `<b>Latitude: </b> ${latitude}`;
+        latitude_field.style.display = "block";
+
+        longitude_field.innerHTML = `<b>Longitude: </b> ${longitude}`;
+        longitude_field.style.display = "block";
+
+        {#infected_patients_field.style.display = "block";#}
+        symptomatic_patients_field.style.display = "block";
+
+        status.textContent = 'Found your location. Looking for infected and symptomatic patients, nearby.';
+
+        // fetching patients near me
+        fetch(`/maps/patients_nearme?latitude=${latitude}&longitude=${longitude}`)
+                .then((response) => {
+                  return response.json();
+                })
+                .then((data) => {
+                  console.log(data);
+                  symptomatic_patients_field.innerHTML = `<b>Symptomatic Patients</b>: ${data.total}`;
+                });
+      }
+
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    }
+  </script>
+{% endblock %}

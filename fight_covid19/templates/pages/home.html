@@ -3,260 +3,78 @@
 {% load humanize %}
 
 {% block css %}
-  <style>
-    .uk-card-title {
-      font-size: 2rem;
-      line-height: 1.4;
+<style>
+  .uk-card-title {
+    font-size: 2rem;
+    line-height: 1.4;
+  }   
+  @media only screen and (max-width: 800px) {
+      .logoImage {
+       height: 150px !important;
+      }
+      .head h2{
+        font-size: 2.3em !important;
+      }
+      p{
+        font-size: 12px !important;
+      }
+
+
     }
-    table {
+
+  table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+  }
+  .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-  </style>
+</style>
 {% endblock %}
 
 {% block content %}
 
-  <article class="uk-article uk-margin-top uk-margin-medium-top">
+<div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
+<div class="center head">
 
-    <h1 class="uk-article-title"><a class="uk-link-reset" href="">Health of India</a></h1>
+  <img src="{% static 'images/favicons/b.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
+  <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;" class="animated fadeIn slow">
+    Health Of India
+  </h2>
+  <p class="uk-text-lead exo animated fadeInUp" >Contribute your bit towards stopping this virus by recording your health status</p>
 
-    <p class="uk-text-lead">Click on <b>Record Health</b> button to sign up and record your health. </p>
-
-    <div class="uk-grid-small uk-child-width-auto" uk-grid>
-      <div>
-        <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button uk-button-primary">Record Health</a>
-      </div>
-{#      <div>#}
-{#        <a href="{% url 'maps:home' %}" class="uk-button uk-button-secondary">See Maps</a>#}
-{#      </div>#}
-{#      <div>#}
-{#        <a href="{% url 'news:index' %}" class="uk-button uk-button-secondary">News Board</a>#}
-{#      </div>#}
+  <div>
+    <div>
+      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record.Health</a>
     </div>
-    <hr>
-
-  </article>
-
-  <ul uk-accordion>
-    <li class="">
-      <a class="uk-accordion-title" href="#" style="color:#f65a7c;font-weight:400;padding-left:20px;">Know More</a>
-      <div class="uk-accordion-content">
-        <p class="uk-article-meta">Written by Health of India team on 4th April 2020.
-        </p>
-
-        <p class="uk-text-lead">Contribute your bit by letting us know about your health condition. This small
-          information
-          can help
-          a lot people and save a lot of resources when fighting against coronavirus. You would be asked a small set of
-          questions to know about your health status.</p>
-
-        <p>
-          You might be wondering, what's the use of such an application? Here are 6 reason why you should do it:
-        </p>
-        <ol>
-          <li>Find the number of people who have coronavirus like symptoms.</li>
-          <li>Where are these sick people located?</li>
-          <li>Channelize government sanitization effors in places where covid-19/sick patients were found.</li>
-          <li>Which location are these sick people clustered?</li>
-          <li>Health of citizens on a nationwide level</li>
-          <li>Help data scientists forecast the next breakout by generating all this information.</li>
-        </ol>
-      </div>
-    </li>
-  </ul>
-  <hr>
-
-  <h2>Health of India Stats</h2>
-  <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
-
-    <div style="text-align:center;">
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <img src="{% static 'images/homepage/total-people.png' %}" alt="" style="max-height:100px;">
-        <h3 class="uk-card-title">{{ hoi_stats.totalPeople|intcomma }}</h3>
-        <p>Total number of people</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;">
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
-        <img src="{% static 'images/homepage/total-symptomatic.png' %}" alt="" style="max-height:100px;">
-        <h3 class="uk-card-title">{{ hoi_stats.sickPeople|intcomma }}</h3>
-        <p>Total Symptomatic People</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;">
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
-        <img src="{% static 'images/homepage/shortness-breath.png' %}" alt="" style="max-height:100px;">
-        <h3 class="uk-card-title">{{ hoi_stats.shortnessOfBreath|intcomma }}</h3>
-        <p>People with Shortness of Breath</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;">
-      <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
-        <img src="{% static 'images/homepage/total-fever.png' %}" alt="" style="max-height:100px;">
-        <h3 class="uk-card-title">{{ hoi_stats.fever|intcomma }}</h3>
-        <p>People with Fever</p>
-      </div>
-    </div>
-
   </div>
+</div>
 
-  <div class="uk-margin">
-    <div class="uk-flex uk-flex-center">
-      <button class="uk-button uk-button-primary" onclick="findPatientsNearMe();">Show patients near me</button>
-    </div>
-    <p id="status"></p>
-    <p id="latitude" style="display: none;"><b>Latitude</b>: </p>
-    <p id="longitude" style="display: none;"><b>Longitude</b>: </p>
-    <p id="infected_patients" style="display: none;"><b>Covid19 Infected Patients</b>: N/A </p>
-    <p id="symptomatic_patients" style="display: none;"><b>Symptomatic Patients</b>: N/A</p>
-    <p>The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
-  </div>
+</div>
 
-  <h2>COVID-19 Stats in India</h2>
-  <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
+<div class="uk-container">
+  <!-- {% include 'pages/home/components/hoi-about.html' %} -->
+{% include 'pages/home/components/hoi-stats.html' %}
+{% include 'pages/home/components/show-patients.html' %}
+{% include 'pages/home/components/india-covid-stats.html' %}
+{% include 'pages/home/components/state-wise-stats.html' %}
+<div class="uk-margin-large"></div>
 
-    {% if covid19_stats.total_stats.confirmed %}
-      <div style="text-align:center;">
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="{% static 'images/homepage/total-cases.png' %}" alt="" style="max-height:100px;">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.confirmed|intcomma }}</h3>
-          <p>Total number of cases</p>
-        </div>
-      </div>
-    {% endif %}
+{% comment %}
+2. Guidelines by WHO etc.
+<br>
+3. Helpline nos. in India
+<br><br>
+{% endcomment %}
 
-    {% if covid19_stats.total_stats.recovered %}
-      <div style="text-align:center;">
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="{% static 'images/homepage/total-recovered.jpg' %}" alt="" style="max-height:100px;">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.recovered|intcomma }}</h3>
-          <p>Recovered</p>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if covid19_stats.total_stats.active %}
-      <div style="text-align:center;">
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="{% static 'images/homepage/active-cases.jpg' %}" alt="" style="max-height:100px;">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.active|intcomma }}</h3>
-          <p>Active Cases</p>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if covid19_stats.total_stats.deaths %}
-      <div style="text-align:center;">
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="{% static 'images/homepage/total-deaths.png' %}" alt="" style="max-height:100px;">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.deaths|intcomma }}</h3>
-          <p>Total death</p>
-        </div>
-      </div>
-    {% endif %}
+</div>
+</div>
 
 
-  </div>
-
-  <h2>Tests Performed</h2>
-
-  <p>Total samples tested: <b>{{ covid19_stats.tests_performed.totalsamplestested|intcomma }}</b></p>
-  <p>Total positive samples: <b>{{ covid19_stats.tests_performed.totalpositivecases|intcomma }}</b></p>
-
-
-  <h2>COVID-19 Statewise Stats</h2>
-  <table class="uk-table uk-table-hover uk-table-divider">
-    <thead>
-    <tr>
-      <th>State</th>
-      <th>Active</th>
-      <th>Confirmed</th>
-      <th>Recovered</th>
-      <th>Deaths</th>
-      <th>Last Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for state, values in covid19_stats.statewise.items %}
-      <tr>
-        <td>{{ state }}</td>
-        <td>{{ values.active }}</td>
-        <td>{{ values.confirmed }}</td>
-        <td>{{ values.recovered }}</td>
-        <td>{{ values.deaths }}</td>
-        <td>{{ values.lastupdatedtime }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-
-  <div class="uk-margin-large"></div>
-
-  {% comment %}
-  2. Guidelines by WHO etc.
-  <br>
-  3. Helpline nos. in India
-  <br><br>
-  {% endcomment %}
-
-  </div>
-
-
-{% endblock %}
-
-
-{% block javascript %}
-  <script>
-    function findPatientsNearMe() {
-
-      const latitude_field = document.querySelector('#latitude');
-      const longitude_field = document.querySelector('#longitude');
-      const infected_patients_field = document.querySelector('#infected_patients');
-      const symptomatic_patients_field = document.querySelector('#symptomatic_patients');
-      const status = document.querySelector('#status');
-
-      function success(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
-        latitude_field.innerHTML = `<b>Latitude: </b> ${latitude}`;
-        latitude_field.style.display = "block";
-
-        longitude_field.innerHTML = `<b>Longitude: </b> ${longitude}`;
-        longitude_field.style.display = "block";
-
-        {#infected_patients_field.style.display = "block";#}
-        symptomatic_patients_field.style.display = "block";
-
-        status.textContent = 'Found your location. Looking for infected and symptomatic patients, nearby.';
-
-        // fetching patients near me
-        fetch(`/maps/patients_nearme?latitude=${latitude}&longitude=${longitude}`)
-                .then((response) => {
-                  return response.json();
-                })
-                .then((data) => {
-                  console.log(data);
-                  symptomatic_patients_field.innerHTML = `<b>Symptomatic Patients</b>: ${data.total}`;
-                });
-      }
-
-      function error() {
-        status.textContent = 'Unable to retrieve your location';
-      }
-
-      if (!navigator.geolocation) {
-        status.textContent = 'Geolocation is not supported by your browser';
-      } else {
-        status.textContent = 'Locating…';
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-
-    }
-  </script>
 {% endblock %}
