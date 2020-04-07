@@ -7,30 +7,59 @@
   .uk-card-title {
     font-size: 2rem;
     line-height: 1.4;
-  }
+  }   
+  @media only screen and (max-width: 800px) {
+      .logoImage {
+       height: 150px !important;
+      }
+      h2{
+        font-size: 2.3em !important;
+      }
+      p{
+        font-size: 12px !important;
+      }
+
+
+    }
 
   table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
+  .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 </style>
 {% endblock %}
 
 {% block content %}
 
-<article class="uk-article uk-margin-top uk-margin-medium-top">
+<div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
+<div class="center">
+
+  <img src="{% static 'images/favicons/b.png' %}" class="logoImage" style="height: 250px;margin-bottom: -20px;">
+  <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;">
+    Health Of India
+  </h2>
   <p class="uk-text-lead exo">Contribute your bit towards stopping this virus by recording your health status</p>
 
-  <div class="uk-grid-small uk-child-width-auto" uk-grid>
+  <div class="">
     <div>
-      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record Health</a>
+      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button uk-button-medium record-health">Record Health</a>
     </div>
   </div>
+</div>
 
-</article>
+</div>
 
-{% include 'pages/home/components/hoi-about.html' %}
+<div class="uk-container">
+  {% include 'pages/home/components/hoi-about.html' %}
 {% include 'pages/home/components/hoi-stats.html' %}
 {% include 'pages/home/components/show-patients.html' %}
 {% include 'pages/home/components/india-covid-stats.html' %}
@@ -44,6 +73,7 @@
 <br><br>
 {% endcomment %}
 
+</div>
 </div>
 
 
