@@ -1,4 +1,5 @@
 {% extends "base-uikit.html" %}
+{% load static %}
 {% load humanize %}
 
 {% block css %}
@@ -40,7 +41,7 @@
 
   <ul uk-accordion>
     <li class="">
-      <a class="uk-accordion-title" href="#">Know more</a>
+      <a class="uk-accordion-title" href="#" style="color:#f65a7c;font-weight:400;padding-left:20px;">Know More</a>
       <div class="uk-accordion-content">
         <p class="uk-article-meta">Written by Health of India team on 4th April 2020.
         </p>
@@ -65,33 +66,38 @@
       </div>
     </li>
   </ul>
+  <hr>
 
-  <h1>Health of India Stats</h1>
+  <h2>Health of India Stats</h2>
   <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
 
-    <div>
+    <div style="text-align:center;">
       <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <img src="{% static 'images/homepage/total-people.png' %}" alt="" style="max-height:100px;">
         <h3 class="uk-card-title">{{ hoi_stats.totalPeople|intcomma }}</h3>
         <p>Total number of people</p>
       </div>
     </div>
 
-    <div>
+    <div style="text-align:center;">
       <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <img src="{% static 'images/homepage/total-symptomatic.png' %}" alt="" style="max-height:100px;">
         <h3 class="uk-card-title">{{ hoi_stats.sickPeople|intcomma }}</h3>
         <p>Total Symptomatic People</p>
       </div>
     </div>
 
-    <div>
+    <div style="text-align:center;">
       <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <img src="{% static 'images/homepage/shortness-breath.png' %}" alt="" style="max-height:100px;">
         <h3 class="uk-card-title">{{ hoi_stats.shortnessOfBreath|intcomma }}</h3>
         <p>People with Shortness of Breath</p>
       </div>
     </div>
 
-    <div>
+    <div style="text-align:center;">
       <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+        <img src="{% static 'images/homepage/total-fever.png' %}" alt="" style="max-height:100px;">
         <h3 class="uk-card-title">{{ hoi_stats.fever|intcomma }}</h3>
         <p>People with Fever</p>
       </div>
@@ -111,12 +117,13 @@
     <p>The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
   </div>
 
-  <h1>Coronavirus Stats in India</h1>
+  <h2>COVID-19 Stats in India</h2>
   <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
 
     {% if covid19_stats.total_stats.confirmed %}
-      <div>
+      <div style="text-align:center;">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <img src="{% static 'images/homepage/total-cases.png' %}" alt="" style="max-height:100px;">
           <h3 class="uk-card-title">{{ covid19_stats.total_stats.confirmed|intcomma }}</h3>
           <p>Total number of cases</p>
         </div>
@@ -124,8 +131,9 @@
     {% endif %}
 
     {% if covid19_stats.total_stats.recovered %}
-      <div>
+      <div style="text-align:center;">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <img src="{% static 'images/homepage/total-recovered.jpg' %}" alt="" style="max-height:100px;">
           <h3 class="uk-card-title">{{ covid19_stats.total_stats.recovered|intcomma }}</h3>
           <p>Recovered</p>
         </div>
@@ -133,8 +141,9 @@
     {% endif %}
 
     {% if covid19_stats.total_stats.active %}
-      <div>
+      <div style="text-align:center;">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <img src="{% static 'images/homepage/active-cases.jpg' %}" alt="" style="max-height:100px;">
           <h3 class="uk-card-title">{{ covid19_stats.total_stats.active|intcomma }}</h3>
           <p>Active Cases</p>
         </div>
@@ -142,49 +151,15 @@
     {% endif %}
 
     {% if covid19_stats.total_stats.deaths %}
-      <div>
+      <div style="text-align:center;">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+          <img src="{% static 'images/homepage/total-deaths.png' %}" alt="" style="max-height:100px;">
           <h3 class="uk-card-title">{{ covid19_stats.total_stats.deaths|intcomma }}</h3>
           <p>Total death</p>
         </div>
       </div>
     {% endif %}
 
-    {% if covid19_stats.total_stats.deltaconfirmed %}
-      <div>
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.deltaconfirmed|intcomma }}</h3>
-          <p>Today's Cases</p>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if covid19_stats.total_stats.deltarecovered %}
-      <div>
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.deltarecovered|intcomma }}</h3>
-          <p>Recovered Today</p>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if covid19_stats.total_stats.deltadeaths %}
-      <div>
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.deltadeaths|intcomma }}</h3>
-          <p>Today's Death</p>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if covid19_stats.total_stats.deltaactive %}
-      <div>
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-          <h3 class="uk-card-title">{{ covid19_stats.total_stats.deltaactive|intcomma }}</h3>
-          <p>Today's Active</p>
-        </div>
-      </div>
-    {% endif %}
 
   </div>
 
@@ -194,9 +169,8 @@
   <p>Total positive samples: <b>{{ covid19_stats.tests_performed.totalpositivecases|intcomma }}</b></p>
 
 
-  <h2>Statewise Data</h2>
-
-  <table class="uk-table uk-table-small uk-table-divider">
+  <h2>COVID-19 Statewise Stats</h2>
+  <table class="uk-table uk-table-hover uk-table-divider">
     <thead>
     <tr>
       <th>State</th>
