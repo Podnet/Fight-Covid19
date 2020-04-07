@@ -1,5 +1,7 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,12 +10,11 @@
   <meta name="description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19.">
   <meta name="author" content="Health of India">
 
-  <meta property="og:description"
-        content="An initiative to gauage  Health of Citizens in India to fight against Covid19."/>
-  <meta property="og:url" content="https://covid19.thepodnet.com/"/>
-  <meta property="og:title" content="Health of India"/>
-  <meta property="og:image" content="https://covid19.thepodnet.com{% static 'images/favicons/500_500.jpg' %}"/>
-  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19." />
+  <meta property="og:url" content="https://covid19.thepodnet.com/" />
+  <meta property="og:title" content="Health of India" />
+  <meta property="og:image" content="https://covid19.thepodnet.com{% static 'images/favicons/500_500.jpg' %}" />
+  <meta property="og:image:type" content="image/jpeg" />
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -34,123 +35,127 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162832950-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
     gtag('config', 'UA-162832950-1');
   </script>
-   <style>
+  <style>
+    .navbar {
+      font-size: 18px;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding-bottom: 10px;
+      box-shadow: 0 5px 5px -2px rgba(0, 0, 0, .2);
 
-.navbar {
-  font-size: 18px;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 10px;
-  box-shadow: 0 5px 5px -2px rgba(0,0,0,.2);
+    }
 
-}
+    .main-nav {
+      list-style-type: none;
+      display: none;
+    }
 
-.main-nav {
-  list-style-type: none;
-  display: none;
-}
+    .nav-links,
+    .logo {
+      text-decoration: none;
+      color: black;
+    }
 
-.nav-links,
-.logo {
-  text-decoration: none;
-  color: black;
-}
+    .main-nav li {
+      text-align: center;
+      margin: 15px auto;
+    }
 
-.main-nav li {
-  text-align: center;
-  margin: 15px auto;
-}
+    .logo {
+      display: inline-block;
+      font-size: 22px;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
 
-.logo {
-  display: inline-block;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 20px;
-}
+    .navbar-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 24px;
+    }
 
-.navbar-toggle {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 24px;
-}
+    #chkToggle {
+      display: none;
+    }
 
-#chkToggle {
-  display: none;
-}
+    #chkToggle:checked+ul.main-nav {
+      display: block;
+    }
 
-#chkToggle:checked + ul.main-nav {
-  display: block;
-}
-@media only screen and (max-width: 600px) {
-  .nav-links {
-    margin-left: 0px;
-  }
+    @media only screen and (max-width: 600px) {
+      .nav-links {
+        margin-left: 0px;
+      }
 
-}
-@media screen and (min-width: 1000px) {
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 0;
-    height: 70px;
-    align-items: center;
-  }
+    }
 
-  #chkToggle:checked + ul.main-nav {
-    display: flex;
-  }
+    @media screen and (min-width: 1000px) {
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0;
+        height: 70px;
+        align-items: center;
+      }
 
-  .main-nav {
-    display: flex;
-    margin-right: 30px;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
+      #chkToggle:checked+ul.main-nav {
+        display: flex;
+      }
 
-  .main-nav li {
-    margin: 0;
-  }
+      .main-nav {
+        display: flex;
+        margin-right: 30px;
+        flex-direction: row;
+        justify-content: flex-end;
+      }
 
-  .nav-links {
-    margin-left: 40px;
-  }
+      .main-nav li {
+        margin: 0;
+      }
 
-  .logo {
-    margin-top: 0;
-  }
+      .nav-links {
+        margin-left: 40px;
+      }
 
-  .navbar-toggle {
-    display: none;
-  }
+      .logo {
+        margin-top: 0;
+      }
 
-  .logo:hover,
-  .nav-links:hover {
-    color: rgb(101, 101, 101);
-  }
-}
+      .navbar-toggle {
+        display: none;
+      }
 
-    </style>
+      .logo:hover,
+      .nav-links:hover {
+        color: rgb(101, 101, 101);
+      }
+    }
+  </style>
 
   <!-- UIkit CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600&display=swap" rel="stylesheet">
+  <link href="{% static 'css/project.css' %}" rel="stylesheet">
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
   {% block css %}
 
 
-    <!-- Your stuff: Third-party CSS libraries go here -->
+  <!-- Your stuff: Third-party CSS libraries go here -->
 
-    <!-- This file stores project-specific CSS -->
+  <!-- This file stores project-specific CSS -->
 
-    {#    <link href="{% static 'css/project.css' %}" rel="stylesheet">#}
+
 
 
   {% endblock %}
@@ -158,74 +163,37 @@
 </head>
 
 <body>
-
-<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-
-  <nav class="navbar">
-    <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-            <i uk-icon="list" style="color:black"></i>
-        </label>
-        <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
-        ">
-          <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
-          Health of India
-        </a>
-    <input type="checkbox" id="chkToggle"></input>
-    <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
-      <li class="uk-active"><a style="text-decoration: none;" href="{% url 'home' %}"  class="nav-links">Home</a></li>
-      <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
-      <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
-      <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-{#      {% if request.user.is_authenticated %}#}
-{#        <li><a style="text-decoration: none;" href="{% url 'maps:my_health' %}" class="nav-links">{% trans "My Health" %}</a></li>#}
-{#        <li><a style="text-decoration: none;" href="{% url 'users:detail' request.user.username %}"  class="nav-links">{% trans "My Account" %}</a></li>#}
-{#        <li><a style="text-decoration: none;" href="{% url 'account_logout' %}"  class="nav-links">{% trans "Sign Out" %}</a></li>#}
-{#      {% else %}#}
-{#        <li><a style="text-decoration: none;" href="{% url 'account_signup' %}" class="nav-links">{% trans "Sign Up" %}</a></li>#}
-{#        <li><a style="text-decoration: none;" href="{% url 'account_login' %}"  class="nav-links">{% trans "Sign In" %}</a></li>#}
-{#      {% endif %}#}
-    </ul>
-
-  </nav>
-</div>
-
-<div class="uk-container">
-
-  {% if messages %}
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+    {% include 'pages/navbar.html' %}
+  </div>
+  <div class="uk-container">
+    {% if messages %}
     {% for message in messages %}
-      <div class="uk-alert-{% if message.tags %} {{ message.tags }} {% endif %}" uk-alert>
-        <a class="uk-alert-close" uk-close></a>
-        <p>{{ message }}</p>
-      </div>
+    <div class="uk-alert-{% if message.tags %} {{ message.tags }} {% endif %}" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ message }}</p>
+    </div>
     {% endfor %}
-  {% endif %}
-
-
-  {% block content %}
+    {% endif %}
+    {% block content %}
     <p>Use this document as a way to quick start any new project.</p>
-  {% endblock content %}
-
-
-
-</div>
-<footer>
+    {% endblock content %}
+  </div>
+  <footer>
     {% include 'pages/footer.html' %}
   </footer>
+  {% block modal %}{% endblock modal %}
 
-{% block modal %}{% endblock modal %}
-
-<!-- Le javascript
+  <!-- Le javascript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- Bootstrap JS and its dependencies-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<!-- UIkit JS -->
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <!-- Bootstrap JS and its dependencies-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
 
-{% block javascript %}
+  {% block javascript %}
 
 
   {#  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"#}
@@ -243,7 +211,7 @@
   {#  <script src="{% static 'js/project.js' %}"></script>#}
 
 
-{% endblock javascript %}
+  {% endblock javascript %}
 </body>
-</html>
 
+</html>

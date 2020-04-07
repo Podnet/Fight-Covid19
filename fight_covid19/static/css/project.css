@@ -1,5 +1,7 @@
 /* These styles are generated from project.scss. */
-
+.exo{
+  font-family: 'Exo 2';
+}
 .alert-debug {
   color: black;
   background-color: white;
@@ -10,4 +12,35 @@
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
+}
+
+/* Buttons */
+.record-health {
+  background-color: #f8806d;
+  color: #fff;
+  font-weight: 600;
+  border: 2px solid #18332d;
+  border-radius: 25px;
+}
+.record-health:hover {
+  background-color: #f8806d;
+  color: black;
+  font-weight: 600;
+  border: 2px solid #18332d;
+  border-radius: 25px;
+}
+
+.patients-near-me {
+  background-color: #ec5374;
+  color: #fff;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+.patients-near-me:hover {
+  background-color: #ec5374;
+  color: black;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 25px;
 }
