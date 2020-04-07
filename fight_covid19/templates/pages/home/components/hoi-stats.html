@@ -1,0 +1,38 @@
+{% load static %}
+{% load humanize %}
+<h2 class="exo">Health of India Stats</h2>
+<div class="uk-child-width-1-4@s uk-grid-match exo" uk-grid>
+
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+      <img src="{% static 'images/homepage/total-people.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ hoi_stats.totalPeople|intcomma }}</h3>
+      <p>Total number of people</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+      <img src="{% static 'images/homepage/total-symptomatic.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ hoi_stats.sickPeople|intcomma }}</h3>
+      <p>Total Symptomatic People</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+      <img src="{% static 'images/homepage/shortness-breath.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ hoi_stats.shortnessOfBreath|intcomma }}</h3>
+      <p>People with Shortness of Breath</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
+      <img src="{% static 'images/homepage/total-fever.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ hoi_stats.fever|intcomma }}</h3>
+      <p>People with Fever</p>
+    </div>
+  </div>
+
+</div>

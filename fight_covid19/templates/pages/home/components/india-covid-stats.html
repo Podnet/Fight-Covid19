@@ -1,0 +1,50 @@
+{% load static %}
+{% load humanize %}
+<h2 class="exo">COVID-19 Stats in India</h2>
+<div class="uk-child-width-1-4@s uk-grid-match exo" uk-grid>
+
+  {% if covid19_stats.total_stats.confirmed %}
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+      <img src="{% static 'images/homepage/total-cases.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ covid19_stats.total_stats.confirmed|intcomma }}</h3>
+      <p>Total number of cases</p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if covid19_stats.total_stats.recovered %}
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+      <img src="{% static 'images/homepage/total-recovered.jpg' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ covid19_stats.total_stats.recovered|intcomma }}</h3>
+      <p>Recovered</p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if covid19_stats.total_stats.active %}
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+      <img src="{% static 'images/homepage/active-cases.jpg' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ covid19_stats.total_stats.active|intcomma }}</h3>
+      <p>Active Cases</p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if covid19_stats.total_stats.deaths %}
+  <div style="text-align:center;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+      <img src="{% static 'images/homepage/total-deaths.png' %}" alt="" style="max-height:100px;">
+      <h3 class="uk-card-title">{{ covid19_stats.total_stats.deaths|intcomma }}</h3>
+      <p>Total death</p>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+<h2 class="exo">Tests Performed</h2>
+
+<p class="exo">Total samples tested: <b>{{ covid19_stats.tests_performed.totalsamplestested|intcomma }}</b></p>
+<p class="exo">Total positive samples: <b>{{ covid19_stats.tests_performed.totalpositivecases|intcomma }}</b></p>
