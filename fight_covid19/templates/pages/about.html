@@ -2,12 +2,12 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-  <div class="uk-container" style="margin-bottom: 5em;margin-top: 2em;">
-    <h1>Health of India</h1>
+  <div class="uk-container exo" style="margin-bottom: 5em;margin-top: 2em;">
+    <h1 class="exo">Health of India</h1>
     <div class="uk-panel">
       <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/192_192.png' %}" width="225" height="150" alt="Health of India image">
       <p><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>. This is an <b>open source project</b>, where we collect <b>health data</b> from people living in different parts of the world.</p>
-      <p>We are trying to sufficient and efficient <b>nationwide self-assessed database</b> of people who are showing symptoms of COVID19. This database can be used by <b>developers and concerned authorities</b> to establish some relationship between the <b>geagraphical areas, climatic conditions, age and health condition of the people. </b></p>
+      <p>We are trying to sufficient and efficient <b>nationwide self-assessed database</b> of people who are showing symptoms of COVID19. This database can be used by <b>developers and concerned authorities</b> to establish some relationship between the <b>geographical areas, climatic conditions, age and health condition of the people. </b></p>
     </div>
     <div class="uk-panel">
       <h3>Use Cases of these data and still trying to figure out more</h3>
@@ -44,10 +44,10 @@
     </ul>
     <ul uk-accordion>
       <li class="">
-        <a class="uk-accordion-title" href="#">Why do we need to sign up ?</a>
+        <a class="uk-accordion-title" href="#">Why do we need to fill health form?</a>
         <div class="uk-accordion-content">
           <p class="uk-text-lead">
-            The data we are collecting will be used to
+            The data we are collecting through health form will be used to:
             <ol>
               <li>Help data scientists forecast the next outbreak</li>
               <li>Channelize government sanitization efforts in places where sick patients are found.</li>
@@ -68,7 +68,7 @@
         <a class="uk-accordion-title" href="#">What all information do you store about me ?</a>
         <div class="uk-accordion-content">
           <p>
-            We only store your location, Email Id, and the data which you enter in the Health Entry Form.
+            We only store your location and the data which you enter in the Health Entry Form.
           </p>
         </div>
       </li>
