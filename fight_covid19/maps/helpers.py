@@ -66,13 +66,20 @@ def get_hoi_stats():
 
 
 def get_map_markers():
-    points = (
+    loggedin_points = list(
         HealthEntry.objects.all()
         .order_by("user", "-creation_timestamp")
         .distinct("user")
         .values("id", "latitude", "longitude")
     )
-    return list(points)
+    oneshot_points = list(
+        HealthEntry.objects.all()
+        .order_by("unique_id", "-creation_timestamp")
+        .distinct("unique_id")
+        .values("id", "latitude", "longitude")
+    )
+    loggedin_points.extend(oneshot_points)
+    return loggedin_points
 
 
 def get_range_coords(deg_lat, deg_long, radius=5):

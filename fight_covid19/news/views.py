@@ -5,7 +5,7 @@ from fight_covid19.news.helpers import get_news
 
 
 def index(request):
-    news_list = cache.get("news", default=None)
-    if not news_list:
-        news_list = get_news()
-    return render(request, "news/news.html", context={"mylist": news_list})
+    news_dict = cache.get("news", default=None)
+    if not news_dict:
+        news_dict = get_news()
+    return render(request, "news/news.html", context={"news_dict": news_dict})

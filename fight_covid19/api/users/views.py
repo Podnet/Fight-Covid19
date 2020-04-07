@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .serializers import UserSerializer
+from fight_covid19.api.users.serializers import UserSerializer
 
 User = get_user_model()
 
