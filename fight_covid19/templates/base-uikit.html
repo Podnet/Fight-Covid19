@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="1152" href="{% static 'images/favicons/152_152.png' %}">
   <link rel="icon" type="image/png" sizes="180x180" href="{% static 'images/favicons/180_180.png' %}">
   <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicons/192_192.png' %}">
-
+  <link href="https://fonts.googleapis.com/css?family=Raleway:900&display=swap" rel="stylesheet">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162832950-1"></script>
   <script>
@@ -62,6 +62,9 @@
       text-decoration: none;
       color: black;
     }
+    body{
+      background-color: whitesmoke;
+    }
 
     .main-nav li {
       text-align: center;
@@ -92,6 +95,12 @@
       display: block;
     }
 
+    @media only screen and (max-width: 600px) {
+      .nav-links {
+        margin-left: 0px;
+      }
+
+    }
     @media only screen and (max-width: 600px) {
       .nav-links {
         margin-left: 0px;
@@ -173,8 +182,7 @@
             <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
             ">
               <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
-              Health of India
-            </a>
+HOI            </a>
         <input type="checkbox" id="chkToggle"></input>
         <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
           <li class="uk-active"><a style="text-decoration: none;" href="{% url 'home' %}"  class="nav-links">Home</a></li>
@@ -185,7 +193,7 @@
     
       </nav>
     </div>  </div>
-  <div class="uk-container">
+  <div class="">
     {% if messages %}
     {% for message in messages %}
     <div class="uk-alert-{% if message.tags %} {{ message.tags }} {% endif %}" uk-alert>
