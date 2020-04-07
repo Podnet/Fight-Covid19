@@ -8,19 +8,22 @@ def get_news(search="coronavirus"):
         q=search,
         sources="bbc-news,the-verge,the-times-of-india,google-news,abc-news,cnn,cnbc,fox-news",
     )
-
+    news_dict = dict()
+    # news = []
+    # desc = []
+    # img = []
+    # url = []
     articles = top_news["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
-
     for article in articles:
-        news.append(article["title"])
-        desc.append(article["description"])
-        img.append(article["urlToImage"])
-        url.append(article["url"])
-
-    formatted_news = zip(news, desc, img, url)
-
-    return formatted_news
+        if article["source"]["name"] in news_dict.keys():
+            news_dict[article["source"]["name"]].append(article)
+        else:
+            news_dict[article["source"]["name"]] = [article]
+    # for article in articles:
+    #     news.append(article["title"])
+    #     desc.append(article["description"])
+    #     img.append(article["urlToImage"])
+    #     url.append(article["url"])
+    #
+    # formatted_news = zip(news, desc, img, url)
+    return news_dict
