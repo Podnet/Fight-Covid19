@@ -116,7 +116,7 @@
     }
 
     @media screen and (min-width: 1000px) {
-      
+
       .navbar {
         display: flex;
         justify-content: space-between;
@@ -179,7 +179,7 @@
 
 </head>
 
-<body class="exo">
+<body class="exo" style="background-color: #f9c9c10d!important;">
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
 
@@ -190,14 +190,14 @@
             <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
             ">
               <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
-HOI            </a>
+Health Of India      </a>
         <input type="checkbox" id="chkToggle"></input>
         <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
-          <li class="uk-active"><a style="text-decoration: none;" href="{% url 'home' %}"  class="nav-links">Home</a></li>
+          <li class="uk-active"><a style="text-decoration: none;" href="/#record_health"  class="nav-links">Record Health <span class="uk-badge " style="background-color:rgb(255, 60, 60);padding: 10px !important;color: whitesmoke;" >New</span></a></li>
           <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
           <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
           <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-          <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Patients Near Me <span class="uk-badge " style="background-color:rgb(255, 60, 60);padding: 10px !important;color: whitesmoke;" >New</span>          </a></li>
+          <li><a style="text-decoration: none;"style="text-decoration: none;"  href="/#pnm"  class="nav-links">Patients Near Me <span class="uk-badge " style="background-color:rgb(255, 60, 60);padding: 10px !important;color: whitesmoke;" >New</span>          </a></li>
 
         </ul>
 

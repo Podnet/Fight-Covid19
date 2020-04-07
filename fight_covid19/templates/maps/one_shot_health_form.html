@@ -8,18 +8,18 @@
 
 {% block content %}
 
-  <div class="uk-margin-small">
+  <div class="uk-margin-small uk-container exo">
     <br>
-    <h1>Health Status Form</h1>
-    <p>Please fill this form with correct information.</p>
+    <h1 class="exo">Health Status Form</h1>
+    <p style="padding-bottom:10px;">Please fill this form with correct information.</p>
   </div>
 
-  <hr>
+
 
   <!-- Health entry form -->
   {% csrf_token %}
   {% verbatim %}
-  <div id="vue-app">
+  <div id="vue-app" class="uk-container">
     <div class="uk-form-horizontal uk-margin-large">
 
       <!-- age -->
@@ -77,7 +77,7 @@
       <br>
       <div class="uk-margin">
         <p>{{ form_status }}</p>
-        <button v-bind:disabled="submit_disabled" v-on:click="submitForm" class="uk-button uk-button-primary">Submit
+        <button v-bind:disabled="submit_disabled" v-on:click="submitForm" class="uk-button submit">Submit Now
         </button>
       </div>
     </div>

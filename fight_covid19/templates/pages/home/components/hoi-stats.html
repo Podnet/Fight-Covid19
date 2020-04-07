@@ -3,13 +3,13 @@
 <div  class="wow fadeIn slow" data-wow-duration="1s" data-wow-delay="0.1s">
 <h2 class="exo uk-margin-medium-top"><b>Health of India Stats</b></h2>
 </div>
-<div class="uk-child-width-1-4@s uk-grid-match exo" uk-grid>
+<div class="uk-child-width-1-4@s uk-grid-match exo" uk-grid id='pnm'>
   <div  class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
     <div style="text-align:center;">
     <div class="uk-card uk-card-default uk-card-hover uk-card-body">
       <img src="{% static 'images/homepage/total-people.png' %}" alt="" style="max-height:100px;">
       <h3 class="uk-card-title">{{ hoi_stats.totalPeople|intcomma }}</h3>
-      <p>Total number of people</p>
+      <p>Total Number Of People</p>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
     <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
       <img src="{% static 'images/homepage/shortness-breath.png' %}" alt="" style="max-height:100px;">
       <h3 class="uk-card-title">{{ hoi_stats.shortnessOfBreath|intcomma }}</h3>
-      <p>Shortness of Breath</p>
+      <p>Shortness Of Breath</p>
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
     <div class="uk-card uk-card-default uk-card-hover uk-card-body ">
       <img src="{% static 'images/homepage/total-fever.png' %}" alt="" style="max-height:100px;">
       <h3 class="uk-card-title">{{ hoi_stats.fever|intcomma }}</h3>
-      <p>People with Fever</p>
+      <p>People With Fever</p>
     </div>
   </div>
 </div>
