@@ -1,6 +1,6 @@
 {% load static %}
 {% load humanize %}
-<h2 class="exo">COVID-19 Stats in India</h2>
+<h2 class="exo"><b>COVID-19 Stats in India</b></h2>
 <div class="uk-child-width-1-4@s uk-grid-match exo" uk-grid>
 
   {% if covid19_stats.total_stats.confirmed %}
@@ -44,7 +44,7 @@
   {% endif %}
 
 </div>
-<h2 class="exo">Tests Performed</h2>
+<h2 class="exo"><b>Tests Performed</b></h2>
 
 <p class="exo">Total samples tested: <b>{{ covid19_stats.tests_performed.totalsamplestested|intcomma }}</b></p>
 <p class="exo">Total positive samples: <b>{{ covid19_stats.tests_performed.totalpositivecases|intcomma }}</b></p>
