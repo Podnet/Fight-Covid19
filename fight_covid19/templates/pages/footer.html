@@ -1,47 +1,56 @@
-
 {% load static %}
 {% load humanize %}
 {% block footer %}
-  <hr class="uk-divider-icon">
-  <div class="uk-container">
-    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-      <div class="uk-panel" style="text-align: justify">
-        <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/60_60.png' %}" alt="Health of India image">
-        <p><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>. It is an <b>open source project</b>, where we collect <b>health data</b> from people living in different parts of the world and will provide these data to <b>Researchers and Developers</b>  for common good.</p>
-        <a href="https://covid19.thepodnet.com/">covid19.thepodnet.com</a>
-      </div>
-      <div class="uk-panel" style="text-align: justify">
-        <p>We have open sourced our project on <b>GitHub</b> for both <b>Website</b> and <b>Mobile App</b>. We are looking for the contributions in the project in making our moto easier for the people as well as the developers.</p>
-        <!-- <a href="https://github.com/meticulousCraftman/Fight-Covid19/blob/master/LICENSE"><img src="https://img.shields.io/github/license/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/blob/master/LICENSE"/></a> -->
-        <!-- <a href="https://github.com/meticulousCraftman/Fight-Covid19/stargazers"><img src="https://img.shields.io/github/stars/meticulousCraftman/Fight-Covid19.svg?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/stargazers"/></a> -->
-        <!-- <a href="https://github.com/meticulousCraftman/Fight-Covid19/network/members"><img src="https://img.shields.io/github/forks/meticulousCraftman/Fight-Covid19.svg?logo=github&color=red)](https://github.com/meticulousCraftman/Fight-Covid19/network/members" /></a> -->
-<!--        <img src="https://img.shields.io/github/languages/top/meticulousCraftman/Fight-Covid19?color=blue&logo=python)](https://github.com/meticulousCraftman/Fight-Covid19"/>-->
-        <!-- <a href="https://github.com/meticulousCraftman/Fight-Covid19/graphs/contributors"><img src="https://img.shields.io/github/contributors/meticulousCraftman/Fight-Covid19?logo=github)](https://github.com/meticulousCraftman/Fight-Covid19/graphs/contributors" /></a> -->
-        <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web Project on GitHub</a><br>
-        <a href="https://github.com/mornville/Fight-Covid19-App">Android Project on GitHub</a>
-      </div>
-      <div class="uk-panel" style="text-align: justify">
-        <p><b>Join us in our mission</b></p>
-        <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Join Telegram to collaborate</a>
-        <br>
-        <a href="https://twitter.com/health_of_india">View updates on Twitter</a>
-        <br><br>
-        <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
-      </div>
-<!--      <div class="uk-panel" style="text-align: justify">-->
-<!--        <p><b>Quick Links</b></p>-->
-<!--        <a href="https://covid19.thepodnet.com/">Home</a>-->
-<!--        <br>-->
-<!--        <a href="https://covid19.thepodnet.com/maps/">Maps</a>-->
-<!--        <br>-->
-<!--        <a href="https://covid19.thepodnet.com/about/">About</a>-->
-<!--        <br>-->
-<!--        <a href="https://covid19.thepodnet.com/news/">News</a>-->
-<!--      </div>-->
+<div class="uk-container">
+  <footer class="footer exo" style="padding: 15px 10px 0px 10px;">
+    <div class="footer-addr">
+      <h5 style="margin: 20px 0 10px 0!important;"><span class="nav-title" uk-icon="icon: info"> </span> ABOUT</h5>
+      <address>
+        We are open source project, where we collect health data from people living in different parts of the world and will provide these data to Researchers and Developers for common good.
+      </address>
     </div>
-  </div>
-  <div style="margin-top: 3em;text-align: center">
-    <p>Copyright &copy; 2020 , made with <span uk-icon="heart" style="color: red"></span> by Health of India. All rights reserved</p>
-  </div>
-  <div style="margin-bottom: 5em;"></div>
-{% endblock footer %}
+
+    <ul class="footer-nav">
+      <li class="nav-item">
+        <h5 style="margin: 0 0 10px 0;"><span class="nav-title" uk-icon="icon: social"> </span> SOCIAL</h5>
+
+        <ul class="nav-ul">
+          <li>
+            <a href="https://twitter.com/health_of_india"> Twitter</a>
+          </li>
+
+          <li>
+            <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Telegram Group</a>
+          </li>
+
+          <li>
+            <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <h5 style="margin: 0 0 10px 0;"><span class="nav-title" uk-icon="icon: github"> </span> GITHUB</h5>
+
+        <ul class="nav-ul">
+          <li>
+            <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web App</a>
+          </li>
+
+          <li>
+            <a href="https://github.com/mornville/Fight-Covid19-App">Mobile App</a>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+
+    <div class="legal" style="text-align:center;border-top: 1.2px solid #b1b0b0;padding:20px">
+      <p style="text-align:center;margin:0;">Copyright &copy; 2020 - All Rights Reserved</p>
+
+      <div class="legal-links" style="text-align:center;">
+        <span style="text-align:center;">Made with <span uk-icon="heart" style="color: red"></span> by Health of India .</span>
+      </div>
+    </div>
+  </footer>
+  {% endblock footer %}
