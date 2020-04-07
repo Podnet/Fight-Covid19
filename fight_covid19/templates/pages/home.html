@@ -7,7 +7,7 @@
   .uk-card-title {
     font-size: 2rem;
     line-height: 1.4;
-  }   
+  }
   @media only screen and (max-width: 800px) {
       .logoImage {
        height: 150px !important;
@@ -41,7 +41,7 @@
 {% block content %}
 
 <div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
-<div class="center head">
+<div class="center head" id='record_health'>
 
   <img src="{% static 'images/favicons/b.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
   <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;" class="animated fadeIn slow">
@@ -51,7 +51,7 @@
 
   <div>
     <div>
-      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record.Health</a>
+      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record Health</a>
     </div>
   </div>
 </div>
