@@ -47,7 +47,24 @@
     gtag('js', new Date());
     gtag('config', 'UA-162832950-1');
   </script>
+<style>
+  div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
 
+div.scrollmenu a {
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  color: rgb(195, 195, 195) !important;
+}
+</style>
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
@@ -69,21 +86,19 @@
 </head>
 
 <body>
-  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar"  style="box-shadow: 0 5px 5px -2px rgb(168, 166, 166);">
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-      <nav class="navbar">
-        <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-          <i uk-icon="icon:grid; ratio: 1.5" style="color:#903045;"></i>
-        </label>
-        <a class="logo exo nav-logo" href="{% url 'home' %}"><img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India</a>
-        <input type="checkbox" id="chkToggle"></input>
-        <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
-          <li class="uk-active"><a style="text-decoration: none;" href="/#record_health" class="nav-links">Record Health <span class="uk-badge record-health-nav">New</span></a></li>
-          <li><a style="text-decoration: none;" style="text-decoration: none;" href="{% url 'maps' %}" class="nav-links">Maps</a></li>
-          <li><a style="text-decoration: none;" href="{% url 'about' %}" class="nav-links">About</a></li>
-          <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-          <li><a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" class="nav-links">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a></li>
-        </ul>
+      <nav class="" >
+        <div class="scrollmenu">
+            <a class="logo exo nav-logo" href="{% url 'home' %}"><img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India</a>
+            <a style="text-decoration: none;" href="/#record_health" class="uk-margin-medium-left">Record Health <span class="uk-badge record-health-nav">New</span></a>
+            <a style="text-decoration: none;" style="text-decoration: none;" href="{% url 'maps' %}" class="">Maps</a>
+            <a style="text-decoration: none;" href="{% url 'about' %}" class="">About</a>
+            <a style="text-decoration: none;" href="{% url 'news:index' %}" class="">News</a>
+            <a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" class="">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a>
+        </div>
+        
+        
       </nav>
     </div>
   </div>
