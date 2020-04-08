@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,10 +41,12 @@
       center: {lat: 22.394646, lng: 78.117281},
     });
     // To change the size of the icon change value after "/'50'/000000" 50 = 50px
-    var pinkish_marker =
-            "https://img.icons8.com/officel/30/000000/marker.png";
-    var redish_marker =
-            "https://img.icons8.com/color/35/000000/marker.png";
+    var green_marker =
+            "{% static 'images/maps/green_marker.png' %}";
+    var yellow_marker =
+            "{% static 'images/maps/yellow_marker.png' %}";
+    var red_marker =
+            "{% static 'images/maps/red_marker.png' %}";
 
     fetch("{% url 'maps:map_markers' %}", {
       method: "get",
@@ -54,12 +57,16 @@
 
               var infoWindow = new google.maps.InfoWindow();
               var markers = jsonData.map(function (x, i) {
+                var marker_icon = green_marker;
+                if (x.fever || x.cough || x.difficult_breathing) {
+                  marker_icon = yellow_marker;
+                }
                 var marker = new google.maps.Marker({
                   position: {
                     lat: parseFloat(x["latitude"]),
                     lng: parseFloat(x["longitude"]),
                   },
-                  icon: redish_marker,
+                  icon: marker_icon,
                 });
                 marker.addListener("click", function (event) {
                   var age = `<b>Age:</b> ${x.age}`;
