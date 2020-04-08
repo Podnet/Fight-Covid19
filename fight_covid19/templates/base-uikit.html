@@ -91,11 +91,11 @@ div.scrollmenu a:hover {
       <nav class="" >
         <div class="scrollmenu">
             <a class="logo exo nav-logo" href="{% url 'home' %}"><img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India</a>
-            <a style="text-decoration: none;" href="/#record_health" class="uk-margin-medium-left">Record Health <span class="uk-badge record-health-nav">New</span></a>
+            <a style="text-decoration: none;" href="{% url 'maps:oneshot_health_entry' %}" class="uk-margin-medium-left">Record Health <span class="uk-badge record-health-nav">New</span></a>
             <a style="text-decoration: none;" style="text-decoration: none;" href="{% url 'maps' %}" class="">Maps</a>
             <a style="text-decoration: none;" href="{% url 'about' %}" class="">About</a>
             <a style="text-decoration: none;" href="{% url 'news:index' %}" class="">News</a>
-            <a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" class="">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a>
+            <a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" onclick="findPatientsNearMe();" class="">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a>
         </div>
         
         
