@@ -44,14 +44,14 @@
 <div class="center head" id='record_health'>
 
   <img src="{% static 'images/favicons/b.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
-  <h2 style="font-family: 'Raleway', sans-serif;font-size: 3em;margin-bottom: -20px;" class="animated fadeIn slow">
+  <h2 class="title is-2 has-margin-top-7">
     Health Of India
   </h2>
-  <p class="uk-text-lead exo animated fadeInUp about-home-p" >Contribute your bit towards stopping this virus by recording your health status</p>
+  <p class="subtitle" >Contribute your bit towards stopping this virus by recording your health status</p>
 
   <div>
     <div>
-      <a href="{% url 'maps:oneshot_health_entry' %}" class="uk-button record-health">Record Health</a>
+      <a class="button is-danger is-outlined has-margin-bottom-7 is-medium" href="{% url 'maps:oneshot_health_entry' %}">Record Your Health</a>
     </div>
   </div>
 </div>
