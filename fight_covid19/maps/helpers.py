@@ -4,7 +4,6 @@ from django.db.models import Q
 
 from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.utils import GeoLocation
-from django.contrib.auth import get_user_model
 
 
 def get_covid19_stats():

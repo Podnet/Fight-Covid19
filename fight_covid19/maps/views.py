@@ -8,6 +8,7 @@ from django.views.generic import ListView
 from django.views.generic import View
 from django.views.generic.edit import FormView
 from django.db.models import Count
+from geopy.geocoders import Nominatim
 
 from fight_covid19.maps import forms
 from fight_covid19.maps.helpers import (
@@ -102,7 +103,17 @@ class NearCount(View):
             .count()
         )
 
-        return JsonResponse({"total": total_count})
+        """TO get the location of the people by coordinates"""
+        geolocator = Nominatim(user_agent="Health of India")
+        location = geolocator.reverse(
+            "{0}, {1}".format(request.GET.get("latitude"), request.GET.get("longitude"))
+        )
+        address = location.address
+
+        data = dict()
+        data["address"] = address
+        data["total"] = total_count
+        return JsonResponse(data)
 
 
 class GenerateUniqueKey(View):
