@@ -1,25 +1,46 @@
-<h2 class="exo"><b>COVID-19 Statewise Stats</b></h2>
-<table class="uk-table uk-table-hover uk-table-divider exo">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th>Active</th>
-      <th>Confirmed</th>
-      <th>Recovered</th>
-      <th>Deaths</th>
-      <th>Last Update</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for state, values in covid19_stats.statewise.items %}
-    <tr>
-      <td>{{ state }}</td>
-      <td>{{ values.active }}</td>
-      <td>{{ values.confirmed }}</td>
-      <td>{{ values.recovered }}</td>
-      <td>{{ values.deaths }}</td>
-      <td>{{ values.lastupdatedtime }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{% load static %}
+{% load humanize %}
+<div class="container is-fullhd">
+  <div class="section">
+    <h3 class="subtitle is-3 has-padding-top-6">COVID-19 State Wise Stats</h3>
+    <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+      <div class="table-container">
+        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Active</th>
+              <th>Confirmed</th>
+              <th>Recovered</th>
+              <th>Deaths</th>
+              <th>Last Update</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>State</th>
+              <th>Active</th>
+              <th>Confirmed</th>
+              <th>Recovered</th>
+              <th>Deaths</th>
+              <th>Last Update</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for state, values in covid19_stats.statewise.items %}
+            <tr>
+              <td>{{ state }}</td>
+              <td>{{ values.active }}</td>
+              <td>{{ values.confirmed }}</td>
+              <td>{{ values.recovered }}</td>
+              <td>{{ values.deaths }}</td>
+              <td>{{ values.lastupdatedtime }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

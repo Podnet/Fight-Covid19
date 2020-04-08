@@ -50,7 +50,9 @@
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+  <link href="{% static 'css/spacing.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600&display=swap" rel="stylesheet">
   {% block css %}
@@ -68,41 +70,42 @@
 </head>
 
 <body>
-  <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="{% url 'home' %}">
-      <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India
-    </a>
+  <nav style="border-bottom: 1px solid #f6b2ca;border-radius: 45px;" class="navbar is-transaparent is-fixed-top has-padding-top-8 has-padding-bottom-8" role="navigation" aria-label="main navigation">
+    <div class="container is-fullhd">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}" style="font-size:1.5rem;text-transform: uppercase;letter-spacing: 4px;">
+          <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <a href="/#record_health" class="navbar-item">
+            Record Your Health
+          </a>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-end">
-      <a href="/#record_health" class="navbar-item">
-        Record Your Health
-      </a>
-
-      <a href="{% url 'maps' %}" class="navbar-item">
-        Maps
-      </a>
-      <a href="{% url 'about' %}" class="navbar-item">
-        About
-      </a>
-      <a href="{% url 'news:index' %}" class="navbar-item">
-        COVID-19 News
-      </a>
-      <a href="/#pnm" class="navbar-item">
-        Patients Near Me
-      </a>
+          <a href="{% url 'maps' %}" class="navbar-item">
+            Maps
+          </a>
+          <a href="{% url 'about' %}" class="navbar-item">
+            About
+          </a>
+          <a href="{% url 'news:index' %}" class="navbar-item">
+            COVID-19 News
+          </a>
+          <a href="/#pnm" class="navbar-item">
+            Patients Near Me
+          </a>
 
 
-    </div>
-</nav>
+        </div>
+      </div>
+  </nav>
 
   <div class="">
     {% if messages %}
