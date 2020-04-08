@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="{% static 'css/animate.css' %}">
   <script src="{% static 'js/wow.min.js' %}"></script>
   <script>
-  new WOW().init();
+    new WOW().init();
   </script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,117 +47,6 @@
     gtag('js', new Date());
     gtag('config', 'UA-162832950-1');
   </script>
-  <style>
-    .navbar {
-      font-size: 18px;
-      background-color: white;
-      padding-bottom: 10px;
-      box-shadow: 0 5px 5px -2px rgba(131, 131, 131, 0.2);
-
-    }
-
-    .main-nav {
-      list-style-type: none;
-      display: none;
-    }
-
-    .nav-links,
-    .logo {
-      text-decoration: none;
-      color: black;
-    }
-    body{
-      background-color: whitesmoke;
-    }
-
-    .main-nav li {
-      text-align: center;
-      margin: 15px auto;
-    }
-
-    .logo {
-      display: inline-block;
-      font-size: 22px;
-      margin-top: 10px;
-      margin-left: 20px;
-    }
-
-    .navbar-toggle {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      cursor: pointer;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 24px;
-    }
-
-    #chkToggle {
-      display: none;
-    }
-
-    #chkToggle:checked+ul.main-nav {
-      display: block;
-    }
-
-    @media only screen and (max-width: 600px) {
-      .nav-links {
-        margin-left: 0px;
-      }
-
-    }
-    @media only screen and (max-width: 900px) {
-      .nav-links {
-        margin-left: 0px;
-      }
-      h2{
-        font-size: 24px !important;
-      }
-
-    }
-
-    @media screen and (min-width: 1000px) {
-
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 0;
-        height: 70px;
-        align-items: center;
-      }
-
-      #chkToggle:checked+ul.main-nav {
-        display: flex;
-      }
-
-      .main-nav {
-        display: flex;
-        margin-right: 30px;
-        flex-direction: row;
-        justify-content: flex-end;
-      }
-
-      .main-nav li {
-        margin: 0;
-      }
-
-      .nav-links {
-        margin-left: 40px;
-      }
-
-      .logo {
-        margin-top: 0;
-      }
-
-      .navbar-toggle {
-        display: none;
-      }
-
-      .logo:hover,
-      .nav-links:hover {
-        color: rgb(101, 101, 101);
-      }
-    }
-  </style>
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
@@ -179,30 +68,25 @@
 
 </head>
 
-<body class="exo" style="background-color: #f9c9c10d!important;">
+<body>
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-
       <nav class="navbar">
         <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-                <i uk-icon="list" style="color:black"></i>
-            </label>
-            <a class="logo" href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif;text-decoration: none;
-            ">
-              <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;
-Health Of India      </a>
+          <i uk-icon="icon:grid; ratio: 1.5" style="color:#903045;"></i>
+        </label>
+        <a class="logo exo nav-logo" href="{% url 'home' %}"><img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India</a>
         <input type="checkbox" id="chkToggle"></input>
         <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
-          <li class="uk-active"><a style="text-decoration: none;" href="/#record_health"  class="nav-links">Record Health <span class="uk-badge " style="background-color:rgb(255, 60, 60);padding: 10px !important;color: whitesmoke;" >New</span></a></li>
-          <li><a style="text-decoration: none;"style="text-decoration: none;"  href="{% url 'maps' %}"  class="nav-links">Maps</a></li>
-          <li><a style="text-decoration: none;" href="{% url 'about' %}"  class="nav-links">About</a></li>
+          <li class="uk-active"><a style="text-decoration: none;" href="/#record_health" class="nav-links">Record Health <span class="uk-badge record-health-nav">New</span></a></li>
+          <li><a style="text-decoration: none;" style="text-decoration: none;" href="{% url 'maps' %}" class="nav-links">Maps</a></li>
+          <li><a style="text-decoration: none;" href="{% url 'about' %}" class="nav-links">About</a></li>
           <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-          <li><a style="text-decoration: none;"style="text-decoration: none;"  href="/#pnm"  class="nav-links">Patients Near Me <span class="uk-badge " style="background-color:rgb(255, 60, 60);padding: 10px !important;color: whitesmoke;" >New</span>          </a></li>
-
+          <li><a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" class="nav-links">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a></li>
         </ul>
-
       </nav>
-    </div>  </div>
+    </div>
+  </div>
   <div class="">
     {% if messages %}
     {% for message in messages %}

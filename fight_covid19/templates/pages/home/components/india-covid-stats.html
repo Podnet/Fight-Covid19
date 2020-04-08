@@ -7,8 +7,11 @@
   <div  class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
   {% if covid19_stats.total_stats.confirmed %}
   <div style="text-align:center;">
-    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-      <img src="{% static 'images/homepage/total-cases.png' %}" alt="" style="max-height:100px;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body stats-card-india">
+      <img src="{% static 'images/homepage/total-cases.png' %}" alt=""">
+      {% if covid19_stats.total_stats.deltaconfirmed %}
+      <h4>[+{{ covid19_stats.total_stats.deltaconfirmed|intcomma }}]</h4>
+      {% endif %}
       <h3 class="uk-card-title">{{ covid19_stats.total_stats.confirmed|intcomma }}</h3>
       <p>Total Number Of Cases</p>
     </div>
@@ -18,8 +21,11 @@
   <div  class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
   {% if covid19_stats.total_stats.recovered %}
   <div style="text-align:center;">
-    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-      <img src="{% static 'images/homepage/total-recovered.jpg' %}" alt="" style="max-height:100px;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body stats-card-india">
+      <img src="{% static 'images/homepage/total-recovered.jpg' %}" alt=""">
+      {% if covid19_stats.total_stats.deltarecovered %}
+      <h4>[+{{ covid19_stats.total_stats.deltarecovered|intcomma }}]</h4>
+      {% endif %}
       <h3 class="uk-card-title">{{ covid19_stats.total_stats.recovered|intcomma }}</h3>
       <p>Recovered</p>
     </div>
@@ -29,8 +35,11 @@
   <div  class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
   {% if covid19_stats.total_stats.active %}
   <div style="text-align:center;">
-    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-      <img src="{% static 'images/homepage/active-cases.jpg' %}" alt="" style="max-height:100px;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body stats-card-india">
+      <img src="{% static 'images/homepage/active-cases.jpg' %}" alt=""">
+      {% if covid19_stats.total_stats.deltaactive %}
+      <h4>[+{{ covid19_stats.total_stats.deltaactive|intcomma }}]</h4>
+      {% endif %}
       <h3 class="uk-card-title">{{ covid19_stats.total_stats.active|intcomma }}</h3>
       <p>Active Cases</p>
     </div>
@@ -40,8 +49,11 @@
   <div  class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
   {% if covid19_stats.total_stats.deaths %}
   <div style="text-align:center;">
-    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-      <img src="{% static 'images/homepage/total-deaths.png' %}" alt="" style="max-height:100px;">
+    <div class="uk-card uk-card-default uk-card-hover uk-card-body stats-card-india">
+      <img src="{% static 'images/homepage/total-deaths.png' %}" alt=""">
+      {% if covid19_stats.total_stats.deltadeaths %}
+      <h4>[+{{ covid19_stats.total_stats.deltadeaths|intcomma }}]</h4>
+      {% endif %}
       <h3 class="uk-card-title">{{ covid19_stats.total_stats.deaths|intcomma }}</h3>
       <p>Total Deaths</p>
     </div>
