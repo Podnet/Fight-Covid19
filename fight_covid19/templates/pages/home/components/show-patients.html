@@ -1,17 +1,14 @@
-<div class="uk-margin uk-margin-medium-top exo">
+<div class="uk-margin uk-margin-medium-top exo" style="text-align: -webkit-center;">
   <div class="uk-flex uk-flex-center">
     <button class="uk-button patients-near-me" onclick="findPatientsNearMe();">Show patients near me</button>
   </div>
-  <p id="status"></p>
+  <p id="status" style="color: #27c1b4;font-weight: 600;font-size: large;"></p>
   <p id="latitude" style="display: none;"><b>Latitude</b>: </p>
   <p id="longitude" style="display: none;"><b>Longitude</b>: </p>
   <p id="infected_patients" style="display: none;"><b>Covid19 Infected Patients</b>: N/A </p>
   <p id="symptomatic_patients" style="display: none;"><b>Symptomatic Patients</b>: N/A</p>
-  <p class="exo">The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
+  <p class="exo" style="font-weight:bold;color:#771582;">The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</p>
 </div>
-
-
-
 
 {% block javascript %}
   <script>

@@ -1,9 +1,10 @@
 /* These styles are generated from project.scss. */
 /* Body */
 body {
-  background-color: whitesmoke!important;
+  background-color: #f9c9c10d!important;
   font-family: 'Exo 2';
 }
+
 .exo {
   font-family: 'Exo 2';
 }
@@ -43,11 +44,20 @@ body {
   text-decoration: none;
   color: black;
 }
-.nav-logo{
-  text-decoration: none;
-    font-weight: 600;
-    font-size: 25px;
-    text-transform: uppercase;
+
+.nav-logo {
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 22px !important;
+  text-transform: uppercase;
+  color: #222222;
+}
+.nav-logo:hover {
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 22px !important;
+  text-transform: uppercase;
+  color: #222222!important;
 }
 
 .main-nav li {
@@ -87,6 +97,10 @@ body {
 }
 
 @media only screen and (max-width: 900px) {
+  .about-home-p{
+    font-size: 14px !important;
+    padding: 2px;
+  }
   .nav-links {
     margin-left: 0px;
   }
