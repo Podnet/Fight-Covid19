@@ -1,56 +1,85 @@
 {% load static %}
 {% load humanize %}
+
 {% block footer %}
-<div class="">
-  <footer class="footer exo" style="padding: 15px 10px 0px 10px;">
-    <div class="footer-addr">
-      <h5 style="margin: 20px 0 10px 0!important;"><span class="nav-title" uk-icon="icon: info"> </span> ABOUT</h5>
-      <address>
-        We are open source project, where we collect health data from people living in different parts of the world and will provide these data to Researchers and Developers for common good.
-      </address>
+<section class="hero has-text-black has-background-white-bis">
+  <div class="hero-body has-padding-4">
+    <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+
+      <div class="column is-5">
+        <div>
+          <div class="card-content card-content-custom">
+            <h5 class="title is-5"><span class="icon"> <i class="fas fa-info-circle"></i> </span> ABOUT</h5>
+            <p>
+            This is an open source project, where we collect health data from people living in different parts of the world and will provide these data to Researchers and Developers for common good.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div>
+          <div class="card-content card-content-custom">
+            <h5 class="title is-5"><span class="icon"> <i class="fas fa-share"></i> </span> SOCIAL</h5>
+            <ul>
+              <li class="nav-item">
+
+                <ul class="nav-ul">
+                  <li>
+                    <a href="https://twitter.com/health_of_india"> Twitter</a>
+                  </li>
+
+                  <li>
+                    <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Telegram Group</a>
+                  </li>
+
+                  <li>
+                    <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-3">
+        <div>
+          <div class="card-content card-content-custom">
+            <h5 class="title is-5"><span class="icon "> <i class="fab fa-github"></i> </span> GITHUB</h5>
+            <ul>
+              <li class="nav-item">
+
+                <ul class="nav-ul">
+                  <li>
+                    <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web App</a>
+                  </li>
+
+                  <li>
+                    <a href="https://github.com/mornville/Fight-Covid19-App">Mobile App</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <ul class="footer-nav">
-      <li class="nav-item">
-        <h5 style="margin: 0 0 10px 0;"><span class="nav-title" uk-icon="icon: social"> </span> SOCIAL</h5>
+  </div>
 
-        <ul class="nav-ul">
-          <li>
-            <a href="https://twitter.com/health_of_india"> Twitter</a>
-          </li>
 
-          <li>
-            <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Telegram Group</a>
-          </li>
-
-          <li>
-            <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item">
-        <h5 style="margin: 0 0 10px 0;"><span class="nav-title" uk-icon="icon: github"> </span> GITHUB</h5>
-
-        <ul class="nav-ul">
-          <li>
-            <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web App</a>
-          </li>
-
-          <li>
-            <a href="https://github.com/mornville/Fight-Covid19-App">Mobile App</a>
-          </li>
-
-        </ul>
-      </li>
-    </ul>
-
-    <div class="legal uk-margin-medium-left" style="text-align:center;border-top: 1.2px solid #b1b0b0;padding:20px">
-      <p style="text-align:center;margin:0;">Copyright &copy; 2020 - All Rights Reserved</p>
-
-      <div class="legal-links uk-margin-medium-right" style="text-align:center;">
-        <span style="text-align:center;">Made with <span uk-icon="heart" style="color: red"></span> by Health of India .</span>
+  <footer class="footer has-padding-top-6 has-padding-bottom-8 has-background-white">
+    <div class="columns is-mobile is-centered">
+      <div class="column is-12">
+        <div class="content has-text-centered">
+          <p style="text-align:center;">Copyright &copy; 2020 - All Rights Reserved. &nbsp;&nbsp; Made with <span class="icon has-text-danger"> <i class="far fa-heart"></i> </span> by Health of India.</p>.
+        </div>
       </div>
     </div>
+
   </footer>
-  {% endblock footer %}
+</section>
+{% endblock footer %}
