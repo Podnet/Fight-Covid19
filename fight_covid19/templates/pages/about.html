@@ -2,76 +2,119 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-  <div class="uk-container exo" style="margin-bottom: 5em;margin-top: 2em;">
-    <h1 class="exo">Health of India</h1>
-    <div class="uk-panel">
-      <img class="uk-align-left uk-margin-remove-adjacent" src="{% static 'images/favicons/192_192.png' %}" width="225" height="150" alt="Health of India image">
-      <p><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>. This is an <b>open source project</b>, where we collect <b>health data</b> from people living in different parts of the world.</p>
-      <p>We are trying to sufficient and efficient <b>nationwide self-assessed database</b> of people who are showing symptoms of COVID19. This database can be used by <b>developers and concerned authorities</b> to establish some relationship between the <b>geographical areas, climatic conditions, age and health condition of the people. </b></p>
-    </div>
-    <div class="uk-panel">
-      <h3>Use Cases of these data and still trying to figure out more</h3>
-      <ol>
-        <li>Help data scientists forecast the next outbreak</li>
-        <li>Channelize government sanitization efforts in places where sick patients are found.</li>
-        <li>Find symptomatic and infected patients near you</li>
-        <li>See real-time data of COVID-19 patients on the map.</li>
-      </ol>
-    </div>
-    <h2>Our Sources of Data</h2>
-    <div class="uk-panel">
-      <ul>
-        <li><a href="https://www.covid19india.org">https://www.covid19india.org</a></li>
-        <li><a href="https://icmr.nic.in/content/covid-19">https://icmr.nic.in/content/covid-19</a></li>
-        <li><a href="https://www.mohfw.gov.in/">https://www.mohfw.gov.in/</a></li>
-        <li>Different State and National Bulletins</li>
-        <li>Press Release</li>
-        <li>Entry from our Users</li>
-      </ul>
-      <p>We really appreciate and thank all of our data sources, who really thought of contributing and fight against this pandemic <b>"COVID-19"</b></p>
+<div class="container is-fullhd">
+  <div class="section">
+    <h3 class="content subtitle is-4 has-padding-top-4">About Health Of India Initiative</h3>
+    <div class="columns is-multiline  is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+
+      <div class="column is-2 content is-flex is-horizontal-center">
+        <figure class="image is-128x128">
+          <img class="is-rounded" src="{% static 'images/favicons/192_192.png' %}">
+        </figure>
+      </div>
+
+      <div class="column is-10 ">
+        <p class="subtitle is-6"><b>Health of India</b> is an initiative to fight against the pandemic <b>COVID-19</b>.
+          This
+          is an <b>open
+            source
+            project</b>, where we collect <b>health data</b> from people living in different parts of the world.</p>
+        <p class="subtitle is-6">We are trying to sufficient and efficient <b>nationwide self-assessed database</b> of
+          people
+          who are showing
+          symptoms of COVID19. This database can be used by <b>developers and concerned authorities</b> to establish
+          some
+          relationship between the <b>geographical areas, climatic conditions, age and health condition of the people.
+          </b>
+        </p>
+      </div>
+
+      <div class="column is-12 ">
+        <h3 class="subtitle is-4 has-padding-top-4 is-capitalized">Use Cases of these data and still trying to
+          figure out
+          more</h3>
+        <div class="content">
+          <ol class="has-padding-left-8">
+            <li>Help data scientists forecast the next outbreak</li>
+            <li>Channelize government sanitization efforts in places where sick patients are found.</li>
+            <li>Find symptomatic and infected patients near you</li>
+            <li>See real-time data of COVID-19 patients on the map.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="column is-12">
+        <h3 class="subtitle is-4 has-padding-top-4 is-capitalized">Our Sources Of Data</h3>
+        <div class="content">
+          <ul class="has-padding-left-8">
+            <li><a href="https://www.covid19india.org">https://www.covid19india.org</a></li>
+            <li><a href="https://icmr.nic.in/content/covid-19">https://icmr.nic.in/content/covid-19</a></li>
+            <li><a href="https://www.mohfw.gov.in/">https://www.mohfw.gov.in/</a></li>
+            <li>Different State and National Bulletins</li>
+            <li>Press Release</li>
+            <li>Entry from our Users</li>
+          </ul>
+        </div>
+        <p>We really appreciate and thank all of our data sources, who really thought of contributing and fight against
+          this
+          pandemic <b>"COVID-19"</b></p>
+      </div>
+
+      <div class="column is-12">
+        <h3 class="subtitle is-4 has-padding-top-4 is-capitalized">FAQ (Frequently Askeed Questions)</h3>
+        <ul uk-accordion>
+          <li class="">
+            <a class="uk-accordion-title" href="#">Are you official ?</a>
+            <div class="uk-accordion-content">
+              <p class="has-text-black">
+                --> No, we are not official. We are just collecting data from different sources and appending our own
+                logic
+                and
+                algorithms to append those data to create new dataset.
+              </p>
+            </div>
+          </li>
+        </ul>
+        <ul uk-accordion>
+          <li class="">
+            <a class="uk-accordion-title" href="#">Why do we need to fill health form?</a>
+            <div class="uk-accordion-content">
+              <p class="has-text-black">
+                --> The data we are collecting through health form will be used to:
+                <ol class="has-padding-left-3">
+                  <li>Help data scientists forecast the next outbreak</li>
+                  <li>Channelize government sanitization efforts in places where sick patients are found.</li>
+                  <li>Find symptomatic and infected patients near you</li>
+                  <li>See real-time data of COVID19 patients on the map</li>
+                  <li>Fully open-source project, made with <a href="" uk-icon="icon: heart" style="color: red;"></a>
+                  </li>
+                </ol>
+              </p>
+
+              <p class="has-text-black">
+                --> It would be more useful for them if we provide them with validated data, and that is why we request
+                you to kindly sign up and record your health.
+              </p>
+            </div>
+          </li>
+        </ul>
+        <ul uk-accordion>
+          <li class="">
+            <a class="uk-accordion-title" href="#">What all information do you store about me ?</a>
+            <div class="uk-accordion-content">
+              <p class="has-text-black">
+                --> We only store your location and the data which you enter in the Health Entry Form.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-    <h2>Frequetly Asked Questions</h2>
-    <ul uk-accordion>
-      <li class="">
-        <a class="uk-accordion-title" href="#">Are you official ?</a>
-        <div class="uk-accordion-content">
-          <p>
-            No, we are not official. We are just collecting data from different sources and appending our own logic and algorithms to append those data to create new dataset.
-          </p>
-        </div>
-      </li>
-    </ul>
-    <ul uk-accordion>
-      <li class="">
-        <a class="uk-accordion-title" href="#">Why do we need to fill health form?</a>
-        <div class="uk-accordion-content">
-          <p class="uk-text-lead">
-            The data we are collecting through health form will be used to:
-            <ol>
-              <li>Help data scientists forecast the next outbreak</li>
-              <li>Channelize government sanitization efforts in places where sick patients are found.</li>
-              <li>Find symptomatic and infected patients near you</li>
-              <li>See real-time data of COVID19 patients on the map</li>
-              <li>Fully open-source project, made with <a href="" uk-icon="icon: heart" style="color: red;"></a></li>
-            </ol>
-          </p>
-
-          <p>
-            It would be more useful for them if we provide them with validated data, and that is why we request yu to kindly sign up and record your health.
-          </p>
-        </div>
-      </li>
-    </ul>
-    <ul uk-accordion>
-      <li class="">
-        <a class="uk-accordion-title" href="#">What all information do you store about me ?</a>
-        <div class="uk-accordion-content">
-          <p>
-            We only store your location and the data which you enter in the Health Entry Form.
-          </p>
-        </div>
-      </li>
-    </ul>
   </div>
+</div>
+
+
+
 {% endblock %}
