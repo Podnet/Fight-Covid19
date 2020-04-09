@@ -10,7 +10,8 @@
   <meta name="description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19.">
   <meta name="author" content="Health of India">
 
-  <meta property="og:description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19." />
+  <meta property="og:description"
+    content="An initiative to gauage  Health of Citizens in India to fight against Covid19." />
   <meta property="og:url" content="https://covid19.thepodnet.com/" />
   <meta property="og:title" content="Health of India" />
   <meta property="og:image" content="https://covid19.thepodnet.com{% static 'images/favicons/500_500.jpg' %}" />
@@ -70,10 +71,13 @@
 </head>
 
 <body>
-  <nav style="border-bottom: 1px solid #f6b2ca;border-radius: 45px;" class="navbar is-transaparent is-fixed-top has-padding-top-8 has-padding-bottom-8" role="navigation" aria-label="main navigation">
+  <nav style="border-bottom: 1.5px solid #f6b2ca;border-radius: 45px;"
+    class="navbar is-transaparent is-fixed-top has-padding-top-8 has-padding-bottom-8" role="navigation"
+    aria-label="main navigation">
     <div class="container is-fullhd">
       <div class="navbar-brand">
-        <a class="navbar-item" href="{% url 'home' %}" style="font-size:1.5rem;text-transform: uppercase;letter-spacing: 4px;">
+        <a class="navbar-item" href="{% url 'home' %}"
+          style="font-size:1.5rem;text-transform: uppercase;letter-spacing: 4px;">
           <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India
         </a>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -85,7 +89,7 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
-          <a href="/#record_health" class="navbar-item">
+          <a href="{% url 'maps:oneshot_health_entry' %}" class="navbar-item">
             Record Your Health
           </a>
 
@@ -129,7 +133,9 @@
 ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <!-- Bootstrap JS and its dependencies-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
   <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
