@@ -7,6 +7,7 @@
       <h2 id="status" class="subtitle"></h2>
       <h2 id="latitude" class="subtitle"></h2>
       <h2 id="longitude" class="subtitle"></h2>
+      <h2 id="address" class="subtitle"></h2>
       <h2 id="infected_patients" class="subtitle"></h2>
       <h2 id="symptomatic_patients" class="subtitle"></h2>
       <h2  class="title is-6 has-text-info">The number of symptomatic patients around you depends on the number of people who are filling the health entry form.</h2>
@@ -22,12 +23,12 @@
       const longitude_field = document.querySelector('#longitude');
       const infected_patients_field = document.querySelector('#infected_patients');
       const symptomatic_patients_field = document.querySelector('#symptomatic_patients');
+      const address_field = document.querySelector('#address');
       const status = document.querySelector('#status');
 
       function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-
         latitude_field.innerHTML = `<b>Latitude: </b> ${latitude}`;
         latitude_field.style.display = "block";
 
@@ -35,7 +36,9 @@
         longitude_field.style.display = "block";
 
         {#infected_patients_field.style.display = "block";#}
+        address_field.style.display = "block";
         symptomatic_patients_field.style.display = "block";
+
 
         status.textContent = 'Found your location. Looking for infected and symptomatic patients, nearby.';
 
@@ -47,6 +50,7 @@
                 .then((data) => {
                   console.log(data);
                   symptomatic_patients_field.innerHTML = `<b>Symptomatic Patients</b>: ${data.total}`;
+                  address_field.innerHTML = `<b>Address</b>: ${data.address}`;
                 });
       }
 

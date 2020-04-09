@@ -4,7 +4,6 @@ from django.db.models import Q
 
 from fight_covid19.maps.models import HealthEntry
 from fight_covid19.maps.utils import GeoLocation
-from django.contrib.auth import get_user_model
 
 
 def get_covid19_stats():
@@ -70,13 +69,33 @@ def get_map_markers():
         HealthEntry.objects.all()
         .order_by("user", "-creation_timestamp")
         .distinct("user")
-        .values("id", "latitude", "longitude")
+        .values(
+            "id",
+            "latitude",
+            "longitude",
+            "age",
+            "gender",
+            "fever",
+            "cough",
+            "difficult_breathing",
+            "self_quarantine",
+        )
     )
     oneshot_points = list(
         HealthEntry.objects.all()
         .order_by("unique_id", "-creation_timestamp")
         .distinct("unique_id")
-        .values("id", "latitude", "longitude")
+        .values(
+            "id",
+            "latitude",
+            "longitude",
+            "age",
+            "gender",
+            "fever",
+            "cough",
+            "difficult_breathing",
+            "self_quarantine",
+        )
     )
     loggedin_points.extend(oneshot_points)
     return loggedin_points

@@ -1,108 +1,115 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Maps | Health of India</title>
-    <meta name="viewport" content="initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <script>
-      window.dataLayer = window.dataLayer || [];
+<head>
+  <title>Maps | Health of India</title>
+  <meta name="viewport" content="initial-scale=1.0"/>
+  <meta charset="utf-8"/>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "UA-162832950-1");
-    </script>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-      #map {
-        height: 100%;
-      }
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
+    gtag("js", new Date());
+    gtag("config", "UA-162832950-1");
+  </script>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+    #map {
+      height: 100%;
+    }
 
-    <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 6,
-          center: { lat: 22.394646, lng: 78.117281 },
-        });
-        // To change the size of the icon change value after "/'50'/000000" 50 = 50px 
-        var pinkish_marker =
-        "https://img.icons8.com/officel/30/000000/marker.png";
-        var redish_marker =
-        "https://img.icons8.com/color/35/000000/marker.png";
-        
-        fetch("{% url 'maps:map_markers' %}", {
-          method: "get",
-        })
-          .then((response) => response.json())
-          .then(function (jsonData) {
-            console.log(jsonData);
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
 
-            var infoWindow = new google.maps.InfoWindow();
-            var markers = jsonData.map(function (x, i) {
-              var marker = new google.maps.Marker({
-                position: {
-                  lat: parseFloat(x["latitude"]),
-                  lng: parseFloat(x["longitude"]),
-                },
-                // label: "P" + x["id"],
-                icon: redish_marker,
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6,
+      center: {lat: 22.394646, lng: 78.117281},
+    });
+    // To change the size of the icon change value after "/'50'/000000" 50 = 50px
+    var green_marker =
+            "{% static 'images/maps/green_marker.png' %}";
+    var yellow_marker =
+            "{% static 'images/maps/yellow_marker.png' %}";
+    var red_marker =
+            "{% static 'images/maps/red_marker.png' %}";
+
+    fetch("{% url 'maps:map_markers' %}", {
+      method: "get",
+    })
+            .then((response) => response.json())
+            .then(function (jsonData) {
+              console.log(jsonData);
+
+              var infoWindow = new google.maps.InfoWindow();
+              var markers = jsonData.map(function (x, i) {
+                var marker_icon = green_marker;
+                if (x.fever || x.cough || x.difficult_breathing) {
+                  marker_icon = yellow_marker;
+                }
+                var marker = new google.maps.Marker({
+                  position: {
+                    lat: parseFloat(x["latitude"]),
+                    lng: parseFloat(x["longitude"]),
+                  },
+                  icon: marker_icon,
+                });
+                marker.addListener("click", function (event) {
+                  var age = `<b>Age:</b> ${x.age}`;
+                  var gender = `<b>Gender:</b> ${x.gender}`;
+                  var symptoms = `<b>Symptoms: </b>`;
+                  if(x.fever) {
+                    symptoms += "Fever, ";
+                  }
+                  if(x.cough) {
+                    symptoms += "Cough, ";
+                  }
+                  if(x.difficult_breathing) {
+                    symptoms += "Difficulty in Breathing";
+                  }
+                  if(x.fever === false && x.cough === false && x.difficult_breathing === false) {
+                    symptoms += "None";
+                  }
+                  var content = `<h1>P${x.id}</h1><p> ${age} <br> ${gender} <br> ${symptoms} </p>`;
+                  infoWindow.setContent(content);
+                  infoWindow.open(map, marker);
+                });
+                return marker;
               });
-              // var infoWindow = new google.maps.InfoWindow({
-              //   content: "Testing",
-              // });
-              marker.addListener("click", function (event) {
-                infoWindow.setContent(
-                "Patient " + x["id"],
-                );
-                // alert("working");
-                infoWindow.open(map, marker);
+
+
+              // Add a marker clusterer to manage the markers.
+              var markerCluster = new MarkerClusterer(map, markers, {
+                imagePath:
+                        "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
               });
-              return marker;
+            })
+            .catch((err) => {
+              alert("Unable to fetch information from server.");
             });
+  } // End of function
+</script>
 
-            // var markers = locations.map(function (location, i) {
-            //   var marker = new google.maps.Marker({
-            //     position: location,
-            //   });
-            //   google.maps.event.addListener(marker, "click", function (evt) {
-            //     infoWin.setContent(location.info);
-            //     infoWin.open(map, marker);
-            //   });
-            //   return marker;
-            // });
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclustererplus@4.0.1.min.js"></script>
 
-            // Add a marker clusterer to manage the markers.
-            var markerCluster = new MarkerClusterer(map, markers, {
-              imagePath:
-                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-            });
-          })
-          .catch((err) => {
-            alert("Unable to fetch information from server.");
-          });
-      } // End of function
-    </script>
-
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclustererplus@4.0.1.min.js"></script>
-
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJn_L_tOJ9_XuosjgcneMNeHUJjHbVYoI&callback=initMap"
-      async
-      defer
-    ></script>
-  </body>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJn_L_tOJ9_XuosjgcneMNeHUJjHbVYoI&callback=initMap"
+        async
+        defer
+></script>
+</body>
 </html>
