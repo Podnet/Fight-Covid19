@@ -1,71 +1,51 @@
 {% extends "base-uikit.html" %}
 
+{% load static %}
+{% load humanize %}
+
 
 {% block content %}
-{#  <div class="uk-margin-top">#}
-{#    <h1>Latest News on COVID-19</h1>#}
-{#  </div>#}
-  <div class="uk-container">
-  <div class="uk-placeholder uk-text-center"><h1>Latest News on COVID-19</h1></div>
-  <div div="uk-panel">
-  {% for source, news in news_dict.items %}
-    <h2>{{ source }}</h2>
-    <hr class="uk-divider-small">
-    <div class="uk-child-width-1-3@m" uk-grid>
-      {% for news in news %}
-      <div>
-        <div class="uk-card uk-card-default">
-          <div class="uk-inline">
-            <div uk-lightbox="animation: fade">
-              <a href="{{ news.urlToImage }}" data-caption="{{ news.title }}"><img src="{{ news.urlToImage }}" alt=""></a>
-            </div>
-            <div class="uk-overlay uk-overlay-primary uk-position-bottom-left" style="padding: 0.5em;">
-              {% if not news.author %}
-                <p>{{ news.source.id }}</p>
-              {% else %}
-                <p>{{ news.author }}</p>
-              {% endif %}
-            </div>
-            <div class="uk-overlay uk-overlay-primary uk-position-bottom-right" style="padding: 0.5em;">
-              <p>{{ news.publishedAt|slice:10 }}</p>
-            </div>
-          </div>
+<div class="container is-fullhd">
+  <div class="section">
+    <h3 class="subtitle is-3 has-padding-top-4">World's Latest News On COVID-19 </h3>
+    <div class="columns is-multiline  is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
 
-{#            <div class="uk-card-media-top">#}
-{#                <img src="{{ news.urlToImage }}" alt="">#}
-{#            </div>#}
-            <div class="uk-card-body">
-                <h4><b>{{ news.title }}</b></h4>
-                <hr class="uk-divider-small">
-                <p style="text-align: justify" >{{ news.description }}</p>
-            </div>
-          <a target="_blank" href="{{ news.url }}"><button class="uk-button uk-button-secondary uk-width-1-1">Read This News on {{ source }}</button></a>
+      {% for source, news in news_dict.items %}
+      {% for news in news %}
+
+      <div class="column is-4">
+        <div class="card is-centered has-text-left">
+          <div class="card-image">
+            <figure class="image is-16by9">
+              <img src="{{ news.urlToImage }}" alt="{{ news.title }}">
+            </figure>
+          </div>
+          <div class="card-content">
+            <h4 class="subtitle has-margin-bottom-8">{{ source }}</h4>
+            <p class="subtitle is-7 ">{{ news.publishedAt|slice:10 }}</p>
+            <p class="title is-4">
+              {{ news.title|slice:50 }}..
+            </p>
+            <p class="subtitle is-6">
+              {{ news.description|slice:100 }}..
+            </p>
+          </div>
+          <footer class="card-footer has-background-black has-text-white">
+            <p class="card-footer-item">
+              <a target="_blank" href="{{ news.url }}" class="has-text-white">
+                Read This
+                News On {{ source }}
+              </a>
+            </p>
+          </footer>
         </div>
       </div>
       {% endfor %}
-    </div>
-  {% endfor %}
-  </div>
+      {% endfor %}
 
-{#  {% for news_title, news_description, news_image_url, news_link in mylist %}#}
-{##}
-{#    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>#}
-{#      <a href="{{ news_link }}">#}
-{#        <div class="uk-card-media-left uk-cover-container">#}
-{#          <img src="{{ news_image_url }}" alt="" uk-cover>#}
-{#          <canvas width="600" height="400"></canvas>#}
-{#        </div>#}
-{#      </a>#}
-{#      <div>#}
-{#        <div class="uk-card-body">#}
-{#          <h3 class="uk-card-title">{{ news_title }}</h3>#}
-{#          <p>{{ news_description }}</p>#}
-{#          <a class="uk-button uk-button-default" href="{{ news_link }}">Continue Reading</a>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{##}
-{#  {% endfor %}#}
-  <div class="uk-margin-large"></div>
+
+    </div>
+
   </div>
+</div>
 {% endblock %}

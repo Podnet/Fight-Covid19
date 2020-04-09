@@ -1,0 +1,10 @@
+body {
+  background-color: #f9c9c10d!important;
+  font-family: 'Exo 2';
+}
+.card-content-custom {
+  padding:0 1.5rem 1.5rem 1.5rem;
+}
+.is-horizontal-center {
+  justify-content: center;
+}

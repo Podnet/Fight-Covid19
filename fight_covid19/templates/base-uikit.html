@@ -10,7 +10,8 @@
   <meta name="description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19.">
   <meta name="author" content="Health of India">
 
-  <meta property="og:description" content="An initiative to gauage  Health of Citizens in India to fight against Covid19." />
+  <meta property="og:description"
+    content="An initiative to gauage  Health of Citizens in India to fight against Covid19." />
   <meta property="og:url" content="https://covid19.thepodnet.com/" />
   <meta property="og:title" content="Health of India" />
   <meta property="og:image" content="https://covid19.thepodnet.com{% static 'images/favicons/500_500.jpg' %}" />
@@ -47,13 +48,40 @@
     gtag('js', new Date());
     gtag('config', 'UA-162832950-1');
   </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
 
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Check if there are any navbar burgers
+if ($navbarBurgers.length > 0) {
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+}
+
+});
+</script>
   <!-- UIkit CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+  <link href="{% static 'css/spacing.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600&display=swap" rel="stylesheet">
-  <link href="{% static 'css/project.css' %}" rel="stylesheet">
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
   {% block css %}
 
 
@@ -69,25 +97,47 @@
 </head>
 
 <body>
-  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar"  >
-    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-      <nav class="navbar">
-        <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-            <i uk-icon="icon:grid; ratio: 1.5" style="color:#903045;"></i>
-      </label>	   
-      <a class="logo exo nav-logo" href="{% url 'home' %}"><img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India</a>
-      <input type="checkbox" id="chkToggle"></input>
-      <ul class=" main-nav" id="js-menu" style="font-family: 'Poppins', sans-serif;    ">
-        <li class="uk-active"><a style="text-decoration: none;" href="/#record_health" class="nav-links">Record Health <span class="uk-badge record-health-nav">New</span></a></li>
-        <li><a style="text-decoration: none;" style="text-decoration: none;" href="{% url 'maps' %}" class="nav-links">Maps</a></li>
-        <li><a style="text-decoration: none;" href="{% url 'about' %}" class="nav-links">About</a></li>
-        <li><a style="text-decoration: none;" href="{% url 'news:index' %}" class="nav-links">News</a></li>
-        <li><a style="text-decoration: none;" style="text-decoration: none;" href="/#pnm" class="nav-links">Patients Near Me <span class="uk-badge pateints-near-menu-nav">New</span></a></li>
-      </ul> 
-    </nav>
-      
+  <nav style="border-bottom: 1.5px solid #f6b2ca;border-radius: 45px;"
+  class="navbar is-transaparent is-fixed-top has-padding-top-8 has-padding-bottom-8" role="navigation"
+  aria-label="main navigation" id="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'home' %}"
+      style="font-size:1.4rem;text-transform: uppercase;letter-spacing: 1px;">
+      <img src="{% static 'images/favicons/48_48.png' %}"> &nbsp;Health Of India
+    </a>
+      <div id="navbarBurger" class="navbar-burger burger" data-target="navMenuDocumentation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
+  
+    <div id="navMenuDocumentation" class="navbar-menu">
+      <div class="navbar-end">
+        <a href="{% url 'maps:oneshot_health_entry' %}" class="navbar-item">
+          Record Your Health
+        </a>
+  
+        <a href="{% url 'maps' %}" class="navbar-item">
+          Maps
+        </a>
+        <a href="{% url 'about' %}" class="navbar-item">
+          About
+        </a>
+        <a href="{% url 'news:index' %}" class="navbar-item">
+          COVID-19 News
+        </a>
+        <a href="/#pnm" class="navbar-item">
+          Patients Near Me
+        </a>
+  
+  
+      </div>
+    </div>
+    </div>
+  </nav>
+
   <div class="">
     {% if messages %}
     {% for message in messages %}
@@ -110,20 +160,14 @@
 ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <!-- Bootstrap JS and its dependencies-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
   <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
 
   {% block javascript %}
-
-
-  {#  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"#}
-  {#          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"#}
-  {#          crossorigin="anonymous"></script>#}
-  {#  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"#}
-  {#          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"#}
-  {#          crossorigin="anonymous"></script>#}
 
   <!-- Your stuff: Third-party javascript libraries go here -->
 
