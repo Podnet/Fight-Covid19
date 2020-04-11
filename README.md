@@ -77,7 +77,7 @@ Setup
     <paste the contents of the file>
     Do the same in config/.env
     $ touch config/.env
-    $ nano config.env
+    $ nano config/.env
     ```
     
     
