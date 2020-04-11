@@ -55,17 +55,29 @@ Setup
     following content:
     ```env
     # These variables are used locally
-    DATABASE_NAME="postgres:///fight_covid19" 
-    DATABASE_USER="apoorva"
-    DATABASE_PASSWORD="apple007" 
-    DATABASE_HOST="127.0.0.1" 
-    DATABASE_PORT="5432"
+    DJANGO_SETTINGS_MODULE=config.settings.local
+    DJANGO_SECRET_KEY=07FGJkO46oezqJsAOVuUho0rSfB6jMdOZmmdYMdIDYJ8py17qF4IUC8QNNGbLiLE
+    DATABASE_NAME=fight_covid19
+    DATABASE_USER=apoorva
+    DATABASE_PASSWORD=apple007
+    DATABASE_HOST=127.0.0.1
+    DATABASE_PORT=5432
+    BROKER_URL=redis://localhost:6379
+    CELERY_RESULT_BACKEND=redis://localhost:6379
+    CELERY_ACCEPT_CONTENT=application/json
+    CELERY_TASK_SERIALIZER=json
+    CELERY_RESULT_SERIALIZER=json
+    REDIS_URL=redis://localhost:6379/1
+
     ```
     
     ```console
     $ touch .env
     $ nano .env
     <paste the contents of the file>
+    Do the same in config/.env
+    $ touch config/.env
+    $ nano config.env
     ```
     
     
