@@ -11,6 +11,11 @@
 
 
 {% block content %}
+<style>
+  .hideError{
+    display: none;
+  }
+</style>
 <div class="container is-fullhd">
   <div class="section">
     <h3 class="title is-3 has-padding-top-3">Health Status Form</h3>
@@ -32,11 +37,11 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <input v-model="age" class="input is-danger is-fullwidth" id="form-horizontal-text" type="text"
+                    <input v-model="age" name="ageField" class="input is-fullwidth"  id="form-horizontal-text" type="text"
                       style="width: 130px">
                   </div>
-                  <p class="help is-danger">
-                    This field is required
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Age
                   </p>
                 </div>
               </div>
@@ -173,6 +178,18 @@
     },
     methods: {
       submitForm: function (event) {
+        var x = document.getElementsByName('ageField');
+        var y = document.getElementsByName('age-error');
+        if(app.age <= 0 || app.age >=150){
+          console.log('Invalid age');
+          x[0].classList.add('is-danger');
+          y[0].classList.remove('hideError');
+          return;
+        }
+        else{
+          x[0].classList.remove('is-danger');
+          y[0].classList.add('hideError');        
+        }
         if (navigator.geolocation) {
           // Geolocation works
 
