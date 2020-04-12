@@ -18,6 +18,7 @@ from fight_covid19.maps.helpers import (
     get_range_coords,
 )
 from fight_covid19.maps.models import HealthEntry
+from fight_covid19.maps.models import HelpEntry
 from fight_covid19.maps.models import KeyValuePair
 
 
@@ -146,5 +147,21 @@ class OneShotFormEntry(View):
             latitude=form_data["latitude"],
             longitude=form_data["longitude"],
             unique_id=form_data["unique_id"],
+        )
+        return JsonResponse({"status": "success"})
+
+
+class HelpEntryForm(View):
+    def post(self, request, *args, **kwargs):
+        raw_data = request.body.decode("utf-8")
+        form_data = json.loads(raw_data)
+        HelpEntry.objects.create(
+            fullname=form_data["fullname"],
+            phone_number=form_data["phone_number"],
+            help_type=form_data["help_type"],
+            address=form_data["address"],
+            description=form_data["description"],
+            latitude=form_data["latitude"],
+            longitude=form_data["longitude"],
         )
         return JsonResponse({"status": "success"})
