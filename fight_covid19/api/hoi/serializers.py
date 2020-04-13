@@ -9,7 +9,6 @@ class HealthEntryFormSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = HealthEntry
         fields = [
-            "user_id",
             "age",
             "gender",
             "fever",
@@ -23,13 +22,9 @@ class HealthEntryFormSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class HealthEntrySerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.CharField(source="user.username")
-
     class Meta:
         model = HealthEntry
         fields = [
-            "id",
-            "user",
             "age",
             "gender",
             "fever",
