@@ -1,0 +1,298 @@
+{% extends "base-uikit.html" %}
+
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Health Status Form" %}{% endblock %}
+
+{% load static %}
+{% load humanize %}
+
+
+
+{% block content %}
+<style>
+  .hideError{
+    display: none;
+  }
+</style>
+<div class="container is-fullhd">
+  <div class="section">
+    <h3 class="title is-3 has-padding-top-3">Help Entry Form</h3>
+    <p class="subtitle is-info">Please fill this form with correct information.</p>
+    <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+      <div class="column">
+
+        <!-- Health entry form -->
+        {% csrf_token %}
+        {% verbatim %}
+        <div id="vue-app">
+          <div class="uk-form-horizontal uk-margin-large">
+
+            <!-- Name -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Name Of Help Provider</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="text"
+                      style="width: 330px">
+                  </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Name
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Phone Of Help Provider</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="phone"
+                      style="width: 330px">
+                  </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Phone
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Help Type -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Type Of Help Providing</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="select is-info">
+                      <select v-model="gender" class="uk-select" id="form-horizontal-select">
+                        <option value="F">Food Donation</option>
+                        <option value="M">Medical Store</option>
+                        <option value="O">Grocery Store</option>
+                        <option value="O">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Address Of Help Provider</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="text"
+                      style="width: 330px">
+                  </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Age
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Description Of Help Provider</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control" style="width: 330px">
+                    <textarea class="textarea has-fixed-size" placeholder="" rows="5"></textarea>
+                  </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Age
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+            <br>
+            <div class="control">
+              <p class="is-success">{{ form_status }}</p>
+              <button v-bind:disabled="submit_disabled" v-on:click="submitForm"
+                class="button is-info is-outlined has-margin-bottom-7 has-margin-left-1">Submit Now</button>
+            </div>
+          </div>
+        </div>
+
+        <br><br><br>
+        {% endverbatim %}
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  // Vue code
+  var app = new Vue({
+    el: "#vue-app",
+    data: {
+      age: 0,
+      gender: "F",
+      fever: false,
+      cough: false,
+      difficult_breathing: false,
+      quarantine: false,
+      form_status: "",
+      submit_disabled: false,
+    },
+    methods: {
+      submitForm: function (event) {
+        var x = document.getElementsByName('ageField');
+        var y = document.getElementsByName('age-error');
+        if(app.age <= 0 || app.age >=150){
+          console.log('Invalid age');
+          x[0].classList.add('is-danger');
+          y[0].classList.remove('hideError');
+          return;
+        }
+        else{
+          x[0].classList.remove('is-danger');
+          y[0].classList.add('hideError');
+        }
+        if (navigator.geolocation) {
+          // Geolocation works
+
+          //Verify the incoming data
+
+          // Disable Submit button
+          this.submit_disabled = true;
+          this.form_status = "Locating...(Check if you given this page permission for Location access, if it takes too long).";
+
+          navigator.geolocation.getCurrentPosition(async function (position) {
+            // We've received users current location
+            // Note this variable wouldn't work inside this function scope
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            app.form_status = "Location received. Thank you :)";
+
+            // Collected information
+            var form_data = {
+              latitude: latitude,
+              longitude: longitude,
+              age: app.age,
+              cough: app.cough,
+              gender: app.gender,
+              fever: app.fever,
+              difficult_breathing: app.difficult_breathing,
+              quarantine: app.quarantine,
+              datetime: new Date()
+            };
+
+            // Generate or Fetch unique id for this device
+            if ('unique_id' in localStorage) {
+              form_data['unique_id'] = localStorage.getItem('unique_id');
+            } else {
+              form_data['unique_id'] = await fetch('/maps/generate_unique_key')
+                .then((response) => {
+                  return response.json();
+                })
+                .then((data) => {
+                  return data.id;
+                });
+            }
+
+            //Check for existing health entries & store it locally
+            if ('health_entries' in localStorage) {
+              var d = localStorage.getItem('health_entries');
+              var existing_entries = JSON.parse(d);
+            } else {
+              existing_entries = [];
+            }
+            existing_entries.push(form_data);
+            localStorage.setItem('health_entries', JSON.stringify(existing_entries));
+
+            // Send data to the server to be saved.
+            var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+            fetch('/maps/oneshot_form_entry', {
+              method: 'POST',
+              body: JSON.stringify(form_data),
+              headers: {
+                'X-CSRFToken': csrf_token
+              }
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if ('status' in data) {
+                  app.form_status = "Form submitted. Thank you filling in your information. You'll be redirected to homepage in 5 seconds.";
+                  setTimeout(() => {
+                    window.location.href = "/"
+                  }, 5000);
+                } else {
+                  app.form_status = "Something went wrong. We were unable to save your information. Please try again later."
+                }
+              });
+
+          }, function () {
+            this.form_status = "We were unable to access your location. Please allow us to access your location to complete the form."
+            app.submit_disabled = false;
+          });
+        } else {
+          // Geolocation not supported
+          this.form_status = "Geolocation is not supported by your browser. You cannot fill this form."
+          app.submit_disabled = false;
+        }
+      }
+    }
+  });
+
+  function geoFindMe() {
+
+    const latitude_field = document.querySelector('#id_latitude');
+    const longitude_field = document.querySelector('#id_longitude');
+    const status = document.querySelector('#status');
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      latitude_field.value = latitude;
+      longitude_field.value = longitude;
+      status.textContent = 'Done. Thank You!';
+    }
+
+    function error() {
+      status.textContent = 'Unable to retrieve your location';
+    }
+
+    if (!navigator.geolocation) {
+      status.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      status.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+  }
+</script>
+{% endblock %}
