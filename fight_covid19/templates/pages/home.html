@@ -43,7 +43,7 @@
 <div class="" style="height: 90vh !important;text-align:center !important;background-color:white;">
 <div class="center head" id='record_health'>
 
-  <img src="{% static 'images/favicons/b.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
+  <img src="{% static 'images/favicons/hoi-logo-new.png' %}" class="logoImage wow fadeIn medim" style="height: 250px;margin-bottom: -20px;">
   <h2 class="title is-2 has-margin-top-7">
     Health Of India
   </h2>
@@ -52,6 +52,9 @@
   <div>
     <div>
       <a class="button is-danger is-outlined has-margin-bottom-7 is-medium" href="{% url 'maps:oneshot_health_entry' %}">Record Your Health</a>
+    </div>
+    <div>
+      <a class="button is-black is-outlined has-margin-bottom-7 is-medium" href="{% url 'maps:health_entry' %}">Record A Help</a>
     </div>
   </div>
 </div>

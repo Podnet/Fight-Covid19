@@ -18,7 +18,7 @@
 </style>
 <div class="container is-fullhd">
   <div class="section">
-    <h3 class="title is-3 has-padding-top-3">Health Status Form</h3>
+    <h3 class="title is-3 has-padding-top-3">Help Entry Form</h3>
     <p class="subtitle is-info">Please fill this form with correct information.</p>
     <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
       <div class="column">
@@ -29,36 +29,55 @@
         <div id="vue-app">
           <div class="uk-form-horizontal uk-margin-large">
 
-            <!-- age -->
+            <!-- Name -->
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">What is your age?</label>
+                <label class="label">Name Of Help Provider</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <input v-model="age" name="ageField" class="input is-fullwidth"  id="form-horizontal-text" type="text"
-                      style="width: 130px">
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="text"
+                      style="width: 330px">
                   </div>
                   <p class="hideError help is-danger" name="age-error">
-                    Invalid Age
+                    Invalid Name
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Gender -->
+            <!-- Phone -->
             <div class="field is-horizontal">
               <div class="field-label is-normal">
-                <label class="label">What is your gender?</label>
+                <label class="label">Phone Of Help Provider</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="phone"
+                      style="width: 330px">
+                  </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Phone
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Help Type -->
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Type Of Help Providing</label>
               </div>
               <div class="field-body">
                 <div class="field is-narrow">
                   <div class="control">
                     <div class="select is-info">
-                      <select v-model="gender" class="uk-select" id="form-horizontal-select" style="width: 130px">
-                        <option value="F">Female</option>
-                        <option value="M">Male</option>
+                      <select v-model="gender" class="uk-select" id="form-horizontal-select">
+                        <option value="F">Food Donation</option>
+                        <option value="M">Medical Store</option>
+                        <option value="O">Grocery Store</option>
                         <option value="O">Other</option>
                       </select>
                     </div>
@@ -67,73 +86,43 @@
               </div>
             </div>
 
-            <!-- Fever -->
+            <!-- Address -->
             <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">Do you have fever?</label>
+              <div class="field-label is-normal">
+                <label class="label">Address Of Help Provider</label>
               </div>
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <label class="checkbox">
-                      <input v-model="fever" class="uk-checkbox" type="checkbox" name="radio1">
-                      Yes
-                    </label>
+                    <input v-model="age1" name="" class="input is-fullwidth"  id="form-horizontal-text" type="text"
+                      style="width: 330px">
                   </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Age
+                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- Cough -->
+            <!-- Description -->
             <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">Do you have Cough?</label>
+              <div class="field-label is-normal">
+                <label class="label">Description Of Help Provider</label>
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
-                    <label class="checkbox">
-                      <input v-model="cough" class="uk-checkbox" type="checkbox" name="radio1">
-                      Yes
-                    </label>
+                  <div class="control" style="width: 330px">
+                    <textarea class="textarea has-fixed-size" placeholder="" rows="5"></textarea>
                   </div>
+                  <p class="hideError help is-danger" name="age-error">
+                    Invalid Age
+                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- Difficulty in Breathing -->
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">Do you have any difficulty in breathing?</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <label class="checkbox">
-                      <input v-model="difficult_breathing" class="uk-checkbox" type="checkbox" name="radio1">
-                      Yes
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <!-- Self quarantined -->
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">Have you self-quarantined yourself?</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <label class="checkbox">
-                      <input v-model="quarantine" class="uk-checkbox" type="checkbox" name="radio1">
-                      Yes
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <br>
             <div class="control">
               <p class="is-success">{{ form_status }}</p>

@@ -15,6 +15,11 @@ urlpatterns = [
         name="oneshot_health_entry",
     ),
     path(
+        "help_entry",
+        TemplateView.as_view(template_name="maps/help_entry_form.html"),
+        name="health_entry",
+    ),
+    path(
         "generate_unique_key",
         map_views.GenerateUniqueKey.as_view(),
         name="generate_unique_key",
