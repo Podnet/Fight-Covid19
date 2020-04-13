@@ -29,7 +29,6 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
                 # Atomic transaction
                 with transaction.atomic():
                     entry_form = entryform_serializer.save()
-                    entry_form.user = User.objects.get(pk=request.data["user_id"])
                     entry_form.creation_timestamp = datetime.datetime.now(
                         tz=timezone.utc
                     )
