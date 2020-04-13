@@ -112,16 +112,45 @@ if ($navbarBurgers.length > 0) {
         <span></span>
       </div>
     </div>
-  
+
     <div id="navMenuDocumentation" class="navbar-menu">
       <div class="navbar-end">
-        <a href="{% url 'maps:oneshot_health_entry' %}" class="navbar-item">
-          Record Your Health
+        <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Record
         </a>
-  
-        <a href="{% url 'maps' %}" class="navbar-item">
+
+        <div class="navbar-dropdown">
+          <a href="{% url 'maps:oneshot_health_entry' %}" class="navbar-item">
+            Record Your Health
+          </a>
+          <a href="{% url 'maps:health_entry' %}" class="navbar-item">
+            Record A Help
+          </a>
+        </div>
+      </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
           Maps
         </a>
+
+        <div class="navbar-dropdown">
+          <a href="{% url 'maps' %}" class="navbar-item">
+            Patient Map
+          </a>
+          <a href="{% url 'maps' %}" class="navbar-item">
+            Grocery Map
+          </a>
+          <a href="{% url 'maps' %}" class="navbar-item">
+            Medical Map
+          </a>
+          <a href="{% url 'maps' %}" class="navbar-item">
+            Food Centers Map
+          </a>
+        </div>
+      </div>
+
+
         <a href="{% url 'about' %}" class="navbar-item">
           About
         </a>
@@ -129,10 +158,10 @@ if ($navbarBurgers.length > 0) {
           COVID-19 News
         </a>
         <a href="/#pnm" class="navbar-item">
-          Patients Near Me
+          Help Near Me
         </a>
-  
-  
+
+
       </div>
     </div>
     </div>
