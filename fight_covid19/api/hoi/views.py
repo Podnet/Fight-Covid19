@@ -20,7 +20,7 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
     queryset = HealthEntry.objects.all()
     serializer_class = HealthEntrySerializer
 
-    def create(self, request, format=None, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         entryform_serializer = HealthEntryFormSerializer(
             data=request.data, context={"request": request}
         )
@@ -41,8 +41,8 @@ class HealthEntryViewSet(viewsets.ModelViewSet):
             # If there are errors, return them
         else:
             errors = dict()
-            HealthEntryFormSerializer.is_valid()
-            errors.update(dict(HealthEntryFormSerializer.errors))
+            entryform_serializer.is_valid()
+            errors.update(dict(entryform_serializer.errors))
             return Response(errors)
 
 
