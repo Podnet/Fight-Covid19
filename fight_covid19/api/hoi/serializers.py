@@ -22,8 +22,6 @@ class HealthEntryFormSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class HealthEntrySerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.CharField(source="user.username")
-
     class Meta:
         model = HealthEntry
         fields = [
