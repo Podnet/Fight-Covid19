@@ -18,6 +18,24 @@
         </div>
       </div>
 
+      <div class="column is-3 is-hidden-tablet">
+        <div>
+          <div class="card-content card-content-custom">
+            <h5 class="title is-5"><span class="icon"> <i class="fas fa-mobile-alt"></i> </span> Mobile App</h5>
+            <ul>
+              <li class="nav-item">
+
+                <ul class="nav-ul">
+                  <li>
+                    <span class="icon"> <i class="fab fa-google-play"></i> </span> <a download href="{% static 'mobile-app/HOI-Android-V01.apk' %}"> Download Android App</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="column is-3">
         <div>
           <div class="card-content card-content-custom">
@@ -27,15 +45,15 @@
 
                 <ul class="nav-ul">
                   <li>
-                    <a href="https://twitter.com/health_of_india"> Twitter</a>
+                    <span class="icon"> <i class="fab fa-twitter"></i> </span> <a href="https://twitter.com/health_of_india"> Twitter</a>
                   </li>
 
                   <li>
-                    <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Telegram Group</a>
+                    <span class="icon"> <i class="fab fa-telegram-plane"></i> </span> <a href="https://t.me/joinchat/HjfL_kk3gxSQ7MQnbTFYyQ">Telegram Group</a>
                   </li>
 
                   <li>
-                    <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
+                    <span class="icon"> <i class="fas fa-envelope"></i> </span> <a href="mailto:info@thepodnet.com">info@thepodnet.com</a>
                   </li>
                 </ul>
               </li>
@@ -43,7 +61,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="column is-3">
         <div>
@@ -54,11 +71,11 @@
 
                 <ul class="nav-ul">
                   <li>
-                    <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web App</a>
+                    <span class="icon"> <i class="fas fa-globe"></i> </span> <a href="https://github.com/meticulousCraftman/Fight-Covid19">Web App</a>
                   </li>
 
                   <li>
-                    <a href="https://github.com/mornville/Fight-Covid19-App">Mobile App</a>
+                    <span class="icon"> <i class="fas fa-mobile"></i> </span> <a href="https://github.com/mornville/Fight-Covid19-App">Mobile App</a>
                   </li>
                 </ul>
               </li>
@@ -71,13 +88,33 @@
 
   </div>
 
+  <footer class="footer has-padding-top-6 has-padding-bottom-8 has-background-white is-hidden-mobile">
+    <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p style="text-align:center;">Copyright &copy; 2020 - All Rights Reserved</p>.
+        </div>
+      </div>
+      <div class="column">
+        <div class="content has-text-centered">
+          <p style="text-align:center;"> <span class="icon"> <i class="fab fa-google-play"></i> </span> <a download href="{% static 'mobile-app/HOI-Android-V01.apk' %}"> Download Android App</a> </p>.
+        </div>
+      </div>
+      <div class="column">
+        <div class="content has-text-centered">
+          <p style="text-align:center;"> Made with <span class="icon has-text-danger"> <i class="far fa-heart"></i> </span> by Health of India</p>.
+        </div>
+      </div>
+    </div>
 
-  <footer class="footer has-padding-top-6 has-padding-bottom-8 has-background-white">
+  </footer>
+
+
+  <footer class="footer has-padding-top-6 has-padding-bottom-8 has-background-white is-hidden-tablet">
     <div class="columns is-mobile is-centered">
       <div class="column is-12">
         <div class="content has-text-centered">
-          <p style="text-align:center;">Copyright &copy; 2020 - All Rights Reserved. &nbsp;&nbsp; Made with <span
-              class="icon has-text-danger"> <i class="far fa-heart"></i> </span> by Health of India.</p>.
+          <p style="text-align:center;">Copyright &copy; 2020 - All Rights Reserved. &nbsp;&nbsp; Made with <span class="icon has-text-danger"> <i class="far fa-heart"></i> </span> by Health of India.</p>.
         </div>
       </div>
     </div>
