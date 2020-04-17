@@ -4,30 +4,30 @@
   <div class="section">
     <h3 class="subtitle is-3 has-padding-top-6">COVID-19 State Wise Stats</h3>
     <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
-      <div class="column is-2 is-hidden-mobile">
+      <div class="column is-1 is-hidden-mobile">
 
       </div>
 
-      <div class="column is-7 table-container">
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+      <div class="column is-10 table-container has-text-centered">
+        <table id="tablestate" class="has-text-centered display hover" style="width:100%">
           <thead>
             <tr>
               <th>State</th>
-              <th>Active</th>
-              <th>Confirmed</th>
-              <th>Recovered</th>
-              <th>Deaths</th>
-              <th>Last Update</th>
+              <th>Active Cases</th>
+              <th>Confirmed Cases</th>
+              <th>Recovered Cases</th>
+              <th>Total Deaths</th>
+              <th>Date & Time Of Last Stats Update</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>State</th>
-              <th>Active</th>
-              <th>Confirmed</th>
-              <th>Recovered</th>
-              <th>Deaths</th>
-              <th>Last Update</th>
+              <th>Active Cases</th>
+              <th>Confirmed Cases</th>
+              <th>Recovered Cases</th>
+              <th>Total Deaths</th>
+              <th>Date & Time Of Last Stats Update</th>
             </tr>
           </tfoot>
           <tbody>
@@ -48,3 +48,21 @@
 
   </div>
 </div>
+
+{% block javascript %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tablestate').DataTable({
+      "order": [
+        [1, "desc"]
+      ],
+      "lengthMenu": [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+      ],
+      "pagingType": "numbers"
+    });
+  });
+
+</script>
+{% endblock %}
