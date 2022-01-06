@@ -30,7 +30,7 @@ django-extensions==2.2.8  # https://github.com/django-extensions/django-extensio
 django-coverage-plugin==1.8.0  # https://github.com/nedbat/django_coverage_plugin
 pytest-django==3.8.0  # https://github.com/pytest-dev/pytest-django
 
-celery==4.4.0
+celery==5.2.2
 django-redis==4.11.0
 redis==3.4.1
 anyjson==0.3.3
